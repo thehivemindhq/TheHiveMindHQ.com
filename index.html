@@ -1,9 +1,1370 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Web Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vikram Raju — The Hive Mind HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0D1B2A;
+  --surface: #12243A;
+  --border:  #1E3554;
+  --text:    #F0EDE6;
+  --muted:   rgba(240,237,230,0.5);
+  --gold:    #C9913A;
+  --gold-faint: rgba(201,145,58,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 5vw;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(13,27,42,0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(30,53,84,0.4);
+  transform: translateY(-100%);
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+#nav.visible { transform: translateY(0); }
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  opacity: 0.85;
+  transition: opacity 200ms;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+
+/* ── SECTION BASE ── */
+section {
+  position: relative;
+  width: 100%;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 100ms; }
+.reveal-d2 { transition-delay: 220ms; }
+.reveal-d3 { transition-delay: 340ms; }
+.reveal-d4 { transition-delay: 460ms; }
+
+/* ══════════════════════════════════════
+   S1 — THE THRESHOLD
+══════════════════════════════════════ */
+#threshold {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6vw;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+/* noise texture — expensive paper quality */
+#threshold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+#threshold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 55%, rgba(201,145,58,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 85% 30%, rgba(18,36,58,0.8) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.threshold-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 6.4vw, 108px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  max-width: 88vw;
+  position: relative;
+  z-index: 2;
+}
+/* force meaningful line breaks via block spans */
+.threshold-headline .line-break {
+  display: block;
+  line-height: inherit;
+  margin-bottom: 0.05em;
+}
+.threshold-headline .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px) translateX(-8px);
+  transition: opacity 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin-right: 0.22em;
+}
+.threshold-headline .word.lit {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+.threshold-headline .word.gold { color: var(--gold); }
+
+.threshold-byline {
+  margin-top: 52px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 600ms ease 2.8s;
+  position: relative;
+  z-index: 2;
+}
+.threshold-byline.lit { opacity: 1; }
+
+/* scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 48px; right: 7vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  z-index: 2;
+  animation: fadeInIndicator 600ms ease 2.6s forwards;
+}
+@keyframes fadeInIndicator { to { opacity: 1; } }
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(201,145,58,0.6);
+  position: relative;
+  overflow: visible;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 1px;
+  height: 0;
+  background: rgba(201,145,58,0.6);
+  animation: lineExtend 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes lineExtend {
+  0%       { height: 0;    opacity: 0.8; }
+  40%      { height: 20px; opacity: 0.6; }
+  70%      { height: 20px; opacity: 0; }
+  100%     { height: 0;    opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   S2 — THE SIGNAL
+══════════════════════════════════════ */
+#signal {
+  background: var(--navy);
+  padding: 120px 6vw 140px;
+  position: relative;
+}
+.signal-inner {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  gap: 8vw;
+  align-items: start;
+  max-width: 1400px;
+}
+.signal-pullquote {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 2.8vw, 46px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 40px;
+}
+.signal-pullquote em {
+  font-style: normal;
+  color: var(--gold);
+}
+.signal-bio {
+  font-size: clamp(15px, 1.1vw, 18px);
+  color: rgba(240,237,230,0.7);
+  line-height: 1.75;
+  max-width: 520px;
+}
+
+/* constellation */
+.constellation {
+  position: relative;
+  height: 420px;
+  width: 100%;
+  user-select: none;
+}
+.constellation canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.cnode {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transform: translate(-50%, -50%);
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 250ms ease,
+              box-shadow 250ms ease;
+  z-index: 2;
+}
+.cnode:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  border-color: rgba(201,145,58,0.9);
+  box-shadow: 0 0 20px rgba(201,145,58,0.15);
+}
+.cnode .cnum {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  text-align: center;
+}
+.cnode .clbl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  color: rgba(240,237,230,0.55);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+/* tooltip */
+.cnode-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18,36,58,0.96);
+  border: 1px solid rgba(201,145,58,0.25);
+  padding: 8px 14px;
+  white-space: nowrap;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(240,237,230,0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  border-radius: 2px;
+  z-index: 10;
+}
+.cnode:hover .cnode-tooltip { opacity: 1; }
+
+/* ══════════════════════════════════════
+   S3 — THE FAULT LINE
+══════════════════════════════════════ */
+#faultline {
+  background: var(--surface);
+  padding: 120px 6vw 140px;
+  position: relative;
+  overflow: hidden;
+}
+#faultline::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+#faultline::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.fault-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 60px;
+}
+.fault-provocation {
+  position: relative;
+  padding-left: 28px; /* room for the vertical gold bar */
+}
+/* vertical gold citation bar */
+.fault-provocation::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 2px;
+  height: 80px;
+  background: var(--gold);
+  opacity: 0.85;
+}
+.fault-frag {
+  font-family: 'Syne', sans-serif;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin-bottom: 28px;
+  display: block;
+}
+.fault-frag-1 {
+  font-size: clamp(22px, 3.5vw, 56px);
+  font-weight: 400;
+  color: var(--text);
+  margin-left: 0;
+}
+.fault-frag-2 {
+  font-size: clamp(18px, 2.5vw, 40px);
+  font-weight: 400;
+  font-style: italic;
+  color: #A0B0C0;
+  margin-left: 15%;
+}
+.fault-frag-3 {
+  font-size: clamp(20px, 3vw, 48px);
+  font-weight: 700;
+  font-style: normal;
+  color: var(--text);
+  margin-left: 30%;
+  margin-bottom: 0;
+}
+.fault-frag-3 .gold { color: var(--gold); }
+.fault-bridge {
+  margin-top: 64px;
+  font-size: clamp(15px, 1.1vw, 18px);
+  color: rgba(240,237,230,0.65);
+  line-height: 1.75;
+  max-width: 640px;
+  border-left: 2px solid var(--gold);
+  padding-left: 24px;
+}
+
+/* ══════════════════════════════════════
+   S4 — THE WORK
+══════════════════════════════════════ */
+#thework {
+  background: var(--navy);
+  padding: 120px 0 0;
+}
+.work-header {
+  padding: 0 6vw 80px;
+}
+.work-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.work-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3.5vw, 56px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.act {
+  position: relative;
+  width: 100%;
+  padding: 80px 6vw;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  min-height: 280px;
+}
+.act-bg-num {
+  position: absolute;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(120px, 20vw, 260px);
+  color: var(--gold);
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.act:nth-child(odd) .act-bg-num { right: -2vw; top: 50%; transform: translateY(-50%); }
+.act:nth-child(even) .act-bg-num { left: -2vw; top: 50%; transform: translateY(-50%); }
+
+.act-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+.act:nth-child(even) .act-content { margin-left: auto; text-align: right; }
+
+.act-num-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.act-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 2.8vw, 44px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.act-desc {
+  font-size: clamp(14px, 1vw, 17px);
+  color: rgba(240,237,230,0.65);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.act-insight {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(13px, 0.95vw, 16px);
+  font-style: italic;
+  color: rgba(201,145,58,0.85);
+  line-height: 1.55;
+  font-style: normal;
+}
+
+/* ══════════════════════════════════════
+   S5 — THE PROOF
+══════════════════════════════════════ */
+#proof {
+  background: var(--surface);
+  padding: 120px 6vw 140px;
+  position: relative;
+  overflow: hidden;
+}
+#proof::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.proof-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 64px;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  max-width: 1200px;
+}
+.proof-card {
+  background: transparent;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.35), 0 2px 12px rgba(0,0,0,0.2);
+  padding: 40px 36px;
+  position: relative;
+  border-radius: 2px;
+}
+.proof-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+.proof-card.large {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(18,36,58,0.6);
+}
+.proof-card.med {
+  background: rgba(13,27,42,0.5);
+}
+.proof-card .diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+.proof-card .stat {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3vw, 52px);
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.proof-card .stat-label {
+  font-size: clamp(14px, 1vw, 17px);
+  color: rgba(240,237,230,0.7);
+  line-height: 1.55;
+}
+.proof-card .stat-sub {
+  margin-top: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ══════════════════════════════════════
+   S6 — THE THINKING
+══════════════════════════════════════ */
+#thinking {
+  background: var(--navy);
+  padding: 120px 6vw 140px;
+  position: relative;
+}
+.think-header {
+  margin-bottom: 72px;
+}
+.think-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.think-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(13px, 0.95vw, 15px);
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  max-width: 540px;
+  line-height: 1.6;
+}
+.think-spread {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 6vw;
+  align-items: start;
+  border-top: 1px solid var(--border);
+  padding-top: 56px;
+  max-width: 1200px;
+}
+.think-article-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 3vw, 52px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.think-excerpt {
+  margin-top: 24px;
+  font-size: clamp(14px, 1vw, 17px);
+  color: rgba(240,237,230,0.6);
+  line-height: 1.75;
+}
+.think-right {
+  padding-top: 8px;
+}
+.think-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.think-excerpt-short {
+  font-size: clamp(13px, 0.95vw, 15px);
+  color: rgba(240,237,230,0.55);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.think-read {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+.think-read::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+.think-read:hover::after { width: 100%; }
+
+.think-more {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  max-width: 1200px;
+}
+.think-more span { color: var(--gold); }
+
+/* ══════════════════════════════════════
+   S7 — THE INVITATION
+══════════════════════════════════════ */
+#invitation {
+  min-height: 100svh;
+  background: var(--navy);
+  padding: 120px 6vw 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+#invitation::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.inv-statement {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 3.8vw, 64px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  max-width: 820px;
+  text-wrap: balance;
+  margin-bottom: 64px;
+}
+.inv-statement em {
+  font-style: normal;
+  color: var(--gold);
+}
+.inv-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: auto;
+}
+.inv-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(15px, 1.2vw, 20px);
+  font-weight: 500;
+  color: rgba(240,237,230,0.7);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+  transition: color 250ms;
+}
+.inv-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+.inv-link:hover { color: var(--gold); }
+.inv-link:hover::after { width: 100%; }
+
+.inv-footer {
+  position: absolute;
+  bottom: 40px; left: 6vw; right: 6vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,230,0.25);
+  border-top: 1px solid rgba(30,53,84,0.5);
+  padding-top: 24px;
+}
+
+/* ── HAMBURGER BUTTON ── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: -10px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.nav-burger span {
+  display: block;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: opacity 200ms, transform 200ms;
+}
+.nav-burger span:nth-child(1) { width: 24px; }
+.nav-burger span:nth-child(2) { width: 16px; }
+.nav-burger span:nth-child(3) { width: 20px; }
+.nav-burger[aria-expanded="true"] span:nth-child(1) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { transform: rotate(45deg) translate(3px, 3px); width: 20px; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); width: 20px; }
+
+/* ── FULL-SCREEN NAV OVERLAY ── */
+#nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+#nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+#nav-overlay a {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 12vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  transition: color 200ms;
+}
+#nav-overlay a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+#nav-overlay a:hover { color: var(--gold); }
+#nav-overlay a:hover::after { width: 100%; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE — TABLET
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .signal-inner {
+    grid-template-columns: 1fr;
+  }
+  .constellation {
+    height: 320px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .proof-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .proof-card.large {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .think-spread {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .nav-links { gap: 24px; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MOBILE
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+  /* ── Nav ── */
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+
+  /* ── S1 Threshold ── */
+  .threshold-headline {
+    font-size: 11vw;
+    line-height: 1.1;
+    max-width: 100%;
+  }
+  .scroll-indicator {
+    bottom: 40px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  /* ── S2 Signal ── */
+  #signal { padding: 80px 6vw 100px; }
+  .signal-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .constellation {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    transform: scale(0.7);
+    transform-origin: top center;
+    margin-bottom: -60px; /* compensate for scale shrink */
+  }
+
+  /* ── S3 Fault Line ── */
+  #faultline { padding: 80px 6vw 100px; }
+  .fault-frag-1 { font-size: clamp(22px, 6.5vw, 36px); }
+  .fault-frag-2 {
+    font-size: clamp(20px, 6vw, 32px);
+    margin-left: 0 !important;
+  }
+  .fault-frag-3 {
+    font-size: clamp(21px, 6.2vw, 34px);
+    margin-left: 0 !important;
+  }
+
+  /* ── S4 The Work ── */
+  #thework { padding-top: 80px; }
+  .work-header { padding: 0 6vw 56px; }
+  .act {
+    padding: 60px 6vw;
+    min-height: auto;
+  }
+  .act-bg-num {
+    font-size: 25vw;
+    top: 12px !important;
+    right: 12px !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 0.05;
+  }
+  .act:nth-child(even) .act-content {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  /* ── S5 Proof ── */
+  #proof { padding: 80px 6vw 100px; }
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .proof-card.large {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .proof-card.med {
+    grid-column: 1 !important;
+  }
+
+  /* ── S6 Thinking ── */
+  #thinking { padding: 80px 6vw 100px; }
+
+  /* ── S7 Invitation ── */
+  #invitation {
+    justify-content: flex-start;
+    padding-top: 100px;
+    min-height: auto;
+    padding-bottom: 120px;
+  }
+  .inv-footer { position: static; margin-top: 64px; }
+  .inv-link { font-size: 15px; min-height: 44px; display: flex; align-items: center; }
+
+  /* ── tap targets ── */
+  .nav-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .think-read { min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* ── prevent horizontal scroll ── */
+  body, #threshold, #signal, #faultline, #thework, #proof, #thinking, #invitation {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+</style>
 </head>
 <body>
-    <h1>Work in Progress. - Vikram@thehivemindhq.com</h1>
+
+<!-- ── NAV ── -->
+<nav id="nav" aria-label="Main navigation">
+  <a class="nav-logo" href="#threshold">The Hive Mind HQ</a>
+  <ul class="nav-links">
+    <li><a href="#signal">About</a></li>
+    <li><a href="#thinking">Perspectives</a></li>
+    <li><a href="#thework">Work</a></li>
+    <li><a href="#invitation">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE NAV OVERLAY ── -->
+<div id="nav-overlay" role="dialog" aria-label="Navigation menu">
+  <a href="#signal"   onclick="closeOverlay()">About</a>
+  <a href="#thinking" onclick="closeOverlay()">Perspectives</a>
+  <a href="#thework"  onclick="closeOverlay()">Work</a>
+  <a href="#invitation" onclick="closeOverlay()">Contact</a>
+</div>
+
+<!-- ══ S1: THE THRESHOLD ══ -->
+<section id="threshold" data-screen-label="01 Threshold">
+  <h1 class="threshold-headline" id="headline-text" aria-label="Most organisations are still treating AI as a project. The ones that win will treat it as physics."></h1>
+  <p class="threshold-byline" id="byline">Vikram Raju &nbsp;·&nbsp; The Hive Mind HQ</p>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ S2: THE SIGNAL ══ -->
+<section id="signal" data-screen-label="02 Signal">
+  <div class="signal-inner">
+    <div>
+      <blockquote class="signal-pullquote reveal">
+        "The last decade was digital transformation.<br>
+        The next is <em>cognitive reinvention.</em><br>
+        I have spent my career at this exact inflection point."
+      </blockquote>
+      <p class="signal-bio reveal reveal-d1">
+        Vikram Raju is an AI and Commercial Transformation Advisor based in Bengaluru, India. He works at the intersection of enterprise AI strategy and revenue architecture — helping organisations not just adopt intelligent technology, but redesign themselves around it. He has operated at board level and delivery level, across markets, and across cycles.
+      </p>
+    </div>
+    <div class="constellation reveal reveal-d2" id="constellation-wrap" aria-label="Key credentials: 300M+ influenced, 20+ years, 8000+ upskilled, EY HCL T-Systems Tech Mahindra">
+      <!-- SVG connecting lines rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ══ S3: THE FAULT LINE ══ -->
+<section id="faultline" data-screen-label="03 Fault Line">
+  <p class="fault-label reveal">The Problem With AI Today</p>
+  <div class="fault-provocation">
+    <p class="fault-frag fault-frag-1 reveal">75% of AI proof-of-concepts never reach production.</p>
+    <p class="fault-frag fault-frag-2 reveal reveal-d1">Not because the models failed.</p>
+    <p class="fault-frag fault-frag-3 reveal reveal-d2">Because the organisation <span class="gold">wasn't designed</span> to receive them.</p>
+  </div>
+  <p class="fault-bridge reveal reveal-d3">
+    This is the problem I have spent the last decade solving — at board level, at delivery level, and everywhere in between.
+  </p>
+</section>
+
+<!-- ══ S4: THE WORK ══ -->
+<section id="thework" data-screen-label="04 The Work">
+  <div class="work-header">
+    <p class="work-label reveal">The Work</p>
+    <h2 class="work-title reveal reveal-d1">Three acts. One through-line.</h2>
+  </div>
+
+  <div class="act reveal">
+    <span class="act-bg-num" aria-hidden="true">I</span>
+    <div class="act-content">
+      <p class="act-num-label">Act I</p>
+      <h3 class="act-title">AI Commercial Transformation</h3>
+      <p class="act-desc">Reshaping how enterprises go to market with AI — from strategy to commercial model to delivery structure. Not a roadmap exercise. A full-stack rethink of how value is created and captured.</p>
+      <p class="act-insight">The AI story is easy to sell. The hard part is building an organisation that can keep the promise.</p>
+    </div>
+  </div>
+
+  <div class="act reveal">
+    <span class="act-bg-num" aria-hidden="true">II</span>
+    <div class="act-content">
+      <p class="act-num-label">Act II</p>
+      <h3 class="act-title">GTM & Revenue Architecture</h3>
+      <p class="act-desc">Designing the commercial engine that turns AI capability into repeatable revenue. Pricing models, partner ecosystems, sales motion, and the metrics that actually predict growth.</p>
+      <p class="act-insight">Most AI GTM strategies are technology-out. The ones that scale are value-in.</p>
+    </div>
+  </div>
+
+  <div class="act reveal">
+    <span class="act-bg-num" aria-hidden="true">III</span>
+    <div class="act-content">
+      <p class="act-num-label">Act III</p>
+      <h3 class="act-title">AI Operating Models</h3>
+      <p class="act-desc">Building the internal architecture that makes AI sustainable — governance, talent, data infrastructure, and the organisational design choices that determine whether transformation sticks.</p>
+      <p class="act-insight">An AI operating model is not an IT decision. It is a leadership decision that happens to involve technology.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S5: THE PROOF ══ -->
+<section id="proof" data-screen-label="05 Proof">
+  <p class="proof-label reveal">Weight of Evidence</p>
+  <div class="proof-grid">
+    <div class="proof-card large reveal">
+      <div class="diamond"></div>
+      <div class="stat">$1B+</div>
+      <div class="stat-label">in transformation deals influenced across enterprise AI and cloud services engagements</div>
+      <div class="stat-sub">EY · HCL · T-Systems · Tech Mahindra</div>
+    </div>
+    <div class="proof-card med reveal reveal-d1">
+      <div class="diamond"></div>
+      <div class="stat">IDC Leader</div>
+      <div class="stat-label">Cloud Professional Services</div>
+      <div class="stat-sub">2022</div>
+    </div>
+    <div class="proof-card med reveal reveal-d2">
+      <div class="diamond"></div>
+      <div class="stat" style="font-size:clamp(18px,1.6vw,28px); padding-top: 8px;">MIT EmTech<br>KubeCon<br>WSJ Contributor</div>
+      <div class="stat-label" style="margin-top:12px;">Recognised voice on enterprise AI and organisational transformation</div>
+    </div>
+    <div class="proof-card med reveal reveal-d3" style="grid-column: 2;">
+      <div class="diamond"></div>
+      <div class="stat">35%</div>
+      <div class="stat-label">YoY growth delivered at HCL</div>
+      <div class="stat-sub">Revenue Architecture</div>
+    </div>
+    <div class="proof-card med reveal reveal-d4" style="grid-column: 3;">
+      <div class="diamond"></div>
+      <div class="stat">8,000+</div>
+      <div class="stat-label">Professionals upskilled across AI and cloud transformation programmes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ S6: THE THINKING ══ -->
+<section id="thinking" data-screen-label="06 Thinking">
+  <div class="think-header reveal">
+    <p class="think-label">Perspectives</p>
+    <p class="think-sub">On AI, enterprise architecture, and what the intelligent organisation actually looks like.</p>
+  </div>
+  <div class="think-spread">
+    <div>
+      <h2 class="think-article-title reveal">Why AI Proof-of-Concepts Fail to Scale — and What to Do About It</h2>
+      <p class="think-excerpt reveal reveal-d1">The failure rate of enterprise AI is not a technology problem. It is an organisational design problem dressed in technical clothing. This piece maps the structural fault lines — and what it actually takes to cross them.</p>
+    </div>
+    <div class="think-right reveal reveal-d2">
+      <p class="think-tag">Featured Essay</p>
+      <p class="think-excerpt-short">The gap between proof-of-concept and production is where most enterprise AI ambition goes to die. Understanding why is the first step to changing it.</p>
+      <a href="#invitation" class="think-read">Read &rarr;</a>
+    </div>
+  </div>
+  <div class="think-more reveal">
+    <span>More Perspectives Coming —</span> <span>Essays, frameworks, and field notes on the intelligent organisation</span>
+  </div>
+</section>
+
+<!-- ══ S7: THE INVITATION ══ -->
+<section id="invitation" data-screen-label="07 Invitation">
+  <p class="inv-statement reveal">
+    "If you are navigating an AI transformation —<br>
+    or simply want to exchange <em>ideas</em> —<br>
+    I would enjoy the conversation."
+  </p>
+  <div class="inv-contacts">
+    <a class="inv-link reveal reveal-d1" href="/cdn-cgi/l/email-protection#3d4b54564f5c507d49555855544b5850545359554c135e5250"><span class="__cf_email__" data-cfemail="04726d6f76656944706c616c6d7261696d6a606c752a676b69">[email&#160;protected]</span></a>
+    <a class="inv-link reveal reveal-d2" href="https://linkedin.com/in/vikramraju1" target="_blank" rel="noopener">linkedin.com/in/vikramraju1</a>
+  </div>
+  <footer class="inv-footer">
+    &copy; 2026 Vikram Raju &nbsp;·&nbsp; The Hive Mind HQ &nbsp;·&nbsp; Bengaluru, India
+  </footer>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── HEADLINE STAGGER ──
+(function() {
+  // Three lines with deliberate semantic breaks
+  const lines = [
+    "Most organisations are still",
+    "treating AI as a project.",
+    "The ones that win treat it as physics."
+  ];
+  const goldWords = new Set(['win', 'physics.']);
+  const el = document.getElementById('headline-text');
+
+  // Build HTML: each line as a block, words as inline-blocks
+  let allSpans = [];
+  el.innerHTML = lines.map((line, li) => {
+    const words = line.split(' ');
+    const wordSpans = words.map(w => {
+      const cls = goldWords.has(w) ? 'word gold' : 'word';
+      const span = `<span class="${cls}">${w}</span>`;
+      allSpans.push(w);
+      return span;
+    }).join('');
+    return `<span class="line-break">${wordSpans}</span>`;
+  }).join('');
+
+  // Total duration 2.4s over all words; first word at 200ms
+  const spans = el.querySelectorAll('.word');
+  const totalWords = spans.length;
+  const startDelay = 200;          // ms before first word
+  const totalDuration = 2400;      // ms for full statement
+  const interval = totalDuration / (totalWords - 1);
+
+  spans.forEach((span, i) => {
+    setTimeout(() => {
+      span.classList.add('lit');
+      if (i === totalWords - 1) {
+        setTimeout(() => {
+          document.getElementById('byline').classList.add('lit');
+        }, 300);
+      }
+    }, startDelay + i * interval);
+  });
+})();
+
+// ── NAV REVEAL ON SCROLL ──
+(function() {
+  const nav = document.getElementById('nav');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > window.innerHeight * 0.6) {
+          nav.classList.add('visible');
+        } else {
+          nav.classList.remove('visible');
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+// ── SCROLL REVEAL ──
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+})();
+
+// ── CONSTELLATION ──
+(function() {
+  const wrap = document.getElementById('constellation-wrap');
+  if (!wrap) return;
+
+  // Node definitions: r = radius in px
+  const nodeDefs = [
+    { r: 30, num: '$1B+', lbl: 'Influenced',        tooltip: 'Transformation deals and GTM programs influenced',  ox: -88, oy: -110 },
+    { r: 24, num: '20+',    lbl: 'Years',              tooltip: 'Two decades at the enterprise AI frontier',         ox:  90, oy: -75  },
+    { r: 24, num: '8,000+', lbl: 'Upskilled',          tooltip: 'Professionals trained across AI & cloud programs',  ox:  75, oy:  105 },
+    { r: 18, num: '',       lbl: 'EY · HCL\nT-Systems · Tech Mahindra', tooltip: 'Principal employer organisations', ox: -65, oy:  90  },
+  ];
+
+  const pairs = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+  let hoveredIdx = -1;
+  let angle = 0; // radians, current rotation
+
+  // Canvas for connecting lines
+  const canvas = document.createElement('canvas');
+  wrap.appendChild(canvas);
+
+  // Build node elements
+  const nodeEls = nodeDefs.map((def, i) => {
+    const el = document.createElement('div');
+    el.className = 'cnode';
+    const d = def.r * 2;
+    el.style.width  = d + 'px';
+    el.style.height = d + 'px';
+
+    const numSize = def.r > 25 ? 16 : def.r > 20 ? 13 : 11;
+    const lblSize = def.r > 25 ? 9  : 8;
+
+    if (def.num) {
+      el.innerHTML = `
+        <span class="cnum" style="font-size:${numSize}px">${def.num}</span>
+        <span class="clbl" style="font-size:${lblSize}px">${def.lbl}</span>
+        <span class="cnode-tooltip">${def.tooltip}</span>`;
+    } else {
+      // company cluster node
+      el.innerHTML = `
+        <span class="clbl" style="font-size:${lblSize - 1}px; line-height:1.5; text-align:center; padding: 0 4px;">${def.lbl.replace('\n','<br>')}</span>
+        <span class="cnode-tooltip">${def.tooltip}</span>`;
+    }
+
+    el.addEventListener('mouseenter', () => { hoveredIdx = i; });
+    el.addEventListener('mouseleave', () => { hoveredIdx = -1; });
+    wrap.appendChild(el);
+    return el;
+  });
+
+  function resize() {
+    canvas.width  = wrap.offsetWidth;
+    canvas.height = wrap.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function getPositions() {
+    const cx = canvas.width  / 2;
+    const cy = canvas.height / 2;
+    return nodeDefs.map(def => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      return {
+        x: cx + def.ox * cos - def.oy * sin,
+        y: cy + def.ox * sin + def.oy * cos,
+      };
+    });
+  }
+
+  const ROTATION_PERIOD = 90000; // ms for full rotation
+  let lastTime = null;
+
+  function tick(ts) {
+    if (lastTime !== null) {
+      const dt = ts - lastTime;
+      angle += (2 * Math.PI * dt) / ROTATION_PERIOD;
+    }
+    lastTime = ts;
+
+    const pos = getPositions();
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw connecting lines
+    pairs.forEach(([a, b]) => {
+      const isHovered = hoveredIdx === a || hoveredIdx === b;
+      ctx.beginPath();
+      ctx.moveTo(pos[a].x, pos[a].y);
+      ctx.lineTo(pos[b].x, pos[b].y);
+      ctx.strokeStyle = isHovered
+        ? 'rgba(201,145,58,0.40)'
+        : 'rgba(201,145,58,0.15)';
+      ctx.lineWidth = 0.75;
+      ctx.stroke();
+    });
+
+    // Position node elements
+    nodeEls.forEach((el, i) => {
+      el.style.left = pos[i].x + 'px';
+      el.style.top  = pos[i].y + 'px';
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+
+// ── MOBILE NAV ──
+const burger = document.getElementById('nav-burger');
+const overlay = document.getElementById('nav-overlay');
+
+function openOverlay() {
+  overlay.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeOverlay() {
+  overlay.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+burger.addEventListener('click', () => {
+  overlay.classList.contains('open') ? closeOverlay() : openOverlay();
+});
+// close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+</script>
+
 </body>
 </html>

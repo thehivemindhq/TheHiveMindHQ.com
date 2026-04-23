@@ -1174,7 +1174,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <div class="contact-details reveal" style="transition-delay:0.24s">
           <a class="contact-link" href="/cdn-cgi/l/email-protection#02746b6970636f42766a676a6b74676f6b6c666a732c616d6f">
             <span class="contact-link-icon">✉</span>
-            <span class="__cf_email__" data-cfemail="65130c0e17040825110d000d0c1300080c0b010d144b060a08"><span class="__cf_email__" data-cfemail="13657a7861727e53677b767b7a65767e7a7d777b623d707c7e">vikram@thehivemindhq.com</span></span>
+            <span class="__cf_email__" data-cfemail="65130c0e17040825110d000d0c1300080c0b010d144b060a08"><span class="__cf_email__" data-cfemail="4137282a33202c01352924292837242c282f2529306f222e2c">[email&#160;protected]</span></span>
           </a>
           <a class="contact-link" href="https://linkedin.com/in/vikramraju1" target="_blank">
             <span class="contact-link-icon">in</span>
@@ -1188,24 +1188,28 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       </div>
 
       <div class="reveal" style="transition-delay:0.1s">
-        <form class="contact-form" onsubmit="handleSubmit(event)">
+        <form class="contact-form" action="https://api.staticforms.xyz/submit" method="POST" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="accessKey" value="sh_staticforms_public"/>
+          <input type="hidden" name="email" value="vikram@thehivemindhq.com"/>
+          <input type="hidden" name="redirectTo" value="https://thehivemindhq.com/#contact"/>
+          <input type="text" name="honeypot" style="display:none"/>
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name"/>
+              <input type="text" id="name" name="name" placeholder="Your name" required/>
             </div>
             <div class="form-group">
               <label for="org">Organisation</label>
-              <input type="text" id="org" placeholder="Company or institution"/>
+              <input type="text" id="org" name="$organisation" placeholder="Company or institution"/>
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="your@email.com"/>
+            <label for="replyTo">Email</label>
+            <input type="email" id="replyTo" name="replyTo" placeholder="your@email.com" required/>
           </div>
           <div class="form-group">
-            <label for="type">Nature of Enquiry</label>
-            <select id="type">
+            <label for="subject">Nature of Enquiry</label>
+            <select id="subject" name="subject">
               <option value="">Select one…</option>
               <option>Strategic Advisory Retainer</option>
               <option>Transformation Mandate</option>
@@ -1216,7 +1220,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           </div>
           <div class="form-group">
             <label for="message">What are you navigating?</label>
-            <textarea id="message" rows="5" placeholder="Describe the challenge or opportunity you are working through…"></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Describe the challenge or opportunity you are working through…"></textarea>
           </div>
           <button type="submit" class="btn-primary">Send Message</button>
         </form>

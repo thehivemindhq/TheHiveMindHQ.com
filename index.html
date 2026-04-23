@@ -1116,7 +1116,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
 
         <div class="about-links reveal" style="transition-delay:0.32s">
           <a href="https://linkedin.com/in/vikramraju1" target="_blank" class="btn-ghost" style="font-size:0.7rem;">LinkedIn</a>
-          <a href="/cdn-cgi/l/email-protection#7006191b02111d30041815181906151d191e1418015e131f1d" class="btn-ghost" style="font-size:0.7rem;">Email Vikram</a>
+          <a id="about-email-link" href="#" class="btn-ghost" style="font-size:0.7rem;">Email Vikram</a>
         </div>
       </div>
 
@@ -1172,9 +1172,9 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <h2 class="reveal" style="transition-delay:0.12s">If you are navigating an AI transformation — or simply want to exchange ideas.</h2>
         <p class="reveal" style="transition-delay:0.18s">Most mandates begin with a single conversation. There is no obligation and no standard deck. Just a direct discussion about the challenge you are navigating.</p>
         <div class="contact-details reveal" style="transition-delay:0.24s">
-          <a class="contact-link" href="/cdn-cgi/l/email-protection#eb9d8280998a86ab9f838e83829d8e8682858f839ac5888486">
+          <a class="contact-link" id="email-link" href="#">
             <span class="contact-link-icon">✉</span>
-            <span class="__cf_email__" data-cfemail="07716e6c75666a47736f626f6e71626a6e69636f762964686a">[email&#160;protected]</span>
+            <span id="email-display"></span>
           </a>
           <a class="contact-link" href="https://linkedin.com/in/vikramraju1" target="_blank">
             <span class="contact-link-icon">in</span>
@@ -1262,7 +1262,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── NAV BEHAVIOUR ──────────────────────────────────
 const nav = document.getElementById('nav');
 let lastY = 0, ticking = false;
@@ -1332,13 +1332,55 @@ window.addEventListener('scroll', () => {
   }
 }, {passive:true});
 
+// ── EMAIL LINKS (bypass Cloudflare obfuscation) ────
+(function() {
+  const u = 'vikram', d = 'thehivemindhq.com';
+  const addr = u + '@' + d;
+  const href = 'mailto:' + addr;
+  const el = document.getElementById('email-link');
+  const disp = document.getElementById('email-display');
+  const btn = document.getElementById('about-email-link');
+  if (el) el.href = href;
+  if (disp) disp.textContent = addr;
+  if (btn) btn.href = href;
+})();
+
 // ── CONTACT FORM ───────────────────────────────────
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('button[type=submit]');
-  btn.textContent = 'Sent — Thank you.';
-  btn.style.opacity = '0.6';
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  btn.textContent = 'Sending…';
   btn.disabled = true;
+
+  const data = {
+    accessKey: 'sf_bea9336153409e6212470e20',
+    name: form.querySelector('[name=name]').value,
+    replyTo: form.querySelector('[name=replyTo]').value,
+    subject: form.querySelector('[name=subject]').value || 'New enquiry from thehivemindhq.com',
+    message: form.querySelector('[name=message]').value,
+    '$organisation': form.querySelector('[name="$organisation"]').value,
+  };
+
+  try {
+    const res = await fetch('https://api.staticforms.xyz/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success) {
+      btn.textContent = 'Sent — Thank you.';
+      btn.style.opacity = '0.6';
+      form.reset();
+    } else {
+      btn.textContent = 'Something went wrong. Try again.';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Network error. Try again.';
+    btn.disabled = false;
+  }
 }
 
 // ── TWEAKS ─────────────────────────────────────────

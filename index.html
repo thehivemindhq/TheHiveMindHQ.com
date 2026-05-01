@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>The Hive Mind HQ · Vikram Raju</title>
+<!-- accent: muted copper #B5967A -->
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -24,7 +25,7 @@
   --muted:     #8587A0;
   --dim:       #565870;
 
-  --accent:    #B5967A;
+  --accent:    #B5967A; /* muted copper */
   --accent-lo: rgba(122,158,181,0.12);
   --accent-md: rgba(122,158,181,0.28);
 
@@ -361,7 +362,7 @@ section { padding: 8rem 5rem; }
   max-width: 1240px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border: 1px solid var(--border);
 }
@@ -385,25 +386,37 @@ section { padding: 8rem 5rem; }
 .evidence-cell > p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.5rem; }
 .ev-note { font-size: 0.7rem; color: var(--dim); font-style: italic; }
 
-.logo-strip {
+.cred-block {
   max-width: 1240px;
   margin: 4rem auto 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 3rem;
-  align-items: center;
-  padding-top: 3rem;
   border-top: 1px solid var(--border);
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
-.logo-item {
-  font-family: var(--f-display);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  color: var(--dim);
-  font-weight: 300;
-  transition: color 0.3s;
+.cred-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
 }
-.logo-item:hover { color: var(--muted); }
+.cred-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--f-body);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.cred-value {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
 
 /* ── ENGAGE ── */
 #engage { background: var(--bg); }
@@ -734,48 +747,7 @@ footer {
 }
 footer p { font-size: 0.75rem; color: var(--dim); }
 
-/* ── TWEAKS PANEL ── */
-#tweaks-panel {
-  display: none;
-  position: fixed;
-  bottom: 2rem; right: 2rem;
-  background: var(--bg-lift);
-  border: 1px solid var(--border-hi);
-  padding: 1.5rem;
-  z-index: 9999;
-  width: 240px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-}
-#tweaks-panel.open { display: block; }
-#tweaks-panel h5 {
-  font-family: var(--f-display);
-  font-size: 0.9rem;
-  color: var(--cream);
-  margin-bottom: 1.2rem;
-  font-weight: 300;
-}
-.tweak-row { margin-bottom: 1rem; }
-.tweak-row label {
-  display: block;
-  font-size: 0.64rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.4rem;
-}
-.tweak-row select,
-.tweak-row input[type=range] {
-  width: 100%;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  color: var(--cream);
-  font-family: var(--f-body);
-  font-size: 0.82rem;
-  padding: 0.4rem 0.6rem;
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
+
 
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
@@ -828,7 +800,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   <div class="hero-line"></div>
 
   <div class="hero-eyebrow reveal">
-    <span class="label">AI &amp; Commercial Transformation · Bengaluru, India</span>
+    <span class="label">AI Strategy. Growth. Organisation. · Bengaluru, India</span>
   </div>
 
   <h1 class="hero-title reveal" style="transition-delay:0.12s">
@@ -855,9 +827,9 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   <div class="section-inner">
     <div class="problem-grid">
       <div class="stat-block reveal">
-        <div class="stat-num" id="statNum">75</div>
+        <div class="stat-num" id="statNum">74</div>
         <div class="stat-pct">%</div>
-        <div class="stat-sub">of enterprise AI proof-of-concepts never reach production</div>
+        <div class="stat-sub">of enterprise AI proof-of-concepts never reach production<br><span style="font-size:0.65rem;color:var(--dim);font-style:italic;display:block;margin-top:0.5rem;">BCG, <em>Where's the Value in AI?</em> Oct 2024</span></div>
       </div>
       <div class="problem-text">
         <span class="label reveal-left">The Problem We Solve</span>
@@ -942,21 +914,30 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p>professionals upskilled across AI and cloud transformation programmes globally</p>
         <div class="ev-note">Programme design and executive sponsorship across multiple organisations</div>
       </div>
-      <div class="evidence-cell reveal" style="transition-delay:0.24s">
-        <div class="ev-num">IDC/HFS</div>
-        <p>Cloud Professional Services / App Modernization Leader recognition, 2022/24 — as part of strategic leadership team</p>
-        <div class="ev-note">Industry analyst recognition; team award</div>
-      </div>
+
     </div>
 
-    <div class="logo-strip reveal">
-      <span class="label label-muted" style="margin-right:1rem;">Experience across:</span>
-      <span class="logo-item">EY</span>
-      <span class="logo-item">HCL Tech</span>
-      <span class="logo-item">Tech Mahindra</span>
-      <span class="logo-item">T-Systems</span>
-      <span class="logo-item">Unisys</span>
-      <span class="logo-item">MIT EmTech / WSJ Contributor</span>
+    <div class="cred-block reveal">
+      <div class="cred-row">
+        <div class="cred-label">Prior Roles</div>
+        <div class="cred-value">EY · HCL Technologies · Tech Mahindra · T-Systems · Unisys</div>
+      </div>
+      <div class="cred-row">
+        <div class="cred-label">Client Sectors</div>
+        <div class="cred-value">Financial Services · Retail &amp; CPG · Technology Services · Manufacturing · Health Care · Public Sector</div>
+      </div>
+      <div class="cred-row">
+        <div class="cred-label">Analyst Ecosystem</div>
+        <div class="cred-value">Briefed and engaged across Gartner, Forrester, IDC, and HFS Research — on AI strategy, cloud services, and enterprise transformation.</div>
+      </div>
+      <div class="cred-row">
+        <div class="cred-label">Alliance &amp; Partners</div>
+        <div class="cred-value">Joint go-to-market and delivery engagements with Microsoft and other Tier 1 hyperscaler and services partners.</div>
+      </div>
+      <div class="cred-row">
+        <div class="cred-label">Published &amp; Featured</div>
+        <div class="cred-value">EY.com · Wall Street Journal · MIT EmTech · CIO.com</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1111,7 +1092,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <div class="about-role reveal" style="transition-delay:0.06s">Founder · AI &amp; Commercial Transformation Advisor</div>
         <p class="reveal" style="transition-delay:0.1s">Vikram has spent the last decade at the intersection of enterprise AI strategy and revenue architecture — helping organisations not just adopt intelligent technology, but redesign themselves around it. He has operated at board level and delivery level, across markets, and across cycles.</p>
         <p class="reveal" style="transition-delay:0.14s">His work spans three domains that most advisors treat separately: the AI strategy that defines what's possible, the commercial architecture that turns possibility into revenue, and the operating model that makes it all sustainable.</p>
-        <p class="reveal" style="transition-delay:0.18s">Before founding The Hive Mind HQ, Vikram held senior roles at EY, HCL Technologies, T-Systems, Tech Mahindra and Unisys — giving him both the strategic altitude and the delivery accountability that most transformation programmes require.</p>
+        <p class="reveal" style="transition-delay:0.18s">Before founding The Hive Mind HQ, Vikram held senior roles at EY, HCL Technologies, T-Systems, Tech Mahindra and Unisys — giving him both the strategic altitude and the delivery accountability that most transformation programmes require. His work has been recognised by IDC and HFS as part of leadership teams named Cloud Professional Services and App Modernization Leaders in 2022 and 2024.</p>
 
 
         <div class="about-links reveal" style="transition-delay:0.32s">
@@ -1131,34 +1112,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       </div>
     </div>
 
-    <!-- TEAM -->
-    <div class="team-section">
-      <span class="label reveal-left">The Broader Team</span>
-      <hr class="rule reveal-left" style="transition-delay:0.08s"/>
-      <p class="reveal" style="transition-delay:0.12s; max-width:55ch; margin-top:0.5rem;">The Hive Mind HQ operates as a curated network of senior practitioners. Engagements are staffed with precision — the right expertise for the specific challenge, not overhead that doesn't serve the client.</p>
-      <div class="team-grid">
-        <div class="team-card vikram-card reveal">
-          <div class="team-initials-box" style="overflow:hidden;">
-            <img src="uploads/vikram_headshot.jpeg" alt="Vikram Raju" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>
-          </div>
-          <h3>Vikram Raju</h3>
-          <div class="role">Founder · Strategy &amp; Commercial Architecture</div>
-          <p>AI and Commercial Transformation. Board-level to delivery-level. Across markets and cycles.</p>
-        </div>
-        <div class="team-card placeholder reveal" style="transition-delay:0.1s">
-          <div class="team-initials-box"><div class="team-initials">—</div></div>
-          <h3>Team Member Placeholder</h3>
-          <div class="role">Specialist · Area of Expertise</div>
-          <p>Brief bio and area of focus. Senior practitioner profile to be added.</p>
-        </div>
-        <div class="team-card placeholder reveal" style="transition-delay:0.2s">
-          <div class="team-initials-box"><div class="team-initials">—</div></div>
-          <h3>Team Member Placeholder</h3>
-          <div class="role">Specialist · Area of Expertise</div>
-          <p>Brief bio and area of focus. Senior practitioner profile to be added.</p>
-        </div>
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -1172,10 +1126,10 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <h2 class="reveal" style="transition-delay:0.12s">If you are navigating an AI transformation — or simply want to exchange ideas.</h2>
         <p class="reveal" style="transition-delay:0.18s">Most mandates begin with a single conversation. There is no obligation and no standard deck. Just a direct discussion about the challenge you are navigating.</p>
         <div class="contact-details reveal" style="transition-delay:0.24s">
-          <a class="contact-link" id="email-link" href="#">
+          <span class="contact-link">
             <span class="contact-link-icon">✉</span>
-            <span id="email-display"></span>
-          </a>
+            <span id="email-display" style="user-select:all;"></span>
+          </span>
           <a class="contact-link" href="https://linkedin.com/in/vikramraju1" target="_blank">
             <span class="contact-link-icon">in</span>
             linkedin.com/in/vikramraju1
@@ -1236,31 +1190,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   <p>Built for the intelligent organisation.</p>
 </footer>
 
-<!-- TWEAKS PANEL -->
-<div id="tweaks-panel">
-  <h5>Tweaks</h5>
-  <div class="tweak-row">
-    <label>Accent Colour</label>
-    <select id="tw-accent" onchange="applyTweaks()">
-      <option value="#B5967A" selected>Steel Blue (default)</option>
-      <option value="#8BA888">Sage</option>
-      <option value="#B5967A">Muted Copper</option>
-      <option value="#A8A07A">Pale Brass</option>
-    </select>
-  </div>
-  <div class="tweak-row">
-    <label>Type Scale</label>
-    <select id="tw-type" onchange="applyTweaks()">
-      <option value="spectral" selected>Spectral (default)</option>
-      <option value="libre">Libre Baskerville</option>
-      <option value="dm">DM Serif Display</option>
-    </select>
-  </div>
-  <div class="tweak-row">
-    <label>Density</label>
-    <input type="range" id="tw-density" min="0.8" max="1.2" step="0.05" value="1" oninput="applyTweaks()"/>
-  </div>
-</div>
+
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── NAV BEHAVIOUR ──────────────────────────────────
@@ -1308,7 +1238,7 @@ const statObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting && !counted) {
       counted = true;
-      let start = 0, end = 75, dur = 1800, startTime = null;
+      let start = 0, end = 74, dur = 1800, startTime = null;
       const ease = t => 1 - Math.pow(1 - t, 3);
       const step = (timestamp) => {
         if (!startTime) startTime = timestamp;
@@ -1383,59 +1313,7 @@ async function handleSubmit(e) {
   }
 }
 
-// ── TWEAKS ─────────────────────────────────────────
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "#B5967A",
-  "typeface": "spectral",
-  "density": 1
-}/*EDITMODE-END*/;
 
-const FONT_MAP = {
-  spectral: "'Spectral', serif",
-  libre: "'Libre Baskerville', serif",
-  dm: "'DM Serif Display', serif"
-};
-const FONT_URLS = {
-  libre: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap",
-  dm:    "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"
-};
-
-function applyTweaks() {
-  const accent = document.getElementById('tw-accent').value;
-  const typeKey = document.getElementById('tw-type').value;
-  const density = parseFloat(document.getElementById('tw-density').value);
-  const r = document.documentElement.style;
-  r.setProperty('--accent', accent);
-  r.setProperty('--border-hi', hexToRgba(accent, 0.18));
-  r.setProperty('--accent-lo', hexToRgba(accent, 0.12));
-  r.setProperty('--accent-md', hexToRgba(accent, 0.28));
-  r.setProperty('--f-display', FONT_MAP[typeKey] || FONT_MAP.spectral);
-  if (typeKey !== 'spectral' && FONT_URLS[typeKey]) {
-    if (!document.getElementById('tw-font-' + typeKey)) {
-      const lk = document.createElement('link');
-      lk.rel = 'stylesheet'; lk.id = 'tw-font-' + typeKey;
-      lk.href = FONT_URLS[typeKey];
-      document.head.appendChild(lk);
-    }
-  }
-  document.documentElement.style.fontSize = (16 * density) + 'px';
-  window.parent.postMessage({type:'__edit_mode_set_keys', edits:{accent, typeface:typeKey, density}}, '*');
-}
-
-function hexToRgba(hex, a) {
-  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-
-// Host message handling — MUST register before announcing availability
-window.addEventListener('message', (e) => {
-  if (e.data?.type === '__activate_edit_mode') {
-    document.getElementById('tweaks-panel').classList.add('open');
-  } else if (e.data?.type === '__deactivate_edit_mode') {
-    document.getElementById('tweaks-panel').classList.remove('open');
-  }
-});
-window.parent.postMessage({type:'__edit_mode_available'}, '*');
 </script>
 </body>
 </html>

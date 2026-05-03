@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>The Hive Mind HQ · Vikram Raju</title>
-<!-- accent: muted copper #B5967A -->
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +24,7 @@
   --muted:     #8587A0;
   --dim:       #565870;
 
-  --accent:    #B5967A; /* muted copper */
+  --accent:    #B5967A;
   --accent-lo: rgba(122,158,181,0.12);
   --accent-md: rgba(122,158,181,0.28);
 
@@ -477,9 +476,7 @@ section { padding: 8rem 5rem; }
   transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 .case-card:hover { background: var(--bg-lift); }
-.case-card:hover::before { transform: scaleY(1); transform-origin: top; }
-.case-card:hover::before { background: var(--accent); }
-.case-meta {}
+.case-card:hover::before { transform: scaleY(1); transform-origin: top; background: var(--accent); }
 .case-sector {
   font-size: 0.68rem;
   letter-spacing: 0.18em;
@@ -500,7 +497,6 @@ section { padding: 8rem 5rem; }
 .case-status.live { border-color: var(--border-hi); color: var(--accent); }
 .case-body h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .case-body p { font-size: 0.95rem; }
-.case-outcome {}
 .case-num {
   font-family: var(--f-display);
   font-size: 3rem;
@@ -509,7 +505,6 @@ section { padding: 8rem 5rem; }
   line-height: 1;
 }
 .case-outcome-text { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
-.case-placeholder-text { font-style: italic; color: var(--dim); }
 
 .placeholder-note {
   border: 1px dashed var(--border);
@@ -588,13 +583,6 @@ section { padding: 8rem 5rem; }
 .about-role { font-size: 0.88rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 2rem; }
 .about-text p { font-size: 0.98rem; margin-bottom: 1rem; }
 
-.cred-table { margin-top: 2.5rem; width: 100%; border-collapse: collapse; }
-.cred-table tr { border-bottom: 1px solid var(--border); }
-.cred-table td { padding: 0.85rem 0; font-size: 0.88rem; vertical-align: top; }
-.cred-org { color: var(--cream); font-weight: 400; width: 7rem; }
-.cred-role { color: var(--muted); padding: 0 1.5rem; }
-.cred-years { color: var(--dim); text-align: right; }
-
 .about-photo {
   background: var(--card);
   aspect-ratio: 3/4;
@@ -602,36 +590,6 @@ section { padding: 8rem 5rem; }
   position: relative;
   border: 1px solid var(--border);
   overflow: hidden;
-}
-.photo-stripe {
-  position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 8px,
-    rgba(30,32,42,0.6) 8px,
-    rgba(30,32,42,0.6) 9px
-  );
-}
-.photo-label {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-.photo-initials {
-  font-family: var(--f-display);
-  font-size: 5rem;
-  font-weight: 200;
-  color: rgba(122,158,181,0.15);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-.photo-caption {
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--dim);
 }
 .about-photo-name {
   position: absolute;
@@ -643,39 +601,6 @@ section { padding: 8rem 5rem; }
 .about-photo-name .role { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; }
 
 .about-links { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-
-.team-section { border-top: 1px solid var(--border); padding-top: 5rem; }
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  margin-top: 3rem;
-}
-.team-card {
-  background: var(--bg-alt);
-  padding: 2.5rem;
-  transition: background 0.35s;
-}
-.team-card:hover { background: var(--bg-lift); }
-.team-card.placeholder { opacity: 0.45; }
-.team-card h3 { font-size: 1.2rem; margin-bottom: 0.2rem; }
-.team-card .role { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 1rem; }
-.team-card p { font-size: 0.86rem; }
-.team-initials-box {
-  width: 100%; aspect-ratio: 1;
-  background: var(--bg-lift);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.8rem;
-  border: 1px solid var(--border);
-}
-.team-initials {
-  font-family: var(--f-display);
-  font-size: 3rem;
-  font-weight: 200;
-  color: rgba(122,158,181,0.2);
-}
-.team-card.vikram-card { border-top: 1px solid var(--accent); }
 
 /* ── CONTACT ── */
 #contact { background: var(--bg); border-top: 1px solid var(--border); }
@@ -748,8 +673,6 @@ footer {
 }
 footer p { font-size: 0.75rem; color: var(--dim); }
 
-
-
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
   #nav, section { padding-left: 2rem; padding-right: 2rem; }
@@ -761,8 +684,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
   .work-grid,
   .engage-grid,
-  .evidence-grid,
-  .team-grid { grid-template-columns: 1fr 1fr; }
+  .evidence-grid { grid-template-columns: 1fr 1fr; }
   .perspectives-grid { grid-template-columns: 1fr; }
   .case-card { grid-template-columns: 1fr; gap: 1.5rem; }
   .evidence-bleed { padding-left: 2rem; padding-right: 2rem; }
@@ -773,8 +695,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   h1 { font-size: 2.8rem; }
   .work-grid,
   .engage-grid,
-  .evidence-grid,
-  .team-grid { grid-template-columns: 1fr; }
+  .evidence-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .hero-scroll-indicator { display: none; }
 }
@@ -857,7 +778,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       <p class="reveal" style="transition-delay:0.18s">Each engagement addresses a different layer of enterprise transformation. Most enduring mandates span all three.</p>
     </div>
     <div class="work-grid">
-
       <div class="work-card reveal">
         <div class="work-num-bg">I</div>
         <span class="label">Act I</span>
@@ -866,7 +786,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p class="work-pull">The AI story is easy to sell. The hard part is building an organisation that can keep the promise.</p>
         <span class="work-tag">Strategy · Commercial Design · Delivery Architecture</span>
       </div>
-
       <div class="work-card reveal" style="transition-delay:0.1s">
         <div class="work-num-bg">II</div>
         <span class="label">Act II</span>
@@ -875,7 +794,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p class="work-pull">Most AI GTM strategies are technology-out. The ones that scale are value-in.</p>
         <span class="work-tag">Pricing · Partnerships · Growth Metrics</span>
       </div>
-
       <div class="work-card reveal" style="transition-delay:0.2s">
         <div class="work-num-bg">III</div>
         <span class="label">Act III</span>
@@ -884,12 +802,11 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p class="work-pull">An AI operating model is not an IT decision. It is a leadership decision that happens to involve technology.</p>
         <span class="work-tag">Governance · Talent · Org Design</span>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- EVIDENCE — FULL BLEED -->
+<!-- EVIDENCE -->
 <section id="evidence">
   <div class="evidence-bleed">
     <div class="evidence-header">
@@ -898,7 +815,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       <h2 class="reveal" style="transition-delay:0.12s">Weight of Evidence</h2>
       <p class="reveal" style="transition-delay:0.18s">Selected outcomes from enterprise AI and cloud transformation engagements across global markets.</p>
     </div>
-
     <div class="evidence-grid">
       <div class="evidence-cell reveal">
         <div class="ev-num">$500M+</div>
@@ -915,9 +831,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p>professionals upskilled across AI and cloud transformation programmes globally</p>
         <div class="ev-note">Programme design and executive sponsorship across multiple organisations</div>
       </div>
-
     </div>
-
     <div class="cred-block reveal">
       <div class="cred-row">
         <div class="cred-label">Prior Roles</div>
@@ -953,7 +867,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       <p class="reveal" style="transition-delay:0.18s">Mandates are designed to match the stage and scale of the challenge. Most relationships begin with a diagnostic conversation.</p>
     </div>
     <div class="engage-grid">
-
       <div class="engage-card reveal">
         <span class="label">Advisory</span>
         <h3>Strategic Advisory Retainer</h3>
@@ -965,7 +878,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           <li>Horizon scanning on AI and market signals</li>
         </ul>
       </div>
-
       <div class="engage-card reveal" style="transition-delay:0.1s">
         <span class="label">Project</span>
         <h3>Focused Transformation Mandate</h3>
@@ -977,7 +889,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           <li>Typically 8–16 weeks</li>
         </ul>
       </div>
-
       <div class="engage-card reveal" style="transition-delay:0.2s">
         <span class="label">Speaking &amp; Facilitation</span>
         <h3>Executive Keynotes &amp; Workshops</h3>
@@ -989,7 +900,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           <li>Custom executive education programmes</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
@@ -1003,9 +913,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       <h2 class="reveal" style="transition-delay:0.12s">The Work in Practice</h2>
       <p class="reveal" style="transition-delay:0.18s">Selected engagements. Client details anonymised by agreement; sector, challenge, and outcome disclosed with permission.</p>
     </div>
-
     <div class="cases-list">
-
       <div class="case-card reveal">
         <div class="case-meta">
           <div class="case-sector">Global Technology Services</div>
@@ -1021,11 +929,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           <div class="case-outcome-text">YoY revenue growth in year one following commercial redesign</div>
         </div>
       </div>
-
-
-
     </div>
-
     <div class="placeholder-note reveal">
       <p>Additional case studies are being prepared in consultation with clients. If you would like to discuss a specific challenge or sector, <a href="#contact">reach out directly</a>.</p>
     </div>
@@ -1042,15 +946,13 @@ footer p { font-size: 0.75rem; color: var(--dim); }
       <p class="reveal" style="transition-delay:0.18s">Essays, frameworks, and field notes from the intersection of AI strategy and commercial reality.</p>
     </div>
     <div class="perspectives-grid">
-
       <a class="article-card featured reveal" href="article-ai-governance.html">
         <div><span class="label">Featured Essay</span></div>
         <div class="article-date">May 2025</div>
         <h3>You Built the AI. Now Own the Governance.</h3>
-        <p>Governance-mature firms deploy AI 40% faster, achieve 30% better ROI, and are nearly twice as likely to lead the next wave of agentic AI. For Fortune 100 and Big 4 engineering leaders, this stopped being a compliance story the moment it became a competitive one.</p>
+        <p>Governance-mature firms deploy AI 40% faster, achieve 30% better ROI, and are nearly twice as likely to lead the next wave of agentic AI. Building AI at scale stopped being a compliance story the moment it became a competitive one.</p>
         <span class="read-more">Read the Essay</span>
       </a>
-
       <div class="perspectives-side">
         <a class="article-card reveal" href="#contact" style="transition-delay:0.1s">
           <div><span class="label">Framework</span></div>
@@ -1067,13 +969,11 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           <span class="read-more" style="color:var(--dim)">Notify Me</span>
         </a>
       </div>
-
       <div class="coming-soon-card reveal" style="transition-delay:0.26s">
         <span class="label label-muted">More Coming</span>
         <p>Essays on AI board governance, pricing intelligent services, and building organisations that learn.</p>
         <a href="#contact" class="btn-ghost" style="margin-top:1.2rem;font-size:0.7rem;">Be Notified</a>
       </div>
-
     </div>
   </div>
 </section>
@@ -1082,11 +982,10 @@ footer p { font-size: 0.75rem; color: var(--dim); }
 <section id="about">
   <div class="section-inner">
     <div class="section-header">
-      <span class="label reveal-left">The Team</span>
+      <span class="label reveal-left">About</span>
       <hr class="rule reveal-left" style="transition-delay:0.08s"/>
       <h2 class="reveal" style="transition-delay:0.12s">About The Hive Mind HQ</h2>
     </div>
-
     <div class="about-grid">
       <div class="about-text">
         <h2 class="reveal">Vikram Raju</h2>
@@ -1094,14 +993,11 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         <p class="reveal" style="transition-delay:0.1s">Vikram has spent the last decade at the intersection of enterprise AI strategy and revenue architecture — helping organisations not just adopt intelligent technology, but redesign themselves around it. He has operated at board level and delivery level, across markets, and across cycles.</p>
         <p class="reveal" style="transition-delay:0.14s">His work spans three domains that most advisors treat separately: the AI strategy that defines what's possible, the commercial architecture that turns possibility into revenue, and the operating model that makes it all sustainable.</p>
         <p class="reveal" style="transition-delay:0.18s">Before founding The Hive Mind HQ, Vikram held senior roles at EY, HCL Technologies, T-Systems, Tech Mahindra and Unisys — giving him both the strategic altitude and the delivery accountability that most transformation programmes require. His work has been recognised by IDC and HFS as part of leadership teams named Cloud Professional Services and App Modernization Leaders in 2022 and 2024.</p>
-
-
         <div class="about-links reveal" style="transition-delay:0.32s">
           <a href="https://linkedin.com/in/vikramraju1" target="_blank" class="btn-ghost" style="font-size:0.7rem;">LinkedIn</a>
           <a id="about-email-link" href="#" class="btn-ghost" style="font-size:0.7rem;">Email Vikram</a>
         </div>
       </div>
-
       <div class="reveal" style="transition-delay:0.1s">
         <div class="about-photo">
           <img src="uploads/vikram_headshot.jpeg" alt="Vikram Raju" style="width:100%;height:100%;object-fit:cover;display:block;"/>
@@ -1112,8 +1008,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
         </div>
       </div>
     </div>
-
-
   </div>
 </section>
 
@@ -1141,7 +1035,6 @@ footer p { font-size: 0.75rem; color: var(--dim); }
           </span>
         </div>
       </div>
-
       <div class="reveal" style="transition-delay:0.1s">
         <form class="contact-form" action="https://api.staticforms.xyz/submit" method="POST" onsubmit="handleSubmit(event)">
           <input type="hidden" name="accessKey" value="sf_bea9336153409e6212470e20"/>
@@ -1191,9 +1084,7 @@ footer p { font-size: 0.75rem; color: var(--dim); }
   <p>Built for the intelligent organisation.</p>
 </footer>
 
-
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── NAV BEHAVIOUR ──────────────────────────────────
 const nav = document.getElementById('nav');
 let lastY = 0, ticking = false;
@@ -1227,7 +1118,6 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
 
-// Trigger hero reveals immediately
 document.querySelectorAll('#hero .reveal, #hero .reveal-left').forEach(el => {
   el.classList.add('visible');
 });
@@ -1239,7 +1129,7 @@ const statObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting && !counted) {
       counted = true;
-      let start = 0, end = 74, dur = 1800, startTime = null;
+      let end = 74, dur = 1800, startTime = null;
       const ease = t => 1 - Math.pow(1 - t, 3);
       const step = (timestamp) => {
         if (!startTime) startTime = timestamp;
@@ -1267,13 +1157,10 @@ window.addEventListener('scroll', () => {
 (function() {
   const u = 'vikram', d = 'thehivemindhq.com';
   const addr = u + '@' + d;
-  const href = 'mailto:' + addr;
-  const el = document.getElementById('email-link');
   const disp = document.getElementById('email-display');
   const btn = document.getElementById('about-email-link');
-  if (el) el.href = href;
   if (disp) disp.textContent = addr;
-  if (btn) btn.href = href;
+  if (btn) btn.href = 'mailto:' + addr;
 })();
 
 // ── CONTACT FORM ───────────────────────────────────
@@ -1313,8 +1200,6 @@ async function handleSubmit(e) {
     btn.disabled = false;
   }
 }
-
-
 </script>
 </body>
 </html>

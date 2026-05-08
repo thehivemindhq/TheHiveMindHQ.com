@@ -613,7 +613,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .persp .feat .essay-p{flex:1}
 .persp .feat .essay-link{align-self:flex-start;margin-top: clamp(20px, 3vw, 36px)}
-.persp .side{display:grid;grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 0}
+.persp .side{display:grid;grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 0}
 .persp .side > article{padding: clamp(22px, 3vw, 36px) 0 clamp(22px, 3vw, 36px) clamp(28px, 4vw, 48px);display:flex;flex-direction:column}
 .persp .side > article + article{border-top: 1px solid var(--rule)}
 .persp .side .essay-link{margin-top:auto;align-self:flex-start}
@@ -834,6 +834,37 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tweaks .seg button.on{background:var(--ink);color:var(--paper)}
 .tweaks-close{position:absolute;top:8px;right:10px;font-family:var(--serif);font-size:18px;line-height:1;cursor:pointer}
 
+/* ---------- DENSITY MODES ---------- */
+html[data-density="tight"]{
+  --density-section-y: clamp(40px, 4vw, 64px);
+  --density-hero-y: clamp(28px, 3vw, 48px);
+  --density-headline: clamp(48px, 6vw, 96px);
+  --density-leading: 1.4;
+  --density-stack: clamp(12px, 1.4vw, 18px);
+}
+html[data-density="airy"]{
+  --density-section-y: clamp(110px, 13vw, 220px);
+  --density-hero-y: clamp(80px, 9vw, 160px);
+  --density-headline: clamp(72px, 11vw, 200px);
+  --density-leading: 1.7;
+  --density-stack: clamp(28px, 4vw, 60px);
+}
+html[data-density="tight"] .section,
+html[data-density="airy"] .section{padding: var(--density-section-y) 0}
+html[data-density="tight"] .hero,
+html[data-density="airy"] .hero{padding: var(--density-hero-y) 0}
+html[data-density="tight"] .hero-headline,
+html[data-density="airy"] .hero-headline{font-size: var(--density-headline); line-height: 0.96}
+html[data-density="tight"] .banner,
+html[data-density="airy"] .banner{padding: var(--density-section-y) 0}
+html[data-density="airy"] .hero-lede,
+html[data-density="airy"] .banner-text,
+html[data-density="airy"] .problem-prose p{line-height: var(--density-leading); letter-spacing: 0.005em}
+html[data-density="tight"] .hero-strap{padding-top: var(--density-stack); gap: var(--density-stack)}
+html[data-density="airy"] .hero-strap{padding-top: var(--density-stack); gap: var(--density-stack)}
+html[data-density="tight"] .kicker{letter-spacing: 0.18em}
+html[data-density="airy"] .kicker{letter-spacing: 0.32em}
+
 /* live cursor mark */
 .cursor-mark{
   position:fixed;width: 8px;height:8px;background:var(--accent);border-radius:50%;
@@ -917,7 +948,7 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
       <span class="l3">Starts Here<span class="period">.</span></span>
     </h1>
     <div class="hero-strap">
-      <p class="hero-lede">Vikram Raju works with enterprise leaders and growth-stage companies at the inflection point of AI strategy and commercial architecture — <span class="italic">not just adopting technology, but redesigning organisations around it.</span></p>
+      <p class="hero-lede">Vikram <span style="color: #C73E1A">Raju</span> works with enterprise leaders and growth-stage companies at the inflection point of AI strategy and commercial architecture — <span class="italic">not just adopting technology, but redesigning organisations around it.</span></p>
       <div class="hero-cta-col">
         <a class="btn btn--solid" href="#contact">Start a Conversation <span class="arrow">→</span></a>
         <a class="btn" href="#work">Explore the Work <span class="arrow">→</span></a>
@@ -1203,6 +1234,16 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
         </article>
         <article>
           <div class="essay-tag">
+            <span>Field Note</span>
+            <span class="bullet"></span>
+            <span>11 min read</span>
+          </div>
+          <h3 class="essay-h">Two Days in a Room. One Page on the <em>Wall.</em></h3>
+          <p class="essay-p">The strategic frame is the one page the CEO can carry into the boardroom and defend cold. Most enterprises have not yet produced theirs.</p>
+          <a class="essay-link" href="article-two-days-one-page.html">Read the Essay <span class="arr">→</span></a>
+        </article>
+        <article>
+          <div class="essay-tag">
             <span>Framework</span>
             <span class="bullet"></span>
             <span>Coming Soon</span>
@@ -1385,32 +1426,36 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
   </div>
 </footer>
 
-<!-- TWEAKS PANEL (removed — design frozen) -->
-<div class="tweaks" id="tweaks" style="display:none !important;">
+<!-- TWEAKS PANEL ============================================ -->
+<div class="tweaks" id="tweaks">
   <span class="tweaks-close" id="tweaks-close">×</span>
   <h4>Tweaks</h4>
-  <div class="sub">Composition Studio</div>
+  <div class="sub">Three knobs that reshape the feel</div>
+
   <div class="group">
-    <div class="label">Palette</div>
-    <div class="opts" id="palette-opts">
-      <div class="swatch on" data-theme="paper" style="background:oklch(0.965 0.012 85);"></div>
-      <div class="swatch" data-theme="ink" style="background:oklch(0.16 0.012 80);"></div>
-      <div class="swatch" data-theme="oxblood" style="background:oklch(0.45 0.16 22);"></div>
-      <div class="swatch" data-theme="forest" style="background:oklch(0.5 0.14 60);"></div>
+    <div class="label">Atmosphere</div>
+    <div class="opts" id="palette-opts" style="gap:10px;">
+      <div class="swatch on" data-theme="paper"   title="Paper · the broadsheet default" style="background:oklch(0.965 0.012 85); box-shadow: inset 0 0 0 1px oklch(0.18 0.012 80 / 0.4);"></div>
+      <div class="swatch"     data-theme="ink"     title="Ink · midnight edition"        style="background:oklch(0.16 0.012 80);"></div>
+      <div class="swatch"     data-theme="oxblood" title="Oxblood · letterpress"          style="background:oklch(0.97 0.01 60); box-shadow: inset 0 0 0 6px oklch(0.45 0.16 22);"></div>
+      <div class="swatch"     data-theme="forest"  title="Forest · field journal"         style="background:oklch(0.96 0.018 110); box-shadow: inset 0 0 0 6px oklch(0.5 0.14 60);"></div>
     </div>
   </div>
+
   <div class="group">
-    <div class="label">Display Serif</div>
+    <div class="label">Headline Voice</div>
     <div class="seg" id="serif-opts">
       <button class="on" data-serif="instrument">Instrument</button>
       <button data-serif="garamond">Garamond</button>
     </div>
   </div>
+
   <div class="group">
-    <div class="label">Cursor Mark</div>
-    <div class="seg" id="cursor-opts">
-      <button class="on" data-cursor="on">On</button>
-      <button data-cursor="off">Off</button>
+    <div class="label">Composition</div>
+    <div class="seg" id="density-opts">
+      <button data-density="tight">Tight</button>
+      <button class="on" data-density="editorial">Editorial</button>
+      <button data-density="airy">Airy</button>
     </div>
   </div>
 </div>
@@ -1418,11 +1463,11 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
 <!-- cursor mark removed — design frozen -->
 
 <script>
-/* ------ TWEAK STATE (frozen) ------ */
+/* ------ TWEAK STATE ------ */
 const TWEAKS = /*EDITMODE-BEGIN*/{
   "theme": "paper",
   "serif": "garamond",
-  "cursor": "on"
+  "density": "editorial"
 }/*EDITMODE-END*/;
 
 const root = document.documentElement;
@@ -1431,28 +1476,27 @@ function applyTweaks(){
   else { root.setAttribute('data-theme', TWEAKS.theme); }
   if(TWEAKS.serif === 'instrument'){ root.removeAttribute('data-serif'); }
   else { root.setAttribute('data-serif', TWEAKS.serif); }
-  const cm = document.getElementById('cursor-mark'); if(cm) cm.style.display = TWEAKS.cursor === 'on' ? 'block' : 'none';
+  root.setAttribute('data-density', TWEAKS.density || 'editorial');
 }
 applyTweaks();
+
+function syncTweakUI(){
+  document.querySelectorAll('#palette-opts .swatch').forEach(el=>el.classList.toggle('on', el.dataset.theme === TWEAKS.theme));
+  document.querySelectorAll('#serif-opts button').forEach(el=>el.classList.toggle('on', el.dataset.serif === TWEAKS.serif));
+  document.querySelectorAll('#density-opts button').forEach(el=>el.classList.toggle('on', el.dataset.density === TWEAKS.density));
+}
 
 function setTweak(k,v){
   TWEAKS[k] = v;
   applyTweaks();
+  syncTweakUI();
   try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]:v}}, '*'); }catch(e){}
-  // update UI
-  document.querySelectorAll(`#palette-opts .swatch`).forEach(el=>el.classList.toggle('on', el.dataset.theme === TWEAKS.theme));
-  document.querySelectorAll(`#serif-opts button`).forEach(el=>el.classList.toggle('on', el.dataset.serif === TWEAKS.serif));
-  document.querySelectorAll(`#cursor-opts button`).forEach(el=>el.classList.toggle('on', el.dataset.cursor === TWEAKS.cursor));
 }
 
 document.querySelectorAll('#palette-opts .swatch').forEach(el=>el.addEventListener('click',()=>setTweak('theme', el.dataset.theme)));
 document.querySelectorAll('#serif-opts button').forEach(el=>el.addEventListener('click',()=>setTweak('serif', el.dataset.serif)));
-document.querySelectorAll('#cursor-opts button').forEach(el=>el.addEventListener('click',()=>setTweak('cursor', el.dataset.cursor)));
-
-/* sync UI to current state on load */
-document.querySelectorAll(`#palette-opts .swatch`).forEach(el=>el.classList.toggle('on', el.dataset.theme === TWEAKS.theme));
-document.querySelectorAll(`#serif-opts button`).forEach(el=>el.classList.toggle('on', el.dataset.serif === TWEAKS.serif));
-document.querySelectorAll(`#cursor-opts button`).forEach(el=>el.classList.toggle('on', el.dataset.cursor === TWEAKS.cursor));
+document.querySelectorAll('#density-opts button').forEach(el=>el.addEventListener('click',()=>setTweak('density', el.dataset.density)));
+syncTweakUI();
 
 /* ------ EDIT MODE PROTOCOL ------ */
 const panel = document.getElementById('tweaks');
@@ -1461,9 +1505,10 @@ window.addEventListener('message', (e)=>{
   if(d.type === '__activate_edit_mode'){ panel.classList.add('open'); }
   if(d.type === '__deactivate_edit_mode'){ panel.classList.remove('open'); }
 });
-/* edit mode availability suppressed — design frozen */
+try{ window.parent.postMessage({type:'__edit_mode_available'}, '*'); }catch(e){}
 document.getElementById('tweaks-close').addEventListener('click', ()=>{
   panel.classList.remove('open');
+  try{ window.parent.postMessage({type:'__edit_mode_dismissed'}, '*'); }catch(e){}
 });
 
 /* ------ LIVE EDITION DATE ------ */

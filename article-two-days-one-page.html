@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Two Days in a Room. One Page on the Wall. · The Hive Mind HQ</title>
+<meta name="description" content="The strategic frame is the one page the CEO can carry into the boardroom and defend cold. Most enterprises have not yet produced theirs. The diagnostic that produces it takes two days." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ============================================================
+   TWO DAYS, ONE PAGE — article-specific layout
+   ============================================================ */
+
+/* the one-page banner sits at the top — a folded sheet motif */
+.tdop-sheet{
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.tdop-sheet::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(to right, var(--rule-soft) 1px, transparent 1px);
+  background-size: calc(100% / 5) 100%;
+  pointer-events:none;
+  opacity: 0.7;
+}
+.tdop-sheet-inner{
+  display:grid; grid-template-columns: repeat(5, minmax(0,1fr));
+  max-width: var(--maxw); margin: 0 auto;
+  position: relative;
+}
+.tdop-section{
+  padding: clamp(28px, 3vw, 44px) clamp(20px, 2vw, 28px);
+  border-right: 1px solid var(--rule);
+  display:flex; flex-direction:column; gap:14px;
+  min-height: clamp(220px, 22vw, 280px);
+}
+.tdop-section:last-child{ border-right: 0; }
+.tdop-section-num{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent);
+}
+.tdop-section-h{
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.05; letter-spacing: -0.012em; color: var(--ink);
+}
+.tdop-section-h em{ font-style: italic; color: var(--accent); }
+.tdop-section-body{
+  font-family: var(--serif-body);
+  font-size: 14.5px; line-height: 1.55; color: var(--ink-soft);
+  margin-top: auto;
+}
+.tdop-section-stamp{
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+  border-top: 1px dotted var(--rule); padding-top: 8px;
+}
+
+/* numbered section openers — large numeral, narrow body */
+.tdop-section-mark{
+  display:flex; align-items:baseline; gap: 24px;
+  border-top: 2px solid var(--ink);
+  padding-top: clamp(20px, 2vw, 28px);
+  margin-top: clamp(64px, 8vw, 110px);
+  margin-bottom: clamp(20px, 2vw, 28px);
+}
+.tdop-section-mark .n{
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(54px, 6vw, 96px); line-height: 0.85;
+  letter-spacing: -0.02em; color: var(--accent);
+}
+.tdop-section-mark .lbl{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+
+/* day-by-day ledger — left rail of clock-times, right column of beats */
+.tdop-ledger{
+  margin: clamp(28px, 3.4vw, 44px) 0;
+  border-top: 1px solid var(--ink);
+}
+.tdop-ledger-head{
+  display:grid; grid-template-columns: 120px 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+}
+.tdop-ledger-row{
+  display:grid; grid-template-columns: 120px 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(16px, 1.6vw, 22px) 0;
+  border-bottom: 1px dotted var(--rule);
+  align-items: baseline;
+}
+.tdop-ledger-row:last-child{ border-bottom: 1px solid var(--ink); }
+.tdop-ledger-time{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+.tdop-ledger-beat{
+  font-family: var(--serif-body); font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.55; color: var(--ink);
+}
+.tdop-ledger-beat em{ font-style: italic; color: var(--accent); }
+
+/* signals list — checkable diagnostic cards */
+.tdop-signals{
+  margin: clamp(28px, 3.4vw, 44px) 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border-top: 1px solid var(--ink); border-left: 1px solid var(--rule);
+}
+.tdop-signal{
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(20px, 2.4vw, 28px);
+  display: flex; gap: 18px; align-items: flex-start;
+  position: relative;
+}
+.tdop-signal:hover{ background: var(--paper-2); }
+.tdop-signal-mark{
+  width: 28px; height: 28px; flex-shrink: 0;
+  border: 1.5px solid var(--ink); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+.tdop-signal-body{
+  font-family: var(--serif-body); font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.55; color: var(--ink); margin: 0 !important;
+}
+.tdop-signal-body em{ font-style: italic; color: var(--ink); }
+.tdop-signal-body strong{ color: var(--ink); font-weight: 600; }
+
+/* threshold callout */
+.tdop-threshold{
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  border: 1px solid var(--ink);
+  border-left: 4px solid var(--accent);
+  padding: clamp(22px, 2.4vw, 32px) clamp(24px, 2.6vw, 36px);
+  background: var(--paper-2);
+  display: grid; grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 28px); align-items: baseline;
+}
+.tdop-threshold-num{
+  font-family: var(--serif); font-size: clamp(48px, 5.4vw, 76px);
+  line-height: 0.9; letter-spacing: -0.02em; color: var(--ink);
+}
+.tdop-threshold-num em{ font-style: italic; color: var(--accent); }
+.tdop-threshold-text{
+  font-family: var(--serif-body); font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.6; color: var(--ink-soft);
+  margin: 0 !important; max-width: none !important;
+}
+.tdop-threshold-text strong{ color: var(--ink); font-weight: 600; }
+
+/* three traditions table — diptych of strengths and gaps */
+.tdop-trio{
+  margin: clamp(28px, 3.4vw, 44px) 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+  border-top: 1px solid var(--ink);
+}
+.tdop-trio-cell{
+  padding: clamp(20px, 2.4vw, 32px) clamp(18px, 2vw, 28px) clamp(20px, 2.4vw, 32px) 0;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--ink);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.tdop-trio-cell:not(:first-child){ padding-left: clamp(18px, 2vw, 28px); }
+.tdop-trio-cell:last-child{ border-right: 0; }
+.tdop-trio-name{
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(22px, 2vw, 28px); line-height: 1.05; color: var(--ink);
+}
+.tdop-trio-name em{ color: var(--accent); }
+.tdop-trio-pair{
+  font-family: var(--serif-body); font-size: 15.5px; line-height: 1.55;
+  color: var(--ink-soft); margin: 0 !important;
+}
+.tdop-trio-pair strong{ color: var(--ink); font-weight: 600; }
+.tdop-trio-pair.gain::before{
+  content: "+ Gets right"; display:block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 4px;
+}
+.tdop-trio-pair.miss::before{
+  content: "− Misses"; display:block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin-bottom: 4px;
+}
+
+/* two-route close */
+.tdop-routes{
+  margin: clamp(28px, 3.4vw, 44px) 0 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+}
+.tdop-route{
+  padding: clamp(28px, 3vw, 40px);
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column;
+}
+.tdop-route:last-child{ border-right: 0; background: var(--paper-2); }
+.tdop-route-tag{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+}
+.tdop-route-h{
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(24px, 2.2vw, 32px); line-height: 1.1;
+  letter-spacing: -0.012em; color: var(--ink); margin-bottom: 14px;
+}
+.tdop-route-h em{ font-style: italic; color: var(--accent); }
+.tdop-route-body{
+  font-family: var(--serif-body); font-size: 16.5px; line-height: 1.6;
+  color: var(--ink-soft); margin-bottom: 18px !important;
+  flex: 1; max-width: none !important;
+}
+.tdop-route-cta{
+  align-self: flex-start;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink);
+  border-bottom: 1px solid var(--ink); padding-bottom: 6px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.tdop-route-cta:hover{ color: var(--accent); border-color: var(--accent); }
+.tdop-route-cta .arr{ font-family: var(--serif); font-style: italic; font-size: 16px; }
+
+/* coda blockquote */
+.tdop-coda{
+  margin: clamp(60px, 7vw, 100px) 0 clamp(24px, 3vw, 36px);
+  border-top: 5px double var(--ink);
+  padding-top: clamp(28px, 3vw, 40px);
+  text-align: center;
+}
+.tdop-coda blockquote{
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px); line-height: 1.25;
+  letter-spacing: -0.01em; color: var(--ink);
+  max-width: 32ch; margin: 0 auto;
+}
+.tdop-coda blockquote em{ color: var(--accent); font-style: italic; }
+
+/* small screens */
+@media (max-width: 980px){
+  .tdop-sheet-inner{ grid-template-columns: 1fr; }
+  .tdop-section{ border-right: 0; border-bottom: 1px solid var(--rule); min-height: auto; }
+  .tdop-section:last-child{ border-bottom: 0; }
+  .tdop-ledger-head, .tdop-ledger-row{ grid-template-columns: 90px 1fr; gap: 16px; }
+  .tdop-signals{ grid-template-columns: 1fr; }
+  .tdop-threshold{ grid-template-columns: 1fr; }
+  .tdop-trio{ grid-template-columns: 1fr; }
+  .tdop-trio-cell{ padding-left: 0 !important; padding-right: 0; border-right: 0; }
+  .tdop-routes{ grid-template-columns: 1fr; }
+  .tdop-route{ border-right: 0; border-bottom: 1px solid var(--rule); }
+  .tdop-route:last-child{ border-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="article-mast">
+  <div class="row">
+    <a class="brand" href="index.html">The Hive Mind <em>HQ</em></a>
+    <a class="back" href="index.html#perspectives"><span class="arr">←</span><span>Perspectives</span></a>
+  </div>
+</header>
+
+<section class="article-hero">
+  <div class="wrap">
+    <div class="article-meta">
+      <div class="left"><span>Field Note</span><span>·</span><span>Strategic Diagnostic</span></div>
+      <div class="right"><span>~11 min read</span><span>·</span><span>May 2026</span></div>
+    </div>
+    <h1>Two Days in a Room.<br/>One Page on the <em>Wall</em><span class="period">.</span></h1>
+    <div class="article-deck">
+      <p class="lede">The deck is finished. The roadmap is signed. The vendor partnerships are in place. And yet, asked separately, three members of the executive team give <em>three different answers</em> to the question of what the AI transformation is actually for.</p>
+      <div class="article-byline">
+        <span class="byline-label">By</span>
+        <span class="name">Vikram <em>Raju</em></span>
+        <span>Audience · Executive teams in flight</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FOLDED SHEET — five sections of the one-page articulation -->
+<section class="tdop-sheet" aria-label="The one-page articulation">
+  <div class="tdop-sheet-inner">
+    <div class="tdop-section">
+      <div class="tdop-section-num">§ I</div>
+      <div class="tdop-section-h">Strategic <em>Intent</em></div>
+      <div class="tdop-section-body">What the entire programme is for, in twenty-five words the CEO can defend cold.</div>
+      <div class="tdop-section-stamp">Day 1 · Morning</div>
+    </div>
+    <div class="tdop-section">
+      <div class="tdop-section-num">§ II</div>
+      <div class="tdop-section-h">Honest <em>Position</em></div>
+      <div class="tdop-section-body">Where the organisation actually stands — not where the deck says it stands.</div>
+      <div class="tdop-section-stamp">Day 1 · Afternoon</div>
+    </div>
+    <div class="tdop-section">
+      <div class="tdop-section-num">§ III</div>
+      <div class="tdop-section-h">Portfolio <em>Cut</em></div>
+      <div class="tdop-section-body">The hundred use cases reduced to the few that the strategy actually demands.</div>
+      <div class="tdop-section-stamp">Day 2 · Morning</div>
+    </div>
+    <div class="tdop-section">
+      <div class="tdop-section-num">§ IV</div>
+      <div class="tdop-section-h">Operating <em>Model</em></div>
+      <div class="tdop-section-body">The deferred decisions on accountability, talent, data and decision rights — taken.</div>
+      <div class="tdop-section-stamp">Day 2 · Afternoon</div>
+    </div>
+    <div class="tdop-section">
+      <div class="tdop-section-num">§ V</div>
+      <div class="tdop-section-h">Value <em>Capture</em></div>
+      <div class="tdop-section-body">The mechanics of how value is measured, and the funding horizon committed to.</div>
+      <div class="tdop-section-stamp">Day 2 · Close</div>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="col">
+
+    <p class="lede">This is not a strategy problem. It is a conversation problem. It is also a more common problem than most leadership teams are willing to admit.</p>
+
+    <p>The strategy work has been done, and done thoroughly, by capable people. The frameworks are sound. The investments are sized. The governance is named. What has not happened — what almost never quite happens — is the room in which the executive team makes commitments to each other, in front of each other, on a single page that the CEO can carry into the boardroom and defend cold.</p>
+
+    <p>That conversation is the work. Most enterprises have not had it.</p>
+
+    <!-- ============= 01 ============= -->
+    <div class="tdop-section-mark">
+      <div class="n">01</div>
+      <div class="lbl">The shape of the missing conversation</div>
+    </div>
+
+    <p>The pattern is consistent across organisations and sectors. AI initiatives multiply faster than the strategic logic that should govern them. Pilots accumulate. Vendors proliferate. The portfolio drifts toward a hundred use cases without anyone being able to articulate, in twenty-five words, what the entire programme is actually <em>for</em>.</p>
+
+    <p>The diagnostic that surfaces this gap is not analytical. It is structural. Five questions the executive team has not yet been asked together, in sequence, with the discipline to <em>answer</em> them rather than describe them.</p>
+
+    <p>The questions look ordinary on the page. Walking through them in a room — with the CEO, the CFO, the relevant business heads, the technology and data leadership, the head of talent — is anything but. Each question exposes a place where assumptions diverge. Each answer requires a commitment.</p>
+
+    <div class="tdop-threshold">
+      <div class="tdop-threshold-num"><em>5</em> answers</div>
+      <p class="tdop-threshold-text">The five answers, taken together, are <strong>the strategic frame</strong>. That frame fits on one page. Without it, every subsequent investment is built on contested ground.</p>
+    </div>
+
+    <!-- ============= 02 ============= -->
+    <div class="tdop-section-mark">
+      <div class="n">02</div>
+      <div class="lbl">What the workshop produces</div>
+    </div>
+
+    <p>Two consecutive working days. Eight to twelve participants. One executive team. One room. The structure is fixed. The substance is the client's.</p>
+
+    <div class="tdop-ledger">
+      <div class="tdop-ledger-head">
+        <div>Hour</div>
+        <div>Beat</div>
+      </div>
+      <div class="tdop-ledger-row">
+        <div class="tdop-ledger-time">Day 1 · AM</div>
+        <div class="tdop-ledger-beat">Strategic intent surfaces. The twenty-five-word articulation drafted, contested, redrafted.</div>
+      </div>
+      <div class="tdop-ledger-row">
+        <div class="tdop-ledger-time">Day 1 · PM</div>
+        <div class="tdop-ledger-beat">Honest position established. Where the assumptions diverge becomes visible to everyone in the room.</div>
+      </div>
+      <div class="tdop-ledger-row">
+        <div class="tdop-ledger-time">Day 2 · AM</div>
+        <div class="tdop-ledger-beat">By lunch on day two, the portfolio has been <em>cut and shaped</em>.</div>
+      </div>
+      <div class="tdop-ledger-row">
+        <div class="tdop-ledger-time">Day 2 · PM</div>
+        <div class="tdop-ledger-beat">Operating model decisions deferred for months are on the table.</div>
+      </div>
+      <div class="tdop-ledger-row">
+        <div class="tdop-ledger-time">Day 2 · Close</div>
+        <div class="tdop-ledger-beat">The value-capture mechanics and funding horizon are <em>committed</em>.</div>
+      </div>
+    </div>
+
+    <p>The output is a single page — the strategic articulation — that the executive team has produced together and signed. Five sections. Each section traceable to a specific exercise from the two days. Each section defensible against board interrogation, because it has already been interrogated by the people in the room.</p>
+
+    <p>The page is not a deck. Not a roadmap. Not a transformation plan. Those come later, and they come faster, because the underlying frame they need to be built against now exists and is owned.</p>
+
+    <!-- ============= 03 ============= -->
+    <div class="tdop-section-mark">
+      <div class="n">03</div>
+      <div class="lbl">The discipline that makes the frame survive</div>
+    </div>
+
+    <p>Frameworks are abundant. The major firms have published comprehensive ones. The academic literature has produced empirical anchors. The leading practitioners in Silicon Valley have published their playbooks. The diagnostic does not invent a new framework — that would be presumption. It synthesises three traditions that, taken alone, each get something right and miss something else.</p>
+
+    <div class="tdop-trio">
+      <div class="tdop-trio-cell">
+        <div class="tdop-trio-name">Big <em>Three</em></div>
+        <p class="tdop-trio-pair gain">The mechanics of <strong>organisational change</strong>.</p>
+        <p class="tdop-trio-pair miss">Underweight <strong>speed</strong>.</p>
+      </div>
+      <div class="tdop-trio-cell">
+        <div class="tdop-trio-name">Silicon <em>Valley</em></div>
+        <p class="tdop-trio-pair gain">Speed and <strong>concrete problems</strong>.</p>
+        <p class="tdop-trio-pair miss">Do not translate to <strong>regulated, multi-product enterprises</strong>.</p>
+      </div>
+      <div class="tdop-trio-cell">
+        <div class="tdop-trio-name">The <em>Academy</em></div>
+        <p class="tdop-trio-pair gain">The <strong>empirical reality check</strong>.</p>
+        <p class="tdop-trio-pair miss">Often arrive <strong>after the technology has moved</strong>.</p>
+      </div>
+    </div>
+
+    <p>Used together, the three traditions constrain each other usefully. Used in isolation, each produces a recognisable failure mode. Most enterprises have read one tradition and acted on it. The diagnostic uses all three.</p>
+
+    <!-- ============= 04 ============= -->
+    <div class="tdop-section-mark">
+      <div class="n">04</div>
+      <div class="lbl">What you might already recognise</div>
+    </div>
+
+    <p>The signals that the strategic frame is missing are recognisable from inside the organisation. Most leaders feel them before they can name them.</p>
+
+    <div class="tdop-signals">
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">01</div>
+        <p class="tdop-signal-body">Three members of your executive team would give <em>three different answers</em> to <strong>what does AI success look like at twenty-four months</strong>.</p>
+      </div>
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">02</div>
+        <p class="tdop-signal-body">The AI budget has grown but no one can break it cleanly into <strong>model spend, infrastructure spend, and people-and-process spend</strong>.</p>
+      </div>
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">03</div>
+        <p class="tdop-signal-body">You have <strong>pilots in the dozens</strong> and production deployments with measurable P&amp;L impact in the <strong>single digits</strong>.</p>
+      </div>
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">04</div>
+        <p class="tdop-signal-body">The operating model has drifted into a committee. The committee meets. <em>Decisions are deferred.</em></p>
+      </div>
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">05</div>
+        <p class="tdop-signal-body">The funding horizon is <strong>annual</strong>. The transformation is <strong>multi-year</strong>. No one has named what happens at month twelve when results look flat.</p>
+      </div>
+      <div class="tdop-signal">
+        <div class="tdop-signal-mark">06</div>
+        <p class="tdop-signal-body">The board has begun asking <em>sharper questions</em>, and the answers have grown <em>softer</em>.</p>
+      </div>
+    </div>
+
+    <div class="tdop-threshold">
+      <div class="tdop-threshold-num">If <em>3+</em></div>
+      <p class="tdop-threshold-text">If three or more of these are present, the strategic frame is what is missing. Adding more analysis, more vendors, more initiatives will not produce it. <strong>Only the conversation, structured properly, in a room, will.</strong></p>
+    </div>
+
+    <!-- ============= 05 ============= -->
+    <div class="tdop-section-mark">
+      <div class="n">05</div>
+      <div class="lbl">Two ways in</div>
+    </div>
+
+    <p>The work is delivered as a focused workshop with the executive team. Two days. The structure is the diagnostic. The output is the one-page articulation. The discipline is the facilitation, which is what makes the diagnostic survive contact with the politics in the room.</p>
+
+    <div class="tdop-routes">
+      <div class="tdop-route">
+        <div class="tdop-route-tag">Route A</div>
+        <h3 class="tdop-route-h">The <em>Workshop</em></h3>
+        <p class="tdop-route-body">Two days with the executive team. Vikram facilitates. By close on day two, the one-page strategic articulation is signed. Subsequent transformation work — roadmap, operating model build, funding architecture — is built against a frame the team owns.</p>
+        <a class="tdop-route-cta" href="index.html#contact">Open a Conversation <span class="arr">→</span></a>
+      </div>
+      <div class="tdop-route">
+        <div class="tdop-route-tag">Route B</div>
+        <h3 class="tdop-route-h">The <em>DIY Kit</em></h3>
+        <p class="tdop-route-body">For leaders who are not yet ready to commit to a workshop — or who want to test the substance against their own situation first. The playbook in document form, a practitioner's guide to the signals and pivots that surface in the room, and a field card sized for in-meeting reference. Will not produce the same outcome a facilitated workshop produces — the facilitation is the work — but it sharpens the conversation a leadership team is already having, and it tells them whether they are ready to have it more formally.</p>
+        <a class="tdop-route-cta" href="index.html#contact">Request the DIY Kit <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <p style="margin-top: clamp(28px, 3vw, 40px);">Either route begins the same. <em>A single conversation. No deck. No obligation.</em> Use the contact form on the home page and select <strong>Exchange of Ideas</strong> or <strong>Speaking or Workshop</strong> as the nature of the enquiry.</p>
+
+    <div class="tdop-coda">
+      <blockquote>
+        The strategic frame is the one page the CEO can carry into the boardroom and defend cold. Most enterprises have not yet produced theirs. The diagnostic that produces it takes <em>two days</em>.
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+<footer class="colophon">
+  <div class="wrap">
+    <div class="colophon-row">
+      <div class="colophon-meta">© MMXXVI · All Rights Reserved</div>
+      <div class="colophon-title">The Hive Mind <em>HQ</em></div>
+      <div class="colophon-meta r"><a href="index.html#perspectives" style="color:var(--ink-mute);border-bottom:1px solid var(--rule-soft);padding-bottom:1px;">← Back to Perspectives</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

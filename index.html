@@ -188,16 +188,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:var(--ink-soft);
   max-width: 56ch;
 }
-.hero-lede::first-letter{
-  font-family:var(--serif);
-  float:left;
-  font-size: 4.6em;
-  line-height: 0.85;
-  padding-right: 10px;
-  padding-top: 6px;
-  color:var(--accent);
-  font-weight: 400;
-}
+/* drop-cap removed — single-letter accent felt off vs. body weight */
 .hero-cta-col{display:flex;flex-direction:column;justify-content:flex-end;gap:18px;align-items:flex-start}
 
 .btn{
@@ -244,6 +235,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   gap: clamp(24px, 4vw, 64px);
   align-items:center;
 }
+.stat-stack{display:flex;flex-direction:column;gap: clamp(18px, 2vw, 28px)}
 .banner-figure{
   font-family:var(--serif);
   font-size: clamp(120px, 22vw, 360px);
@@ -253,6 +245,45 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   color:var(--ink);
 }
 .banner-figure .pct{font-size:0.4em;font-style:italic;color:var(--accent);margin-left:10px;align-self:flex-start;margin-top:0.18em}
+.banner-figure .num{display:inline-block;min-width: 1.7em;text-align:right;font-variant-numeric: tabular-nums}
+
+/* 100-PoC tally — 10×10 ballot marks, 74 get struck */
+.pocs100{
+  display:grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 7px 9px;
+  max-width: clamp(220px, 26vw, 340px);
+  margin-top: 4px;
+}
+.poc{
+  position:relative;
+  height: 14px;
+  border-bottom: 1.5px solid var(--ink);
+  opacity: 0.85;
+}
+.poc::before, .poc::after{
+  content:'';position:absolute;left:50%;top:50%;
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transform-origin: center;
+  transition: width .28s cubic-bezier(.4,0,.2,1);
+}
+.poc::before{transform: translate(-50%, -50%) rotate(35deg)}
+.poc::after{transform: translate(-50%, -50%) rotate(-35deg)}
+.poc.killed{opacity:1}
+.poc.killed::before, .poc.killed::after{width: 130%}
+.pocs100-cap{
+  font-family:var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display:flex;justify-content:space-between;
+  max-width: clamp(220px, 26vw, 340px);
+  padding-top: 8px;
+  border-top: 1px dotted var(--rule);
+}
+.pocs100-cap em{font-style:italic;color: var(--accent);font-family:var(--serif);text-transform:none;letter-spacing:0;font-size: 13px}
 .banner-text{
   font-family:var(--serif-body);
   font-size: clamp(20px, 1.6vw, 26px);
@@ -900,7 +931,11 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
 <section class="banner" id="problem-banner">
   <div class="wrap">
     <div class="banner-grid">
-      <div class="banner-figure"><span class="num">74</span><span class="pct">%</span></div>
+      <div class="stat-stack">
+        <div class="banner-figure" id="banner-stat"><span class="num" data-target="74">0</span><span class="pct">%</span></div>
+        <div class="pocs100" id="pocs100" aria-hidden="true"></div>
+        <div class="pocs100-cap"><span>100 Proofs of Concept</span><span><em>74</em> never ship</span></div>
+      </div>
       <div>
         <div class="kicker" style="margin-bottom:18px;">Reported Finding</div>
         <p class="banner-text">of enterprise AI proof-of-concepts <em>never reach production</em>. Most are not killed by technology — they are killed by the organisation around them.</p>
@@ -1448,6 +1483,69 @@ document.querySelectorAll('.act').forEach(act=>{
   act.addEventListener('mouseenter', ()=>act.classList.add('hot'));
   act.addEventListener('mouseleave', ()=>act.classList.remove('hot'));
 });
+
+/* ------ STAT BANNER ANIMATION ------ */
+(function(){
+  const grid = document.getElementById('pocs100');
+  const numEl = document.querySelector('#banner-stat .num');
+  const banner = document.getElementById('problem-banner');
+  if(!grid || !numEl || !banner) return;
+
+  // Build 100 ballot marks
+  const cells = [];
+  for(let i=0;i<100;i++){
+    const c = document.createElement('div');
+    c.className = 'poc';
+    grid.appendChild(c);
+    cells.push(c);
+  }
+
+  // Pick 74 random indices to "kill"
+  const order = [...Array(100).keys()].sort(()=>Math.random()-0.5);
+  const killSet = new Set(order.slice(0, 74));
+
+  let played = false;
+  function reset(){
+    played = false;
+    numEl.textContent = '0';
+    cells.forEach(c => c.classList.remove('killed'));
+  }
+  function play(){
+    if(played) return; played = true;
+
+    // Number tick 0 -> 74 over ~1700ms with ease-out
+    const tickStart = performance.now();
+    const tickDur = 1700;
+    function tick(now){
+      if(!played) return; // aborted by reset
+      const t = Math.min(1, (now - tickStart) / tickDur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      numEl.textContent = Math.round(74 * eased);
+      if(t < 1) requestAnimationFrame(tick);
+      else numEl.textContent = 74;
+    }
+    requestAnimationFrame(tick);
+
+    // Strike marks in fresh shuffled order each play
+    const killOrder = [...killSet].sort(()=>Math.random()-0.5);
+    killOrder.forEach((idx, i) => {
+      const delay = (i / killOrder.length) * 1500 + 80;
+      setTimeout(()=>{ if(played) cells[idx].classList.add('killed'); }, delay);
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => {
+        if(e.isIntersecting){ play(); }
+        else { reset(); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(banner);
+  } else {
+    play();
+  }
+})();
 </script>
 
 </body>

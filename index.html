@@ -1253,13 +1253,13 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
           <div class="contact-meta-row"><span class="key">Reach</span> Available globally</div>
         </div>
       </div>
-      <form class="form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent ✓'">
-        <div class="form-row"><label for="f-name">Name</label><input id="f-name" type="text" placeholder="Your full name" /></div>
-        <div class="form-row"><label for="f-org">Organisation</label><input id="f-org" type="text" placeholder="Where you operate from" /></div>
-        <div class="form-row"><label for="f-email">Email</label><input id="f-email" type="email" placeholder="you@organisation.com" /></div>
+      <form class="form" id="contact-form" novalidate>
+        <div class="form-row"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your full name" required /></div>
+        <div class="form-row"><label for="f-org">Organisation</label><input id="f-org" name="$organisation" type="text" placeholder="Where you operate from" /></div>
+        <div class="form-row"><label for="f-email">Email</label><input id="f-email" name="replyTo" type="email" placeholder="you@organisation.com" required /></div>
         <div class="form-row"><label for="f-nature">Nature</label>
-          <select id="f-nature">
-            <option>Select one…</option>
+          <select id="f-nature" name="subject">
+            <option value="">Select one…</option>
             <option>Strategic Advisory Retainer</option>
             <option>Transformation Mandate</option>
             <option>Speaking or Workshop</option>
@@ -1267,11 +1267,69 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
             <option>Other</option>
           </select>
         </div>
-        <div class="form-row tall"><label for="f-msg">Brief</label><textarea id="f-msg" placeholder="What are you navigating?"></textarea></div>
+        <div class="form-row tall"><label for="f-msg">Brief</label><textarea id="f-msg" name="message" placeholder="What are you navigating?" required></textarea></div>
+        <input type="text" name="honeypot" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" tabindex="-1" aria-hidden="true" />
         <div class="form-submit">
-          <button type="submit">Send Message <span class="arr">→</span></button>
+          <button type="submit" id="contact-submit">Send Message <span class="arr">→</span></button>
         </div>
+        <div id="contact-status" style="margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:oklch(0.96 0.012 85 / 0.6);min-height:1em;text-align:right;"></div>
       </form>
+      <script>
+      (function(){
+        const form = document.getElementById('contact-form');
+        const btn = document.getElementById('contact-submit');
+        const status = document.getElementById('contact-status');
+        const ACCESS_KEY = 'sf_bea9336153409e6212470e20';
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          if(!form.checkValidity()){
+            status.textContent = 'Please complete the required fields';
+            status.style.color = 'oklch(0.72 0.18 40)';
+            return;
+          }
+          const fd = new FormData(form);
+          if(fd.get('honeypot')) return; // bot
+          const subjectChoice = fd.get('subject') || 'New enquiry';
+          const orgVal = fd.get('$organisation') || '';
+          const payload = {
+            accessKey: ACCESS_KEY,
+            name: fd.get('name') || '',
+            replyTo: fd.get('replyTo') || '',
+            subject: 'Hive Mind HQ · ' + subjectChoice,
+            message: (orgVal ? 'Organisation: ' + orgVal + '\n\n' : '') + (fd.get('message') || ''),
+            honeypot: ''
+          };
+          const original = btn.innerHTML;
+          btn.disabled = true;
+          btn.innerHTML = 'Sending… <span class="arr">→</span>';
+          status.textContent = '';
+          try{
+            const res = await fetch('https://api.staticforms.xyz/submit', {
+              method: 'POST',
+              headers: {'Content-Type':'application/json','Accept':'application/json'},
+              body: JSON.stringify(payload)
+            });
+            const data = await res.json().catch(()=>({}));
+            if(res.ok && (data.success === true || data.message === 'Success')){
+              btn.innerHTML = 'Sent ✓';
+              status.textContent = 'Message delivered. Vikram will respond personally.';
+              status.style.color = 'oklch(0.96 0.012 85 / 0.7)';
+              form.reset();
+            } else {
+              btn.disabled = false;
+              btn.innerHTML = original;
+              status.textContent = (data && data.message) ? ('Error: ' + data.message) : 'Could not send. Please email vikram@thehivemindhq.com';
+              status.style.color = 'oklch(0.72 0.18 40)';
+            }
+          } catch(err){
+            btn.disabled = false;
+            btn.innerHTML = original;
+            status.textContent = 'Network error. Please email vikram@thehivemindhq.com';
+            status.style.color = 'oklch(0.72 0.18 40)';
+          }
+        });
+      })();
+      </script>
     </div>
   </div>
 </section>

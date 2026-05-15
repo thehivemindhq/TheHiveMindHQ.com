@@ -1,0 +1,2264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Future of App Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="deck-stage.js"></script>
+<script type="application/json" id="speaker-notes">
+[
+  "Thanks for being here. This deck is a strategy review on what app engineering looks like over the next three to five years, told at three altitudes: the individual engineer at the keyboard, the engineering practice that employs ten thousand of them, and the services firm that sells engineering as an offering. The thesis is that AI does not slowly change this business. It restructures it. And the gap between the firms that internalize that and the firms that bolt AI onto an unchanged operating model is going to be larger than any technology shift we have lived through. Let's walk through it.",
+  "Three sentences. First, in five years the unit of app engineering is no longer a developer-hour, it is a verified outcome produced by an engineer-plus-agent system. Second, almost no large practice today is organized, priced, or measured against that unit, which means the visible productivity gains are a small fraction of what is technically possible. Third, the winners will not be the firms with the best models, they will be the firms that rebuild their delivery system, their commercial model, and their talent model around the new unit before their pricing collapses underneath them.",
+  "We are going to look at this through three lenses, in order. The engineer, because that is where the work actually changes shape. The practice, because that is where ten thousand individual changes either compound or cancel out. And the organization, because that is where the commercial and competitive consequences land. Each act follows the same arc: what does the future state look like, where is the gap today, what frictions and missed moves are blocking the bridge, what is the competitive landscape doing, and what is the move that lets us come out on top.",
+  "Act one. The engineer. We are going to spend the next ten slides on the person at the keyboard, because if we do not understand what their day looks like in 2029, every operational and commercial decision we make above them will be wrong.",
+  "In 2029 the engineer's primary skill is not writing code. It is specifying intent precisely, decomposing problems into agent-tractable units, reviewing and verifying machine output at high speed, and owning the parts of the system that agents still cannot reliably reason about: integration boundaries, data semantics, performance edges, security model, and the question of what to build at all. The keyboard does not go away, but it stops being the bottleneck. Trust calibration and architectural judgement become the bottleneck. You will notice none of these qualities are about typing faster.",
+  "Here is a representative day three years out. Notice two things. First, the engineer is reviewing more than authoring. Most of the green-field code in front of them was produced overnight by agents working from a written specification. Second, the engineer is spending real time on specification and on verification, two activities that were minutes per day in 2024 and are now hours per day. The hand-on-keyboard activity that remains is concentrated on the parts of the system where ambiguity is highest and the cost of an agent error is highest.",
+  "This is the central role shift, and we want you to internalize it before we go any further. In 2024 the engineer was an author. They produced the code; the IDE assisted. In 2029 the engineer is an orchestrator. They produce intent and judgement; a fleet of agents produces the code. The implication for hiring, training, leveling, and compensation is enormous, and we will come back to it on slide fourteen.",
+  "Now the gap. Today, in 2026, the average engineer in our practice uses AI assistants in a fundamentally 2022 mode: as a smarter autocomplete inside their editor. Agentic workflows, in which the engineer specifies a unit of work and an agent executes it largely unattended, are concentrated in a small minority. Most engineers cannot articulate what their verification workflow is, because they do not have one. The skill of writing a specification that an agent can execute well is essentially absent from our training curriculum.",
+  "This is the single most important data point in this section. When you measure realized output per engineer against AI tooling adoption, the distribution is not normal, it is bimodal and pulling apart. The top decile of engineers, the ones who have rewired their workflow around agents, are producing several times more verified, shipped functionality than they were in 2023. The bottom half are producing about the same as before, sometimes less because they are fighting their tools. The gap between best and median is widening every quarter. This is the effectiveness cliff, and it is the single biggest people-management problem we have.",
+  "Five frictions, in priority order. One, tool sprawl: most engineers are juggling four to six AI surfaces with no consolidated workflow. Two, the trust problem: engineers either over-trust agent output and ship bugs, or under-trust and verify everything by hand, which negates the speed gain. Three, evaluation: we do not have a credible way to tell whether a piece of agent-produced code is actually good. Four, identity: a chunk of our engineers signed up to write code, not to supervise machines, and morale is being affected. Five, learning curve: the best workflows require deliberate practice, and we do not give people time to develop them.",
+  "Three missed moves we see across the practice. First, treating AI tools as a procurement decision rather than a workflow redesign, which leaves engineers with licenses they barely use. Second, measuring AI adoption by seat count or prompt count instead of by output, which produces the wrong incentives. Third, leaving workflow innovation to individual engineers in their spare time, instead of treating it as a first-class engineering investment with dedicated owners and measurable goals.",
+  "Three competitors are pulling at our engineers from different directions. Large peer firms are matching us on tooling but losing the same engineers we are. AI-native upstarts are running ten-engineer teams that bid on work that used to require fifty, and they pay top decile engineers two to three times market. Client in-house teams are pulling our best people into product roles where the leverage of agents compounds because they own the codebase. We are caught in the middle. Doing nothing means losing the top decile to upstarts and the median to commoditization.",
+  "Our strategic answer at the engineer level is the T-shaped agent operator. The vertical bar of the T is a deep domain or technical specialty, the kind of judgement that does not commoditize: distributed systems, security architecture, a vertical's data model, regulated environments. The horizontal bar is fluent, multi-agent orchestration, written specification, and verification at scale. We grade and pay for both bars. This is a different shape from the full-stack generalist we hired against for a decade, and it requires a different training and certification program.",
+  "Four concrete moves we make in the next twelve months. One, an agent-operator certification with three levels, gated by output, not by attendance. Two, two hundred hours of paid learning time per engineer per year, ring-fenced, not at the manager's discretion. Three, comp bands rebuilt around verified output, with the top band reserved for top-decile agent operators who also carry the vertical bar. Four, a small internal tools team whose only job is to build and maintain our golden-path agent workflow, so individual engineers do not each invent their own.",
+  "Act two. The practice. Ten thousand engineers, hundreds of accounts, dozens of capability centers. The question now is what changes at this altitude, because the answers are not just a sum of what happens at the engineer level.",
+  "In 2029 the practice is organized around capability pods that combine human engineers, persistent agent fleets, and a verification layer that the human pod owns. Pods are smaller, around four to seven humans where a comparable team was twelve to twenty in 2024, and they carry significantly more scope. The unit of staffing on a project is no longer a person, it is a pod, and the pod's throughput is governed by the verification layer's capacity, not the agents' capacity. The capability centers exist, but their role has shifted from staff-augmentation pools to specialized verification, evaluation, and platform teams.",
+  "The operating model shift in one frame. Old model: staff a project with N engineers, bill against their hours, measure utilization. New model: deploy a pod against an outcome, bill against verified delivery, measure pod throughput and quality. Every part of the operating chain, from sales motion to staffing tool to financial reporting, was designed for the old model. Migrating each of them is a multi-year program. The firms that start now will be a model ahead of the firms that wait for the change to be obvious.",
+  "Today's gap at the practice level. Our utilization metrics still drive staffing. Our staffing tool cannot represent a mixed human-agent pod. Our project managers were trained on resource-loaded plans, not throughput-managed pods. Our SOWs price an engineer-month. Our delivery quality assurance is sample-based human review, which does not scale to agent throughput. None of this is broken, exactly. It is just designed for a unit of work that is becoming obsolete.",
+  "This is the practice-level chart we want you to remember. When you plot agent capability against realized practice productivity over the last two years, capability is growing roughly exponentially and realized productivity is growing roughly linearly, with most of the gain captured by a small share of pods. The space between the two curves is the productivity paradox. It is also, importantly, the size of the prize for whichever firm closes it first. Closing it is an operating-model problem, not a tooling problem.",
+  "Five frictions at scale. One, evaluation infrastructure: we cannot tell pod A is twice as productive as pod B because we cannot measure pod output uniformly. Two, codebase readiness: most client codebases are not structured for high agent throughput, which caps the upside. Three, IP and data boundaries: agents need context, clients are sensitive about it, our governance is immature. Four, pricing inversion: our SOWs cap our upside when a pod delivers in half the time. Five, manager capability: most of our delivery managers have never run a pod and do not know what good looks like.",
+  "Three missed moves at scale. First, deploying AI tools uniformly across all ten thousand engineers instead of concentrating investment in pods that can demonstrably absorb it. Second, building an evaluation function that grades adoption rather than output, which produces the same wrong incentives we saw at the engineer level, multiplied. Third, treating agent-readiness of the codebase as a client problem instead of a paid service line that we deliver before, and during, the build.",
+  "At the practice tier, peer firms are running roughly the same playbook we are: training programs, partnerships with model providers, internal copilots. AI-native delivery shops are running pod-based commercials on small to mid scope and winning because their pods are demonstrably faster on the work they take. Client in-house teams are insourcing the work where agent leverage is highest and the codebase is theirs, and outsourcing the work where it is not. The practices that win the next five years are the ones that win against AI-native shops on outcome SOWs, where our domain depth still matters.",
+  "Our practice-level strategic answer is what we are calling the agentic delivery factory. Three layers. A platform layer that owns the golden-path agent workflow, the evaluation harness, and the safety perimeter. A pod layer of human-agent teams, organized by capability rather than account, scheduled against outcomes. A verification layer, staffed by senior engineers and managed as a profit center, whose throughput governs the whole system. The factory is the thing we sell, and the thing we improve.",
+  "Concrete practice moves in the next eighteen months. One, replace utilization with pod throughput as the primary delivery metric, in the staffing tool, the financial system, and the delivery review. Two, stand up a central evaluation team and platform; without it, none of the other moves are measurable. Three, build a paid codebase-readiness service line and require it on outcome-priced engagements. Four, retrain the top five hundred delivery managers on pod management and remove or reassign the ones who cannot run pods within a year.",
+  "Act three. The organization. Now we step up to the firm level, where the commercial model, capital allocation, and competitive position get rewritten by everything we just discussed.",
+  "In 2029 the services firm is a platform business with a delivery arm, not a delivery business with a platform attached. Revenue is roughly half outcome-priced or gainshare, around a quarter platform and tools licensed back to clients and to other delivery partners, and around a quarter classic time-and-materials work that has not yet converted. Margins are higher than today, but only in the platform and outcome segments. The T&M segment is structurally lower margin than it was, because it is competing against pods that are several times faster.",
+  "The commercial model shift. Today, ninety-plus percent of revenue is sold as bodies, with utilization the primary lever. In 2029, the dominant unit is the outcome: a verified deliverable, priced against value, with our pod and platform on the hook for the result. Gainshare on cycle time, quality, or revenue lift becomes a real second pillar. The capability to underwrite an outcome, which requires high-confidence pod throughput and our own balance sheet, becomes a strategic moat that AI-native upstarts cannot match for years.",
+  "Today's gap at the firm level. Our revenue is heavily T&M. Our sales force is comped on revenue, not gross margin. Our partnerships are tooling resale, not joint outcome delivery. Our M&A history is geographic and labor-arbitrage, not capability and platform. Our brand in the market is reliable scale, not technical edge. Every one of these is fixable. None of them fixes itself.",
+  "The margin scissor is the single chart we want the executive team to internalize. Top blade: traditional T&M billing rates flat to declining, because the underlying engineer-hour produces less and less of the customer's value. Bottom blade: platform and evaluation investment costs growing, because we have to fund the factory. The scissor closes somewhere in the next twenty-four to thirty-six months, depending on segment. Firms that have not migrated meaningful revenue out of the T&M segment by then will face a step-change in margin compression.",
+  "Five frictions at the firm. One, outcome underwriting: our finance function does not yet know how to price and reserve against outcome SOWs. Two, capital allocation: we are still spending most of internal R&D on tooling licenses rather than proprietary platform. Three, partnership posture: we are a reseller of model providers, not a co-designer. Four, M&A logic: our pipeline is still labor-cost-arbitrage targets when it should be capability and platform targets. Five, brand: we are not known for technical edge with the buyers who pay for it.",
+  "Three missed moves at the firm. First, treating AI as a delivery enhancement story for existing accounts when the bigger prize is rewriting the offering portfolio. Second, letting the AI-native upstarts define what fast and modern looks like in the buyer's mind without contesting it. Third, leaving platform and evaluation as cost centers reporting into delivery, instead of as profit centers with their own P&L and outside-customer obligations.",
+  "Three categories of competitor, all moving. Large peers are following roughly our playbook, which means whoever moves first on commercial model wins a multi-year window. AI-native upstarts cannot match our scale or our regulated-vertical footprint, but they are bidding pod-based outcomes and winning brand. In-house client teams are the biggest long-term threat, because if they internalize agent operations they need us less; the answer is to be on the inside of their platform, not outside it. None of these competitors is doing all three things we are about to lay out.",
+  "Our firm-level strategic answer is to become an outcome platform. Three layers, mirroring the practice answer one level up. A platform we operate and sell, with evaluation, golden-path agent workflows, and a safety and compliance perimeter that regulated buyers will pay for. An outcome-priced delivery offering on top of the platform, underwritten by the firm. A T&M tail business that converts to outcome as accounts mature. The platform is the moat. The outcome offering is the revenue. The T&M business is the funding source for the transition.",
+  "Five firm-level bets in the next twenty-four months. One, carve out platform and evaluation as a standalone business unit with its own P&L and a mandate to sell externally. Two, restructure sales comp to gross margin and outcome attainment, not booked revenue. Three, redirect M&A toward two or three platform and evaluation acquisitions in the next eighteen months. Four, sign one anchor outcome-priced deal per major vertical to establish reference pricing. Five, fund a brand campaign positioning the firm as the outcome partner for regulated, mission-critical app engineering, where our footprint actually compounds.",
+  "To bring it back together. At the engineer level, we win by building T-shaped agent operators and paying for both bars of the T. At the practice level, we win by operating an agentic delivery factory with throughput as the metric and a verification layer as the heart. At the firm level, we win by becoming an outcome platform with a real moat in regulated verticals. The three answers are deliberately stacked: the engineer answer enables the practice answer, the practice answer enables the firm answer. Doing any one of them without the other two is wasted motion. Doing all three, ahead of peers, is the strategy. Thank you. Let's open it up."
+]
+</script>
+<style>
+:root {
+  --bg: #0b1020;
+  --bg-2: #131829;
+  --bg-3: #1b2138;
+  --line: #232a44;
+  --line-soft: #1a2038;
+  --ink: #ece9df;
+  --ink-2: #b8bccc;
+  --ink-3: #7c8195;
+  --accent: #6b8aff;
+  --accent-soft: #2b3866;
+  --accent-glow: rgba(107, 138, 255, 0.14);
+  --warm: #d9b07a;
+
+  --type-display: 156px;
+  --type-jumbo: 112px;
+  --type-title: 64px;
+  --type-subtitle: 42px;
+  --type-body: 30px;
+  --type-small: 24px;
+  --type-eyebrow: 22px;
+
+  --pad-top: 96px;
+  --pad-bottom: 84px;
+  --pad-x: 120px;
+  --gap-title: 48px;
+  --gap-item: 28px;
+
+  --serif: "IBM Plex Serif", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+deck-stage {
+  background: #000;
+}
+
+deck-stage > section {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: var(--type-body);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  overflow: hidden;
+  position: relative;
+}
+
+/* slide chrome */
+.chrome {
+  position: absolute;
+  top: 44px;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.chrome .left {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.chrome .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  display: inline-block;
+  margin-right: 14px;
+  position: relative;
+  top: -2px;
+}
+.foot {
+  position: absolute;
+  bottom: 44px;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--ink-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* body */
+.body {
+  position: absolute;
+  top: 130px;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  bottom: 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* typography */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--type-eyebrow);
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: var(--type-title);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  margin: 0 0 var(--gap-title) 0;
+  max-width: 1500px;
+}
+.title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.subtitle {
+  font-family: var(--sans);
+  font-size: var(--type-subtitle);
+  line-height: 1.2;
+  font-weight: 300;
+  color: var(--ink-2);
+  margin: 0 0 var(--gap-title) 0;
+  max-width: 1500px;
+}
+.body-text {
+  font-size: var(--type-body);
+  line-height: 1.4;
+  color: var(--ink-2);
+  max-width: 1500px;
+  font-weight: 300;
+  text-wrap: pretty;
+}
+.body-text strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.label {
+  font-family: var(--mono);
+  font-size: var(--type-eyebrow);
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* layout helpers */
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 56px;
+}
+.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.cols-2-uneven {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+}
+.fill { flex: 1; }
+
+/* cards */
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.card .k {
+  font-family: var(--mono);
+  font-size: 16px;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.card .h {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.card .p {
+  font-size: var(--type-small);
+  line-height: 1.4;
+  color: var(--ink-2);
+  font-weight: 300;
+}
+
+/* title slide */
+.title-slide {
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+.title-slide .display {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 168px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  max-width: 1600px;
+}
+.title-slide .display em {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* section dividers */
+.divider {
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  background: var(--bg);
+}
+.divider .act-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 360px;
+  line-height: 0.85;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+.divider .act-title {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 112px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.divider .act-preview {
+  display: flex;
+  gap: 56px;
+  margin-top: 32px;
+  max-width: 1500px;
+}
+.divider .act-preview .pv {
+  flex: 1;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.divider .act-preview .pv .pv-k {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.divider .act-preview .pv .pv-t {
+  font-size: 22px;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+/* numeric */
+.big-num {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 132px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  padding-bottom: 8px;
+}
+.big-num em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+.med-num {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+/* timeline (day in the life) */
+.timeline {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0 48px;
+  row-gap: 0;
+}
+.timeline .t {
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.timeline .e {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+.timeline .e strong { color: var(--ink); font-weight: 500; }
+.timeline .t:last-of-type, .timeline .e:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+/* old vs new */
+.versus {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+.versus .col {
+  padding: 40px 48px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.versus .col.now { background: var(--bg-2); }
+.versus .col.future {
+  background: var(--bg-2);
+  border-color: var(--accent-soft);
+  position: relative;
+}
+.versus .col.future::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.versus .arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  color: var(--ink-3);
+  font-size: 32px;
+}
+.versus .k {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.versus .col.future .k { color: var(--accent); }
+.versus .h {
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.versus .row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.versus .row .rk {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.versus .row .rv {
+  font-size: 22px;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.3;
+}
+.versus .col.future .row .rv { color: var(--ink); }
+
+/* table */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink-2);
+  table-layout: fixed;
+}
+.tbl th, .tbl td {
+  text-align: left;
+  padding: 22px 20px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.35;
+}
+.tbl th {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  border-bottom: 1px solid var(--ink-3);
+}
+.tbl td.k {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: 180px;
+}
+.tbl .ours {
+  background: var(--accent-glow);
+}
+.tbl .ours td { color: var(--ink); }
+
+/* numbered list */
+.nlist {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.nlist .item {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.nlist .item:last-child { border-bottom: 1px solid var(--line); }
+.nlist .item .n {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 56px;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.nlist .item .c .ih {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.nlist .item .c .ip {
+  font-size: 22px;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.4;
+  max-width: 1300px;
+}
+
+/* tight numbered (5 across) */
+.nlist.compact .item {
+  padding: 18px 0;
+}
+.nlist.compact .item .n { font-size: 44px; }
+.nlist.compact .item .c .ih { font-size: 26px; margin-bottom: 4px; }
+.nlist.compact .item .c .ip { font-size: 24px; }
+
+/* T-shape diagram */
+.tshape {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  position: relative;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* factory diagram */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.stack .layer {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 28px 36px;
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  gap: 36px;
+  align-items: center;
+}
+.stack .layer.hero {
+  border-color: var(--accent-soft);
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-2) 100%);
+  position: relative;
+}
+.stack .layer.hero::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.stack .layer .lk {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.stack .layer.hero .lk { color: var(--accent); }
+.stack .layer .lh {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.stack .layer .lp {
+  font-size: 19px;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* synthesis grid */
+.synth {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.synth > div {
+  padding: 28px 28px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  font-weight: 300;
+}
+.synth > div:nth-child(4n) { border-right: none; }
+.synth .rh {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.synth .hd {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.synth .cell strong { color: var(--ink); font-weight: 500; }
+
+/* chart helpers */
+.chart-frame {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 36px 40px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.chart-frame .ch-title {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.chart-frame .ch-caption {
+  font-size: 18px;
+  color: var(--ink-3);
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* horizontal bars */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 8px;
+}
+.bars .b {
+  display: grid;
+  grid-template-columns: 260px 1fr 100px;
+  gap: 20px;
+  align-items: center;
+  font-size: 18px;
+}
+.bars .b .lab {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bars .b .track {
+  background: var(--bg-3);
+  height: 22px;
+  position: relative;
+}
+.bars .b .fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--accent);
+}
+.bars .b .fill.warm { background: var(--warm); }
+.bars .b .fill.muted { background: var(--ink-3); }
+.bars .b .v {
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--ink);
+  text-align: right;
+}
+
+/* pull quote */
+.pull {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  max-width: 1400px;
+}
+.pull .src {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 28px;
+}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- =========================== SLIDE 01 — TITLE =========================== -->
+<section data-label="01 Title">
+  <div class="title-slide">
+    <div class="chrome">
+      <div class="left"><span class="dot"></span>Internal strategy review</div>
+      <div>May 2026 · v1</div>
+    </div>
+    <div style="margin-top: 200px;">
+      <div class="eyebrow" style="margin-bottom: 40px;">The next three to five years</div>
+      <div class="display">The future of <em>app engineering</em>.</div>
+      <div class="subtitle" style="margin-top: 56px; max-width: 1400px;">Three lenses on a practice being restructured by AI: the engineer, the practice, the firm.</div>
+    </div>
+    <div class="foot">
+      <div>Workforce strategy · Confidential</div>
+      <div>01 / 35</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 02 — THESIS =========================== -->
+<section data-label="02 Thesis">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Thesis</div>
+    <div>02 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">In one page</div>
+    <h1 class="title">AI does not slowly change app engineering. It <em>restructures</em> it.</h1>
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="k">Unit of work</div>
+        <div class="h">From developer-hour to verified outcome.</div>
+        <div class="p">The atomic unit a firm sells, staffs, and measures shifts from a billable hour of human authorship to a verified deliverable produced by a human-plus-agent pod.</div>
+      </div>
+      <div class="card">
+        <div class="k">The gap</div>
+        <div class="h">Almost no large practice is built for that unit.</div>
+        <div class="p">Operating model, pricing, comp, and tooling are still optimized for billable hours. Realized productivity is a small fraction of what is technically available.</div>
+      </div>
+      <div class="card">
+        <div class="k">The prize</div>
+        <div class="h">Winners rebuild the system before pricing collapses.</div>
+        <div class="p">The firms that migrate delivery, commercials, and talent first capture a multi-year window before T&amp;M margins compress structurally.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Workforce strategy</div>
+    <div>02 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 03 — THREE LENSES =========================== -->
+<section data-label="03 Three lenses">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>How to read this deck</div>
+    <div>03 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Three lenses, one story</div>
+    <h1 class="title">We tell the story at three altitudes.</h1>
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="k">Act I — Lens 01</div>
+        <div class="h">The engineer.</div>
+        <div class="p">The person at the keyboard. Where the daily work changes shape first.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; margin-top: auto; font-family: var(--mono); letter-spacing: 0.06em;">~1 engineer · slides 04 – 14</div>
+      </div>
+      <div class="card">
+        <div class="k">Act II — Lens 02</div>
+        <div class="h">The practice.</div>
+        <div class="p">Ten thousand engineers, hundreds of accounts. Where individual changes compound — or cancel.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; margin-top: auto; font-family: var(--mono); letter-spacing: 0.06em;">~10,000 engineers · slides 15 – 24</div>
+      </div>
+      <div class="card">
+        <div class="k">Act III — Lens 03</div>
+        <div class="h">The organization.</div>
+        <div class="p">The services firm. Where commercial model, capital, and competitive position get rewritten.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; margin-top: auto; font-family: var(--mono); letter-spacing: 0.06em;">The firm · slides 25 – 34</div>
+      </div>
+    </div>
+    <div class="body-text" style="margin-top: 56px; font-size: 24px; color: var(--ink-3);">Each act follows the same arc: <strong style="color: var(--ink-2);">future state → today's gap → frictions → missed moves → competitive view → our strategic answer</strong>.</div>
+  </div>
+  <div class="foot">
+    <div>Workforce strategy</div>
+    <div>03 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 04 — ACT I DIVIDER =========================== -->
+<section data-label="04 Act I divider">
+  <div class="divider">
+    <div class="chrome">
+      <div class="left"><span class="dot"></span>Act I</div>
+      <div>04 / 35</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 12px;">Act I · The engineer</div>
+      <div class="act-num">I.</div>
+      <div class="act-title" style="margin-top: 24px;">The engineer.</div>
+      <div class="subtitle" style="margin-top: 28px; max-width: 1300px; font-size: 36px;">What the person at the keyboard does in 2029 — and why nothing else makes sense without starting there.</div>
+    </div>
+    <div class="act-preview">
+      <div class="pv"><div class="pv-k">05 — 07</div><div class="pv-t">Future state &amp; role shift</div></div>
+      <div class="pv"><div class="pv-k">08 — 11</div><div class="pv-t">The gap &amp; the frictions</div></div>
+      <div class="pv"><div class="pv-k">12</div><div class="pv-t">Competitive view</div></div>
+      <div class="pv"><div class="pv-k">13 — 14</div><div class="pv-t">Our strategic answer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 05 — ENGINEER IN 2029 =========================== -->
+<section data-label="05 Engineer in 2029">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Future state</div>
+    <div>05 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The engineer in 2029</div>
+    <h1 class="title">Five qualities define the engineer who is in demand.</h1>
+    <div class="cols-3" style="margin-top: 8px;">
+      <div class="card">
+        <div class="k">01 — Specification</div>
+        <div class="h">Writes intent precisely.</div>
+        <div class="p">Specifies units of work in a form an agent can execute well, with explicit success criteria, constraints, and acceptance tests.</div>
+      </div>
+      <div class="card">
+        <div class="k">02 — Decomposition</div>
+        <div class="h">Cuts problems for agents.</div>
+        <div class="p">Knows the granularity at which agents succeed, and where a human seam between agent steps is required.</div>
+      </div>
+      <div class="card">
+        <div class="k">03 — Verification</div>
+        <div class="h">Reviews machine output fast.</div>
+        <div class="p">Runs a deliberate verification workflow — automated harnesses plus targeted human review — at the throughput agents demand.</div>
+      </div>
+    </div>
+    <div class="cols-2" style="margin-top: 32px;">
+      <div class="card">
+        <div class="k">04 — Architecture</div>
+        <div class="h">Owns the seams agents cannot.</div>
+        <div class="p">Integration boundaries, data semantics, performance edges, security model, and the question of what to build at all.</div>
+      </div>
+      <div class="card">
+        <div class="k">05 — Trust calibration</div>
+        <div class="h">Knows when to look closely.</div>
+        <div class="p">Has a calibrated sense for where agent output is reliable and where it is not, and budgets verification time accordingly.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>05 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 06 — DAY IN THE LIFE =========================== -->
+<section data-label="06 Day in the life 2029">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Future state</div>
+    <div>06 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">A representative day · 2029</div>
+    <h1 class="title">Hours shift from authoring to specifying and verifying.</h1>
+    <div class="cols-2-uneven" style="margin-top: 16px;">
+      <div class="timeline">
+        <div class="t">07 : 00</div><div class="e"><strong>Reviews overnight agent work.</strong> Three branches produced unattended; two pass the harness, one is rejected with a note.</div>
+        <div class="t">09 : 00</div><div class="e"><strong>Specification session.</strong> Writes acceptance tests and constraints for the next two units of work before any code is touched.</div>
+        <div class="t">11 : 00</div><div class="e"><strong>Hands-on integration.</strong> Wires a payments boundary by hand &mdash; ambiguity is highest, agent error most expensive.</div>
+        <div class="t">14 : 00</div><div class="e"><strong>Verification sprint.</strong> Drives the eval harness against the day's agent output; triages, writes new tests, lands branches.</div>
+        <div class="t">16 : 00</div><div class="e"><strong>Pod review.</strong> Walks through architecture decisions with three peers &mdash; <em>what to build</em>, not how to type it.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 40px; justify-content: center;">
+        <div>
+          <div class="label" style="margin-bottom: 16px;">Time allocation · illustrative</div>
+          <div class="bars">
+            <div class="b"><div class="lab">Authoring code</div><div class="track"><div class="fill" style="width: 18%;"></div></div><div class="v">~15%</div></div>
+            <div class="b"><div class="lab">Specifying work</div><div class="track"><div class="fill" style="width: 30%;"></div></div><div class="v">~25%</div></div>
+            <div class="b"><div class="lab">Verifying output</div><div class="track"><div class="fill" style="width: 42%;"></div></div><div class="v">~35%</div></div>
+            <div class="b"><div class="lab">Architecture &amp; review</div><div class="track"><div class="fill" style="width: 30%;"></div></div><div class="v">~25%</div></div>
+          </div>
+        </div>
+        <div class="body-text" style="font-size: 22px; color: var(--ink-3); font-style: italic; font-family: var(--serif);">Directional. Distribution varies by domain; ranges, not points.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>06 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 07 — AUTHOR TO ORCHESTRATOR =========================== -->
+<section data-label="07 Author to orchestrator">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Role shift</div>
+    <div>07 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The role shift</div>
+    <h1 class="title">From <em>author</em> to <em>orchestrator</em>.</h1>
+    <div class="versus" style="margin-top: 16px;">
+      <div class="col now">
+        <div class="k">2024 · Author</div>
+        <div class="h">The engineer produces code. The IDE assists.</div>
+        <div class="row"><div class="rk">Primary output</div><div class="rv">Lines of code, by hand.</div></div>
+        <div class="row"><div class="rk">Leverage source</div><div class="rv">Personal speed, library knowledge.</div></div>
+        <div class="row"><div class="rk">Time on review</div><div class="rv">Minutes per day on peer PRs.</div></div>
+        <div class="row"><div class="rk">Identity</div><div class="rv">"I write software."</div></div>
+        <div class="row"><div class="rk">Measured by</div><div class="rv">Tickets closed, PRs merged.</div></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col future">
+        <div class="k">2029 · Orchestrator</div>
+        <div class="h">The engineer produces intent &amp; judgement. Agents produce the code.</div>
+        <div class="row"><div class="rk">Primary output</div><div class="rv">Specifications, verifications, architectural decisions.</div></div>
+        <div class="row"><div class="rk">Leverage source</div><div class="rv">Fleet of agents, evaluation harness.</div></div>
+        <div class="row"><div class="rk">Time on review</div><div class="rv">Hours per day on machine output.</div></div>
+        <div class="row"><div class="rk">Identity</div><div class="rv">"I design systems that ship themselves."</div></div>
+        <div class="row"><div class="rk">Measured by</div><div class="rv">Verified outcomes shipped.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>07 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 08 — TODAY'S GAP =========================== -->
+<section data-label="08 Gap engineer">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · The gap</div>
+    <div>08 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Today's gap · 2026</div>
+    <h1 class="title">Most engineers use AI in a fundamentally <em>2022 mode</em>.</h1>
+    <div class="cols-2" style="margin-top: 16px; gap: 100px;">
+      <div style="display: flex; flex-direction: column; gap: 48px;">
+        <div>
+          <div class="big-num">~85<em>%</em></div>
+          <div class="body-text" style="margin-top: 16px; max-width: 600px;">use AI primarily as <strong>smarter autocomplete</strong> inside their editor.</div>
+        </div>
+        <div>
+          <div class="big-num">&lt;15<em>%</em></div>
+          <div class="body-text" style="margin-top: 16px; max-width: 600px;">run a genuine <strong>agentic workflow</strong> — specify, dispatch, verify — as their default mode.</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 48px;">
+        <div>
+          <div class="big-num"><em>~1 in 10</em></div>
+          <div class="body-text" style="margin-top: 16px; max-width: 600px;">can articulate a deliberate <strong>verification workflow</strong> for agent output.</div>
+        </div>
+        <div>
+          <div class="big-num"><em>0</em></div>
+          <div class="body-text" style="margin-top: 16px; max-width: 600px;">hours of formal training, today, on writing <strong>specifications</strong> agents can execute well.</div>
+        </div>
+      </div>
+    </div>
+    <div class="body-text" style="margin-top: 48px; font-size: 22px; color: var(--ink-3); font-style: italic; font-family: var(--serif);">Internal pulse, Q1 2026, n ≈ 2,100. Directional.</div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>08 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 09 — EFFECTIVENESS CLIFF =========================== -->
+<section data-label="09 Effectiveness cliff">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · The gap</div>
+    <div>09 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The effectiveness cliff</div>
+    <h1 class="title">Output per engineer is no longer normally distributed.</h1>
+    <div class="cols-2-uneven" style="margin-top: 8px; align-items: stretch;">
+      <div class="chart-frame">
+        <div class="ch-title">Verified output per engineer · indexed to 2023 = 100 · illustrative</div>
+        <svg viewBox="0 0 800 460" style="width: 100%; height: auto; margin-top: 8px;" xmlns="http://www.w3.org/2000/svg">
+          <!-- axes -->
+          <line x1="60" y1="400" x2="780" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <line x1="60" y1="40" x2="60" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <!-- gridlines -->
+          <line x1="60" y1="120" x2="780" y2="120" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="200" x2="780" y2="200" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="280" x2="780" y2="280" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <!-- baseline line: 2023 -->
+          <path d="M 60 220 C 200 200 280 180 400 200 C 520 220 600 220 780 240" fill="none" stroke="#7c8195" stroke-width="2" stroke-dasharray="4 5"/>
+          <!-- 2026 curve: bimodal pulling apart -->
+          <path d="M 60 260 C 160 280 220 320 300 330 C 360 338 400 330 460 280 C 520 220 580 140 660 90 C 700 70 740 60 780 55" fill="none" stroke="#6b8aff" stroke-width="3"/>
+          <!-- labels -->
+          <text x="60" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">BOTTOM DECILE</text>
+          <text x="380" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5" text-anchor="middle">MEDIAN</text>
+          <text x="780" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5" text-anchor="end">TOP DECILE</text>
+          <!-- y axis label -->
+          <text x="40" y="50" fill="#7c8195" font-family="IBM Plex Mono" font-size="12" letter-spacing="1.5">OUTPUT</text>
+          <text x="40" y="68" fill="#7c8195" font-family="IBM Plex Mono" font-size="12" letter-spacing="1.5">INDEX</text>
+          <!-- annotations -->
+          <text x="115" y="270" fill="#b8bccc" font-family="IBM Plex Sans" font-size="16" font-weight="300">Slight decline</text>
+          <text x="115" y="290" fill="#b8bccc" font-family="IBM Plex Sans" font-size="16" font-weight="300">— fighting tools</text>
+          <text x="730" y="65" fill="#6b8aff" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="end">3 – 5×</text>
+          <text x="730" y="85" fill="#6b8aff" font-family="IBM Plex Sans" font-size="16" font-weight="300" text-anchor="end">baseline output</text>
+          <text x="640" y="225" fill="#7c8195" font-family="IBM Plex Sans" font-size="14" font-weight="300" font-style="italic">2023 baseline</text>
+          <text x="290" y="358" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14" font-weight="300">flat</text>
+          <!-- legend -->
+          <line x1="540" y1="20" x2="570" y2="20" stroke="#6b8aff" stroke-width="3"/>
+          <text x="580" y="24" fill="#b8bccc" font-family="IBM Plex Mono" font-size="11" letter-spacing="1">2026</text>
+          <line x1="640" y1="20" x2="670" y2="20" stroke="#7c8195" stroke-width="2" stroke-dasharray="4 5"/>
+          <text x="680" y="24" fill="#b8bccc" font-family="IBM Plex Mono" font-size="11" letter-spacing="1">2023</text>
+        </svg>
+        <div class="ch-caption">Illustrative shape derived from internal pulse data and external research. Y-axis is indexed; absolute values intentionally suppressed.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 36px; justify-content: center;">
+        <div>
+          <div class="label">The shape</div>
+          <div class="body-text" style="font-size: 28px; color: var(--ink); margin-top: 12px;">Bimodal and <strong>pulling apart</strong> every quarter.</div>
+        </div>
+        <div>
+          <div class="label">The implication</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">The top decile is several times more productive than the median. Best practices are not yet portable. This is a <strong>people-management problem</strong> first, a tooling problem second.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>09 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 10 — FIVE FRICTIONS =========================== -->
+<section data-label="10 Five frictions engineer">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Frictions</div>
+    <div>10 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Five frictions · engineer level</div>
+    <h1 class="title">Where individual engineers get stuck.</h1>
+    <div class="nlist compact" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Tool sprawl.</div><div class="ip">Four to six AI surfaces per engineer, none consolidated. Switching tax compounds across the day.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">The trust problem.</div><div class="ip">Engineers either over-trust agent output and ship defects, or re-verify by hand and erase the speed gain.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">Evaluation.</div><div class="ip">No credible signal of whether agent code is good. Reviewers fall back to surface heuristics.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">Identity.</div><div class="ip">Many engineers signed up to write code, not supervise machines. Morale and retention take the hit quietly.</div></div></div>
+      <div class="item"><div class="n">05</div><div class="c"><div class="ih">Learning curve.</div><div class="ip">The best workflows need deliberate practice. Without ring-fenced time, the cliff steepens.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>10 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 11 — MISSED MOVES =========================== -->
+<section data-label="11 Missed moves engineer">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Missed moves</div>
+    <div>11 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Missed moves · how the industry is responding</div>
+    <h1 class="title">Three patterns of suboptimal response we see today.</h1>
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="k">Pattern A</div>
+        <div class="h">Procurement over workflow.</div>
+        <div class="p">Treating AI tools as a license decision. Buy seats, declare adoption, move on. Engineers receive credentials, not a redesigned way of working.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ License utilization rises. Output does not.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern B</div>
+        <div class="h">Wrong metric.</div>
+        <div class="p">Measuring adoption by seat count, prompt count, or completion-acceptance rate, rather than verified output shipped. Produces the wrong incentives across the org.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Theater of adoption. No correlated outcome.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern C</div>
+        <div class="h">Workflow as hobby.</div>
+        <div class="p">Leaving the design of agent workflows to individual engineers in their spare time, instead of as a first-class engineering investment with named owners and measurable goals.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Best practices stay siloed in the top decile.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>11 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 12 — COMPETITIVE VIEW =========================== -->
+<section data-label="12 Competitive view engineer">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Competitive view</div>
+    <div>12 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Competitive view · at the engineer level</div>
+    <h1 class="title">Three competitors are pulling at our engineers.</h1>
+    <table class="tbl" style="margin-top: 16px;">
+      <thead>
+        <tr>
+          <th style="width: 240px;">Competitor</th>
+          <th>What they do for engineers</th>
+          <th>Where it threatens us</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="k">Large peer firms</td>
+          <td>Match tooling spend; broad training programs; centralized copilots. Comparable comp bands to ours.</td>
+          <td>Same engineers we want; same playbook. Whoever moves first on workflow and comp wins.</td>
+        </tr>
+        <tr>
+          <td class="k">AI-native upstarts</td>
+          <td>Ten-engineer teams bidding work that used to require fifty. Pay top-decile engineers <strong>2 – 3× market</strong>. No legacy delivery org.</td>
+          <td>Bleed our top decile. Set the buyer's mental anchor for "modern" delivery in their favor.</td>
+        </tr>
+        <tr>
+          <td class="k">Client in-house teams</td>
+          <td>Pulling our best engineers into product roles. Own the codebase, so agent leverage compounds inside their walls.</td>
+          <td>Long-term: clients need us less if they internalize agent operations on their own platforms.</td>
+        </tr>
+        <tr class="ours">
+          <td class="k">Us · status quo</td>
+          <td>Broad tooling rollout. Adoption metrics. Training as e-learning. Comp unchanged from 2023 bands.</td>
+          <td><strong>Caught in the middle.</strong> Top decile leaves to upstarts; median commoditizes against peers.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>12 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 13 — T-SHAPED AGENT OPERATOR =========================== -->
+<section data-label="13 Strategy T-shaped operator">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Our strategic answer</div>
+    <div>13 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Our strategic answer · engineer level</div>
+    <h1 class="title">Build &amp; pay for the <em>T-shaped agent operator</em>.</h1>
+    <div class="cols-2-uneven" style="margin-top: 8px; align-items: stretch;">
+      <div class="tshape">
+        <svg viewBox="0 0 600 480" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+          <!-- Horizontal bar -->
+          <rect x="40" y="60" width="520" height="100" fill="none" stroke="#6b8aff" stroke-width="1.5"/>
+          <text x="300" y="100" fill="#6b8aff" font-family="IBM Plex Mono" font-size="14" letter-spacing="2" text-anchor="middle">HORIZONTAL BAR</text>
+          <text x="300" y="130" fill="#ece9df" font-family="IBM Plex Sans" font-size="22" font-weight="500" text-anchor="middle">Multi-agent orchestration · specification · verification</text>
+          <!-- Vertical bar -->
+          <rect x="240" y="160" width="120" height="280" fill="none" stroke="#6b8aff" stroke-width="1.5"/>
+          <text x="300" y="200" fill="#6b8aff" font-family="IBM Plex Mono" font-size="14" letter-spacing="2" text-anchor="middle">VERTICAL</text>
+          <text x="300" y="220" fill="#6b8aff" font-family="IBM Plex Mono" font-size="14" letter-spacing="2" text-anchor="middle">BAR</text>
+          <text x="300" y="270" fill="#ece9df" font-family="IBM Plex Sans" font-size="18" font-weight="500" text-anchor="middle">Deep specialty</text>
+          <text x="300" y="305" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14" font-weight="300" text-anchor="middle">— Distributed systems</text>
+          <text x="300" y="325" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14" font-weight="300" text-anchor="middle">— Security architecture</text>
+          <text x="300" y="345" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14" font-weight="300" text-anchor="middle">— Vertical data model</text>
+          <text x="300" y="365" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14" font-weight="300" text-anchor="middle">— Regulated domains</text>
+          <text x="300" y="395" fill="#7c8195" font-family="IBM Plex Sans" font-size="13" font-weight="300" font-style="italic" text-anchor="middle">Judgement that does not</text>
+          <text x="300" y="412" fill="#7c8195" font-family="IBM Plex Sans" font-size="13" font-weight="300" font-style="italic" text-anchor="middle">commoditize.</text>
+        </svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 36px; justify-content: center;">
+        <div>
+          <div class="label">Why this shape</div>
+          <div class="body-text" style="font-size: 24px; color: var(--ink); margin-top: 12px;">The full-stack generalist we hired against for a decade is the wrong target. Agents flatten generalism; <strong>depth plus orchestration</strong> compounds.</div>
+        </div>
+        <div>
+          <div class="label">Grade both bars</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">Pay for vertical depth <strong>and</strong> horizontal fluency, separately. Top comp band reserved for engineers who carry both.</div>
+        </div>
+        <div>
+          <div class="label">Training implication</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">Two distinct curricula, two distinct certifications, two distinct career ladders that intersect.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>13 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 14 — WHAT WE CHANGE =========================== -->
+<section data-label="14 What we change engineer">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act I · Moves</div>
+    <div>14 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Four concrete moves · next 12 months</div>
+    <h1 class="title">What we change for engineers.</h1>
+    <div class="nlist" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Agent-operator certification, three levels.</div><div class="ip">Gated by verified output on real work, not by attendance. Required for promotion past senior engineer. Re-certified annually.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">200 hours of paid learning time per engineer per year.</div><div class="ip">Ring-fenced, scheduled, not at the manager's discretion. Logged against the certification curriculum. Funded centrally.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">Comp bands rebuilt around verified output.</div><div class="ip">Top band reserved for top-decile agent operators who also carry a vertical bar. Multi-year transition, communicated openly.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">A central golden-path tools team.</div><div class="ip">Small, senior, well-funded. Owns the standard agent workflow so individual engineers do not each invent their own. Treats internal engineers as customers.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act I — The engineer</div>
+    <div>14 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 15 — ACT II DIVIDER =========================== -->
+<section data-label="15 Act II divider">
+  <div class="divider">
+    <div class="chrome">
+      <div class="left"><span class="dot"></span>Act II</div>
+      <div>15 / 35</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 12px;">Act II · The practice</div>
+      <div class="act-num">II.</div>
+      <div class="act-title" style="margin-top: 24px;">The practice.</div>
+      <div class="subtitle" style="margin-top: 28px; max-width: 1400px; font-size: 36px;">Ten thousand engineers. Hundreds of accounts. Where individual changes either compound — or cancel out.</div>
+    </div>
+    <div class="act-preview">
+      <div class="pv"><div class="pv-k">16 — 17</div><div class="pv-t">Future state &amp; model shift</div></div>
+      <div class="pv"><div class="pv-k">18 — 21</div><div class="pv-t">The gap &amp; the frictions</div></div>
+      <div class="pv"><div class="pv-k">22</div><div class="pv-t">Competitive view</div></div>
+      <div class="pv"><div class="pv-k">23 — 24</div><div class="pv-t">Our strategic answer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 16 — PRACTICE IN 2029 =========================== -->
+<section data-label="16 Practice in 2029">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Future state</div>
+    <div>16 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The practice in 2029</div>
+    <h1 class="title">Pods of humans and agents. A verification layer at the heart.</h1>
+    <div class="cols-3" style="margin-top: 8px;">
+      <div class="card">
+        <div class="k">Unit of staffing</div>
+        <div class="h">The pod, not the person.</div>
+        <div class="p">A pod is 4 – 7 humans plus a persistent agent fleet. Carries the scope a 12 – 20 person team carried in 2024. Scheduled against outcomes, not seats.</div>
+      </div>
+      <div class="card">
+        <div class="k">Throughput governor</div>
+        <div class="h">The verification layer.</div>
+        <div class="p">A dedicated capability — senior engineers plus eval infrastructure — whose throughput sets the pod's ceiling. Not optional, not a side activity.</div>
+      </div>
+      <div class="card">
+        <div class="k">Capability centers</div>
+        <div class="h">Specialized, not generic.</div>
+        <div class="p">No longer staff-augmentation pools. Each center owns a vertical, an evaluation discipline, or a platform layer. Headcount down; specialization up.</div>
+      </div>
+    </div>
+    <div class="cols-2" style="margin-top: 32px;">
+      <div class="card">
+        <div class="k">Delivery management</div>
+        <div class="h">Pod manager replaces resource manager.</div>
+        <div class="p">Manages throughput and quality of a small number of pods, not a roster of 30 named individuals. New training, new tooling, new comp.</div>
+      </div>
+      <div class="card">
+        <div class="k">Primary metric</div>
+        <div class="h">Pod throughput, not utilization.</div>
+        <div class="p">Utilization is no longer the lever. Verified outcomes shipped per pod per quarter is the lever. Every system above this layer follows.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>16 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 17 — NEW OPERATING MODEL =========================== -->
+<section data-label="17 New operating model">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Model shift</div>
+    <div>17 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The operating model shift</div>
+    <h1 class="title">From <em>resource-loaded plan</em> to <em>throughput-managed pod</em>.</h1>
+    <div class="versus" style="margin-top: 16px;">
+      <div class="col now">
+        <div class="k">Today · Resource-loaded plan</div>
+        <div class="h">Staff N engineers. Bill against hours. Measure utilization.</div>
+        <div class="row"><div class="rk">Unit of staffing</div><div class="rv">A named person, on a rate card.</div></div>
+        <div class="row"><div class="rk">Primary lever</div><div class="rv">Utilization rate.</div></div>
+        <div class="row"><div class="rk">Sales motion</div><div class="rv">Sell hours; rate-card discussion.</div></div>
+        <div class="row"><div class="rk">Staffing tool</div><div class="rv">Roster, skills, availability.</div></div>
+        <div class="row"><div class="rk">QA model</div><div class="rv">Sample-based human review.</div></div>
+        <div class="row"><div class="rk">SOW shape</div><div class="rv">Engineer-month, T&amp;M.</div></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col future">
+        <div class="k">2029 · Throughput-managed pod</div>
+        <div class="h">Deploy a pod against an outcome. Bill against delivery. Measure throughput &amp; quality.</div>
+        <div class="row"><div class="rk">Unit of staffing</div><div class="rv">A pod with declared capacity &amp; specialty.</div></div>
+        <div class="row"><div class="rk">Primary lever</div><div class="rv">Pod throughput &amp; verification capacity.</div></div>
+        <div class="row"><div class="rk">Sales motion</div><div class="rv">Sell outcomes; pricing on value.</div></div>
+        <div class="row"><div class="rk">Staffing tool</div><div class="rv">Pod catalogue, eval-passing capacity.</div></div>
+        <div class="row"><div class="rk">QA model</div><div class="rv">Automated eval harness + targeted human review.</div></div>
+        <div class="row"><div class="rk">SOW shape</div><div class="rv">Outcome SOW, gainshare, milestoned.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>17 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 18 — TODAY'S GAP PRACTICE =========================== -->
+<section data-label="18 Gap practice">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · The gap</div>
+    <div>18 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Today's gap · the practice</div>
+    <h1 class="title">Every system in the practice is designed for an <em>obsolescing</em> unit of work.</h1>
+    <div class="cols-2" style="margin-top: 16px; gap: 80px;">
+      <div class="nlist">
+        <div class="item"><div class="n">A</div><div class="c"><div class="ih">Utilization drives staffing.</div><div class="ip">A pod that ships in half the time looks like under-utilization in our reporting.</div></div></div>
+        <div class="item"><div class="n">B</div><div class="c"><div class="ih">The staffing tool cannot represent a pod.</div><div class="ip">It models people. Mixed human-agent capacity has no native data model.</div></div></div>
+        <div class="item"><div class="n">C</div><div class="c"><div class="ih">PMs run resource-loaded plans.</div><div class="ip">Trained on Gantt charts, not throughput. New skill set; old job description.</div></div></div>
+      </div>
+      <div class="nlist">
+        <div class="item"><div class="n">D</div><div class="c"><div class="ih">SOWs price an engineer-month.</div><div class="ip">The commercial unit is the bottleneck. Outcome SOWs require a different finance posture.</div></div></div>
+        <div class="item"><div class="n">E</div><div class="c"><div class="ih">QA is sample-based human review.</div><div class="ip">It does not scale to agent throughput. The eval harness is the new QA function.</div></div></div>
+        <div class="item"><div class="n">F</div><div class="c"><div class="ih">Career ladders reward seniority of person, not pod outcome.</div><div class="ip">High-throughput pod operators have no obvious next rung.</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>18 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 19 — PRODUCTIVITY PARADOX =========================== -->
+<section data-label="19 Productivity paradox">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · The gap</div>
+    <div>19 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The productivity paradox</div>
+    <h1 class="title">Capability is growing exponentially. Realized productivity is growing linearly.</h1>
+    <div class="cols-2-uneven" style="margin-top: 8px; align-items: stretch;">
+      <div class="chart-frame">
+        <div class="ch-title">Agent capability vs realized practice productivity · indexed · 2023 = 100 · illustrative</div>
+        <svg viewBox="0 0 800 460" style="width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="400" x2="780" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <line x1="60" y1="40" x2="60" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <line x1="60" y1="120" x2="780" y2="120" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="200" x2="780" y2="200" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="280" x2="780" y2="280" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <!-- shaded paradox area -->
+          <path d="M 60 380 C 200 360 320 280 460 200 C 580 120 680 70 780 50 L 780 360 C 720 350 620 340 500 330 C 380 320 240 320 60 360 Z" fill="#6b8aff" fill-opacity="0.06"/>
+          <!-- capability curve -->
+          <path d="M 60 380 C 200 360 320 280 460 200 C 580 120 680 70 780 50" fill="none" stroke="#6b8aff" stroke-width="3"/>
+          <!-- realized productivity (mostly flat, slight rise) -->
+          <path d="M 60 380 C 200 372 380 360 540 348 C 660 340 720 335 780 330" fill="none" stroke="#d9b07a" stroke-width="3"/>
+          <!-- gap brace -->
+          <line x1="700" y1="70" x2="700" y2="330" stroke="#6b8aff" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="715" y="200" fill="#6b8aff" font-family="IBM Plex Sans" font-size="15" font-weight="500">THE GAP</text>
+          <text x="715" y="220" fill="#6b8aff" font-family="IBM Plex Sans" font-size="13" font-weight="300">= THE PRIZE</text>
+          <!-- axis labels -->
+          <text x="60" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">2023</text>
+          <text x="270" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">2024</text>
+          <text x="450" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">2025</text>
+          <text x="630" y="430" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">2026</text>
+          <text x="40" y="50" fill="#7c8195" font-family="IBM Plex Mono" font-size="12" letter-spacing="1.5">INDEX</text>
+          <!-- legend -->
+          <line x1="80" y1="60" x2="110" y2="60" stroke="#6b8aff" stroke-width="3"/>
+          <text x="120" y="65" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14">Agent capability</text>
+          <line x1="80" y1="84" x2="110" y2="84" stroke="#d9b07a" stroke-width="3"/>
+          <text x="120" y="89" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14">Realized practice productivity</text>
+        </svg>
+        <div class="ch-caption">Shape from external research and internal pulse. Axis indexed; absolute values suppressed by design.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 36px; justify-content: center;">
+        <div>
+          <div class="label">The gap</div>
+          <div class="body-text" style="font-size: 30px; color: var(--ink); margin-top: 12px; line-height: 1.2;"><strong>~20%</strong> of theoretical productivity gain has been captured by the median practice today.</div>
+        </div>
+        <div>
+          <div class="label">The reason</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">Operating-model problem, not a tooling problem. Closing it is structural, not procurement.</div>
+        </div>
+        <div>
+          <div class="label">The prize</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">The shaded area is the size of the prize for the first firm at scale to close it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>19 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 20 — FIVE FRICTIONS PRACTICE =========================== -->
+<section data-label="20 Five frictions practice">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Frictions</div>
+    <div>20 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Five frictions · practice level</div>
+    <h1 class="title">Where the practice stalls.</h1>
+    <div class="nlist compact" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Evaluation infrastructure is missing.</div><div class="ip">We cannot tell whether pod A is twice as productive as pod B because we have no uniform measure of pod output. Every comparison is anecdote.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">Client codebases are not agent-ready.</div><div class="ip">Most engagements inherit codebases that cap agent throughput. The readiness work is real, but invisible in current SOWs.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">IP &amp; data boundaries are immature.</div><div class="ip">Agents need context; clients are sensitive. Our governance is improvised. This is becoming a deal-killer in regulated verticals.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">Pricing inversion.</div><div class="ip">When a pod ships in half the time on a T&amp;M contract, our revenue halves. Our SOW shape caps our upside on the work we do best.</div></div></div>
+      <div class="item"><div class="n">05</div><div class="c"><div class="ih">Manager capability.</div><div class="ip">Most delivery managers have never run a pod. They do not yet know what good looks like, which means they cannot coach or staff for it.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>20 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 21 — MISSED MOVES PRACTICE =========================== -->
+<section data-label="21 Missed moves practice">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Missed moves</div>
+    <div>21 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Missed moves at scale</div>
+    <h1 class="title">Three patterns of suboptimal response at the practice level.</h1>
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="k">Pattern A</div>
+        <div class="h">Uniform rollout.</div>
+        <div class="p">Deploying AI tooling identically across ten thousand engineers instead of concentrating investment in pods that can demonstrably absorb it. The cliff problem, repeated at scale.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Even thinness everywhere. Depth nowhere.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern B</div>
+        <div class="h">Adoption-as-output.</div>
+        <div class="p">Building an evaluation function that grades AI adoption metrics rather than verified delivery. Multiplies the wrong incentive across the entire practice.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Adoption dashboards green. Delivery flat.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern C</div>
+        <div class="h">Codebase-readiness as client problem.</div>
+        <div class="p">Treating the work of making a codebase agent-ready as the client's responsibility, rather than as a paid service line we deliver before — and during — the build.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Revenue left on the table. Throughput stays capped.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>21 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 22 — COMPETITIVE VIEW PRACTICE =========================== -->
+<section data-label="22 Competitive view practice">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Competitive view</div>
+    <div>22 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Competitive view · at the practice level</div>
+    <h1 class="title">Three categories of competitor, three different threats.</h1>
+    <table class="tbl" style="margin-top: 16px;">
+      <thead>
+        <tr>
+          <th style="width: 240px;">Competitor</th>
+          <th>What they do at the practice level</th>
+          <th>Where it threatens us</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="k">Large peer firms</td>
+          <td>Roughly our playbook: training, partnerships, internal copilots. Same legacy operating model. Same SOW shapes.</td>
+          <td>The race is who rebuilds the operating model first. First mover wins a multi-year window.</td>
+        </tr>
+        <tr>
+          <td class="k">AI-native delivery shops</td>
+          <td>Pod-based commercials on small to mid scope. Demonstrably faster on the work they take. Win on brand and speed.</td>
+          <td>Anchor the buyer's mental model of "modern" delivery. Take the entry deals into our accounts.</td>
+        </tr>
+        <tr>
+          <td class="k">Client in-house teams</td>
+          <td>Insource the work where agent leverage is highest and they own the codebase. Outsource the rest.</td>
+          <td>Slowly hollow our scope inside major accounts. The most strategic threat over five years.</td>
+        </tr>
+        <tr class="ours">
+          <td class="k">Us · status quo</td>
+          <td>Tooling deployed broadly. Utilization still the metric. SOWs unchanged. AI is a delivery enhancement story.</td>
+          <td><strong>Lose to upstarts on speed; lose to peers on cost; lose to in-house on scope.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>22 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 23 — AGENTIC DELIVERY FACTORY =========================== -->
+<section data-label="23 Strategy delivery factory">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Our strategic answer</div>
+    <div>23 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Our strategic answer · practice level</div>
+    <h1 class="title">The <em>agentic delivery factory</em>, in three layers.</h1>
+    <div class="stack" style="margin-top: 24px;">
+      <div class="layer">
+        <div><div class="lk">Layer 03</div><div class="lh">Platform layer</div></div>
+        <div class="lp">Owns the golden-path agent workflow, the evaluation harness, and the safety &amp; compliance perimeter. Built once, used by every pod.</div>
+        <div class="lp" style="color: var(--ink-3); font-style: italic; font-family: var(--serif);">"Built once. Used by every pod."</div>
+      </div>
+      <div class="layer hero">
+        <div><div class="lk">Layer 02 · The heart</div><div class="lh">Verification layer</div></div>
+        <div class="lp">Senior engineers plus eval infrastructure. Throughput here governs the whole system. Run as a profit center, with its own metrics &amp; investment plan.</div>
+        <div class="lp" style="color: var(--accent); font-style: italic; font-family: var(--serif);">"Throughput here = throughput everywhere."</div>
+      </div>
+      <div class="layer">
+        <div><div class="lk">Layer 01</div><div class="lh">Pod layer</div></div>
+        <div class="lp">4 – 7 humans plus persistent agent fleet. Organized by capability, not by account. Scheduled against outcomes. Owns delivery and quality.</div>
+        <div class="lp" style="color: var(--ink-3); font-style: italic; font-family: var(--serif);">"The pod is the unit. Not the person."</div>
+      </div>
+    </div>
+    <div class="body-text" style="margin-top: 36px; font-size: 22px; color: var(--ink-3);">The factory is what we sell. The factory is what we improve. Every other practice investment serves it.</div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>23 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 24 — WHAT WE CHANGE PRACTICE =========================== -->
+<section data-label="24 What we change practice">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act II · Moves</div>
+    <div>24 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Four concrete moves · next 18 months</div>
+    <h1 class="title">What we change at the practice.</h1>
+    <div class="nlist" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Replace utilization with pod throughput as the primary delivery metric.</div><div class="ip">In the staffing tool, the financial system, the delivery review, the QBR. The change is in the systems, not just the slides.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">Stand up a central evaluation team and platform.</div><div class="ip">Without it, none of the other moves are measurable. Funded centrally; staffed with our most senior engineers.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">Build &amp; require a paid codebase-readiness service line.</div><div class="ip">Required on outcome-priced engagements. Captures revenue today; uncaps throughput later.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">Retrain the top 500 delivery managers on pod management.</div><div class="ip">Re-assign or exit the ones who cannot run pods within a year. The kindest version of an unkind constraint.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act II — The practice</div>
+    <div>24 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 25 — ACT III DIVIDER =========================== -->
+<section data-label="25 Act III divider">
+  <div class="divider">
+    <div class="chrome">
+      <div class="left"><span class="dot"></span>Act III</div>
+      <div>25 / 35</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom: 12px;">Act III · The organization</div>
+      <div class="act-num">III.</div>
+      <div class="act-title" style="margin-top: 24px;">The organization.</div>
+      <div class="subtitle" style="margin-top: 28px; max-width: 1400px; font-size: 36px;">The services firm. Where commercial model, capital allocation, and competitive position get rewritten.</div>
+    </div>
+    <div class="act-preview">
+      <div class="pv"><div class="pv-k">26 — 27</div><div class="pv-t">Future state &amp; commercial shift</div></div>
+      <div class="pv"><div class="pv-k">28 — 31</div><div class="pv-t">The gap &amp; the frictions</div></div>
+      <div class="pv"><div class="pv-k">32</div><div class="pv-t">Competitive view</div></div>
+      <div class="pv"><div class="pv-k">33 — 34</div><div class="pv-t">Our strategic answer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 26 — SERVICES FIRM IN 2029 =========================== -->
+<section data-label="26 Services firm 2029">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Future state</div>
+    <div>26 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The services firm in 2029</div>
+    <h1 class="title">A platform business with a delivery arm — not a delivery business with a platform attached.</h1>
+    <div class="cols-2-uneven" style="margin-top: 8px; align-items: stretch;">
+      <div class="chart-frame">
+        <div class="ch-title">Revenue mix · 2024 vs 2029 · illustrative</div>
+        <div class="bars" style="margin-top: 28px;">
+          <div class="b"><div class="lab">T&amp;M · 2024</div><div class="track"><div class="fill muted" style="width: 92%;"></div></div><div class="v">~92%</div></div>
+          <div class="b"><div class="lab">T&amp;M · 2029</div><div class="track"><div class="fill muted" style="width: 25%;"></div></div><div class="v">~25%</div></div>
+          <div class="b"><div class="lab">Outcome / gainshare · 2024</div><div class="track"><div class="fill" style="width: 6%;"></div></div><div class="v">~6%</div></div>
+          <div class="b"><div class="lab">Outcome / gainshare · 2029</div><div class="track"><div class="fill" style="width: 50%;"></div></div><div class="v">~50%</div></div>
+          <div class="b"><div class="lab">Platform / licensing · 2024</div><div class="track"><div class="fill warm" style="width: 2%;"></div></div><div class="v">~2%</div></div>
+          <div class="b"><div class="lab">Platform / licensing · 2029</div><div class="track"><div class="fill warm" style="width: 25%;"></div></div><div class="v">~25%</div></div>
+        </div>
+        <div class="ch-caption">Aspirational mix at the firm level. Illustrative, not a forecast.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 28px; justify-content: center;">
+        <div>
+          <div class="label">Margin profile</div>
+          <div class="body-text" style="font-size: 24px; color: var(--ink); margin-top: 12px;">Blended margin <strong>higher</strong> than today — but only in platform and outcome segments. T&amp;M margin structurally lower.</div>
+        </div>
+        <div>
+          <div class="label">Center of gravity</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">Platform &amp; evaluation are the firm's <strong>strategic core</strong>. Delivery is the customer.</div>
+        </div>
+        <div>
+          <div class="label">Customer mix</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 12px;">Platform sold to clients <em>and</em> to delivery partners — including former competitors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>26 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 27 — BODIES TO OUTCOMES =========================== -->
+<section data-label="27 Bodies to outcomes">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Commercial shift</div>
+    <div>27 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The commercial model shift</div>
+    <h1 class="title">From <em>bodies</em> to <em>outcomes</em>.</h1>
+    <div class="versus" style="margin-top: 16px;">
+      <div class="col now">
+        <div class="k">Today · Bodies</div>
+        <div class="h">90%+ of revenue sold as headcount on a rate card.</div>
+        <div class="row"><div class="rk">Unit sold</div><div class="rv">Engineer-month, by skill &amp; geography.</div></div>
+        <div class="row"><div class="rk">Primary lever</div><div class="rv">Utilization.</div></div>
+        <div class="row"><div class="rk">Risk posture</div><div class="rv">Time-and-materials. Client bears delivery risk.</div></div>
+        <div class="row"><div class="rk">Underwriting</div><div class="rv">None required.</div></div>
+        <div class="row"><div class="rk">Moat</div><div class="rv">Scale of supply &amp; geography.</div></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col future">
+        <div class="k">2029 · Outcomes</div>
+        <div class="h">Dominant unit is a verified deliverable, priced against value.</div>
+        <div class="row"><div class="rk">Unit sold</div><div class="rv">A verified outcome, milestoned.</div></div>
+        <div class="row"><div class="rk">Primary lever</div><div class="rv">Pod throughput &amp; platform leverage.</div></div>
+        <div class="row"><div class="rk">Risk posture</div><div class="rv">Outcome &amp; gainshare. We bear delivery risk.</div></div>
+        <div class="row"><div class="rk">Underwriting</div><div class="rv">Required. Strategic moat in itself.</div></div>
+        <div class="row"><div class="rk">Moat</div><div class="rv">Platform, evals, regulated-vertical depth.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>27 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 28 — TODAY'S GAP FIRM =========================== -->
+<section data-label="28 Gap firm">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · The gap</div>
+    <div>28 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Today's gap · the firm</div>
+    <h1 class="title">Every lever above delivery is still set for the old unit.</h1>
+    <div class="cols-2" style="margin-top: 16px; gap: 80px;">
+      <div class="nlist">
+        <div class="item"><div class="n">A</div><div class="c"><div class="ih">Revenue is heavily T&amp;M.</div><div class="ip">Concentrated on the unit most exposed to AI-driven cycle-time compression.</div></div></div>
+        <div class="item"><div class="n">B</div><div class="c"><div class="ih">Sales comp is booked revenue, not gross margin.</div><div class="ip">Sellers are paid to fill seats, not to land outcome SOWs at premium margin.</div></div></div>
+        <div class="item"><div class="n">C</div><div class="c"><div class="ih">Partnerships are tooling resale.</div><div class="ip">We resell other people's models. We do not co-design the offering.</div></div></div>
+      </div>
+      <div class="nlist">
+        <div class="item"><div class="n">D</div><div class="c"><div class="ih">M&amp;A history is geographic.</div><div class="ip">Labor-arbitrage targets, not capability or platform targets. Path-dependent.</div></div></div>
+        <div class="item"><div class="n">E</div><div class="c"><div class="ih">Brand is "reliable scale."</div><div class="ip">Not "technical edge." With buyers who pay premiums for edge, we are not on the shortlist.</div></div></div>
+        <div class="item"><div class="n">F</div><div class="c"><div class="ih">Capital allocation favors tooling licenses.</div><div class="ip">Most internal R&amp;D spend rents capability. Almost none builds proprietary platform.</div></div></div>
+      </div>
+    </div>
+    <div class="body-text" style="margin-top: 36px; font-size: 22px; color: var(--ink-3); font-style: italic; font-family: var(--serif);">Each one is fixable. None fixes itself.</div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>28 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 29 — MARGIN SCISSOR =========================== -->
+<section data-label="29 Margin scissor">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · The gap</div>
+    <div>29 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The margin scissor</div>
+    <h1 class="title">Two curves close on T&amp;M margin in the next 24 – 36 months.</h1>
+    <div class="cols-2-uneven" style="margin-top: 8px; align-items: stretch;">
+      <div class="chart-frame">
+        <div class="ch-title">T&amp;M rate vs platform investment cost · indexed · illustrative</div>
+        <svg viewBox="0 0 800 460" style="width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="400" x2="780" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <line x1="60" y1="40" x2="60" y2="400" stroke="#7c8195" stroke-width="1"/>
+          <line x1="60" y1="120" x2="780" y2="120" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="200" x2="780" y2="200" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <line x1="60" y1="280" x2="780" y2="280" stroke="#232a44" stroke-width="1" stroke-dasharray="2 4"/>
+          <!-- T&M rate (flat to declining) -->
+          <path d="M 60 160 C 200 165 360 175 540 200 C 660 220 720 240 780 260" fill="none" stroke="#d9b07a" stroke-width="3"/>
+          <!-- Platform investment (rising) -->
+          <path d="M 60 360 C 200 340 320 310 460 270 C 580 230 660 200 780 170" fill="none" stroke="#6b8aff" stroke-width="3"/>
+          <!-- Intersection marker -->
+          <circle cx="660" cy="225" r="6" fill="#ece9df"/>
+          <line x1="660" y1="225" x2="660" y2="410" stroke="#ece9df" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="660" y="430" fill="#ece9df" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5" text-anchor="middle">SCISSOR CLOSES</text>
+          <!-- axis labels -->
+          <text x="60" y="450" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">NOW</text>
+          <text x="270" y="450" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">+12 MO</text>
+          <text x="470" y="450" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5">+24 MO</text>
+          <text x="780" y="450" fill="#7c8195" font-family="IBM Plex Mono" font-size="13" letter-spacing="1.5" text-anchor="end">+36 MO</text>
+          <!-- legend -->
+          <line x1="80" y1="60" x2="110" y2="60" stroke="#d9b07a" stroke-width="3"/>
+          <text x="120" y="65" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14">T&amp;M effective rate (cost-recovery)</text>
+          <line x1="80" y1="84" x2="110" y2="84" stroke="#6b8aff" stroke-width="3"/>
+          <text x="120" y="89" fill="#b8bccc" font-family="IBM Plex Sans" font-size="14">Platform &amp; evaluation investment cost</text>
+        </svg>
+        <div class="ch-caption">Indexed. The exact crossover varies by segment; the shape does not.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 28px; justify-content: center;">
+        <div>
+          <div class="label">Top blade</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 10px;">T&amp;M rates flat to declining as the engineer-hour produces less of the customer's value.</div>
+        </div>
+        <div>
+          <div class="label">Bottom blade</div>
+          <div class="body-text" style="font-size: 22px; margin-top: 10px;">Platform &amp; evaluation investment rising to fund the factory and the moat.</div>
+        </div>
+        <div style="padding: 24px 28px; border: 1px solid var(--accent-soft); background: var(--accent-glow);">
+          <div class="label" style="color: var(--accent);">Implication</div>
+          <div class="body-text" style="font-size: 22px; color: var(--ink); margin-top: 10px;">Firms without meaningful revenue out of T&amp;M by the crossover face a <strong>step-change</strong> in margin compression.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>29 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 30 — FIVE FRICTIONS FIRM =========================== -->
+<section data-label="30 Five frictions firm">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Frictions</div>
+    <div>30 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Five frictions · firm level</div>
+    <h1 class="title">Where the firm gets stuck.</h1>
+    <div class="nlist compact" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Outcome underwriting.</div><div class="ip">Finance does not yet know how to price and reserve against outcome SOWs. Without this capability, sales cannot sign them.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">Capital allocation.</div><div class="ip">Most internal R&amp;D rents capability from model providers rather than building proprietary platform. Strategically thin.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">Partnership posture.</div><div class="ip">We are a reseller of models, not a co-designer of an offering. The economics of reselling are not the economics of a moat.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">M&amp;A logic.</div><div class="ip">Our pipeline is still labor-cost-arbitrage targets when it should be capability and platform targets in two or three specific segments.</div></div></div>
+      <div class="item"><div class="n">05</div><div class="c"><div class="ih">Brand.</div><div class="ip">We are not known for technical edge with the buyers who pay premiums for it. The brand asset is reliable scale — the wrong moat for this decade.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>30 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 31 — MISSED MOVES FIRM =========================== -->
+<section data-label="31 Missed moves firm">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Missed moves</div>
+    <div>31 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Missed moves at the firm</div>
+    <h1 class="title">Three patterns of suboptimal response across the industry.</h1>
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="k">Pattern A</div>
+        <div class="h">AI as enhancement, not offering.</div>
+        <div class="p">Treating AI as a delivery enhancement story for existing accounts. The bigger prize is rewriting the offering portfolio, not garnishing it.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Defending the old book; never landing the new one.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern B</div>
+        <div class="h">Ceding brand to upstarts.</div>
+        <div class="p">Letting AI-native upstarts define what "fast" and "modern" look like in the buyer's mind without contesting it. By the time we do, the anchor is set.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ We are the safe choice. Not the right one.</div>
+      </div>
+      <div class="card">
+        <div class="k">Pattern C</div>
+        <div class="h">Platform as cost center.</div>
+        <div class="p">Keeping platform &amp; evaluation reporting into delivery as overhead, rather than as profit centers with their own P&amp;L and outside-customer obligations.</div>
+        <div class="p" style="color: var(--ink-3); font-size: 19px; font-family: var(--mono); letter-spacing: 0.06em; margin-top: auto;">→ Underinvested. Slow. Captive to delivery's needs.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>31 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 32 — COMPETITIVE VIEW FIRM =========================== -->
+<section data-label="32 Competitive view firm">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Competitive view</div>
+    <div>32 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Competitive view · at the firm level</div>
+    <h1 class="title">Three categories. Each strong somewhere. None doing all of it.</h1>
+    <table class="tbl" style="margin-top: 16px;">
+      <thead>
+        <tr>
+          <th style="width: 220px;">Competitor</th>
+          <th style="width: 22%;">Strength</th>
+          <th style="width: 22%;">Weakness</th>
+          <th>Where we beat them</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="k">Large peer firms</td>
+          <td>Scale, account access, regulated footprint.</td>
+          <td>Same legacy operating model and pricing as us.</td>
+          <td>Move first on commercial model. Reset the anchor for what large-firm modern looks like.</td>
+        </tr>
+        <tr>
+          <td class="k">AI-native upstarts</td>
+          <td>Pod-native ways of working. Speed brand.</td>
+          <td>No scale, no regulated-vertical depth, no balance sheet to underwrite outcomes.</td>
+          <td>Outcome SOWs at scale, regulated verticals, multi-year transformation deals they cannot bid.</td>
+        </tr>
+        <tr>
+          <td class="k">Client in-house teams</td>
+          <td>Own the codebase. Compounding agent leverage.</td>
+          <td>Cannot platform across companies; cannot hire all the depth they need.</td>
+          <td>Sell platform &amp; evaluation back to them. Be inside their workflow, not outside it.</td>
+        </tr>
+        <tr class="ours">
+          <td class="k">Our position</td>
+          <td>Scale + regulated depth + balance sheet to underwrite.</td>
+          <td>Operating model and brand still set for the prior unit.</td>
+          <td><strong>Be the only firm doing all three: factory, outcome model, platform.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>32 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 33 — OUTCOME PLATFORM =========================== -->
+<section data-label="33 Strategy outcome platform">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Our strategic answer</div>
+    <div>33 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Our strategic answer · firm level</div>
+    <h1 class="title">Become an <em>outcome platform</em>.</h1>
+    <div class="stack" style="margin-top: 24px;">
+      <div class="layer hero">
+        <div><div class="lk">Layer 03 · The moat</div><div class="lh">The platform</div></div>
+        <div class="lp">Evaluation, golden-path agent workflows, safety &amp; compliance perimeter. Operated by us, sold by us — to clients <em>and</em> to delivery partners.</div>
+        <div class="lp" style="color: var(--accent); font-style: italic; font-family: var(--serif);">"Sells to the people who used to compete with us."</div>
+      </div>
+      <div class="layer">
+        <div><div class="lk">Layer 02 · The revenue</div><div class="lh">Outcome-priced delivery</div></div>
+        <div class="lp">Pods on top of the platform. Outcome &amp; gainshare SOWs underwritten by the firm. The premium-margin core of the business.</div>
+        <div class="lp" style="color: var(--ink-3); font-style: italic; font-family: var(--serif);">"Underwriting is a moat AI-natives cannot match."</div>
+      </div>
+      <div class="layer">
+        <div><div class="lk">Layer 01 · The transition</div><div class="lh">T&amp;M tail</div></div>
+        <div class="lp">The classic book. Funds the migration. Converts to outcome as accounts mature. Managed for cash, not growth.</div>
+        <div class="lp" style="color: var(--ink-3); font-style: italic; font-family: var(--serif);">"The bridge — not the destination."</div>
+      </div>
+    </div>
+    <div class="body-text" style="margin-top: 28px; font-size: 22px; color: var(--ink-3);">Each layer funds the layer above it. The platform is the moat. The outcome offering is the revenue. T&amp;M is the bridge.</div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>33 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 34 — WHAT WE CHANGE FIRM =========================== -->
+<section data-label="34 What we change firm">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Act III · Moves</div>
+    <div>34 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">Five firm-level bets · next 24 months</div>
+    <h1 class="title">What we change at the firm.</h1>
+    <div class="nlist compact" style="margin-top: 8px;">
+      <div class="item"><div class="n">01</div><div class="c"><div class="ih">Carve out platform &amp; evaluation as a standalone business unit.</div><div class="ip">Own P&amp;L. Mandate to sell externally — to clients <em>and</em> to other delivery partners. Reports into the CEO, not into delivery.</div></div></div>
+      <div class="item"><div class="n">02</div><div class="c"><div class="ih">Restructure sales comp to gross margin and outcome attainment.</div><div class="ip">Bookings remain a guardrail. Margin and outcome retention become the levers. Communicated 12 months ahead of the change.</div></div></div>
+      <div class="item"><div class="n">03</div><div class="c"><div class="ih">Redirect M&amp;A toward 2 – 3 platform and evaluation acquisitions.</div><div class="ip">Inside 18 months. Capability and platform targets, not labor-arbitrage geographies. Board mandate.</div></div></div>
+      <div class="item"><div class="n">04</div><div class="c"><div class="ih">Sign one anchor outcome-priced deal per major vertical.</div><div class="ip">Establishes reference pricing, proves the underwriting capability, creates the case study the sales force will need.</div></div></div>
+      <div class="item"><div class="n">05</div><div class="c"><div class="ih">Fund a brand campaign on outcome partnership in regulated verticals.</div><div class="ip">Reposition from "reliable scale" to "the outcome partner for mission-critical app engineering." Where our footprint compounds.</div></div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>Act III — The organization</div>
+    <div>34 / 35</div>
+  </div>
+</section>
+
+<!-- =========================== SLIDE 35 — SYNTHESIS =========================== -->
+<section data-label="35 Synthesis">
+  <div class="chrome">
+    <div class="left"><span class="dot"></span>Synthesis</div>
+    <div>35 / 35</div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">The three answers, stacked</div>
+    <h1 class="title">The strategy is one thing, told three times.</h1>
+    <div class="synth" style="margin-top: 24px;">
+      <div class="rh">Lens</div>
+      <div class="hd">Engineer · Act I</div>
+      <div class="hd">Practice · Act II</div>
+      <div class="hd">Organization · Act III</div>
+
+      <div class="rh">Future state</div>
+      <div class="cell"><strong>T-shaped agent operator.</strong> Depth + orchestration.</div>
+      <div class="cell"><strong>Agentic delivery factory.</strong> Pods, platform, verification.</div>
+      <div class="cell"><strong>Outcome platform.</strong> Platform · outcomes · T&amp;M tail.</div>
+
+      <div class="rh">Primary unit</div>
+      <div class="cell">Verified output by a person + agents.</div>
+      <div class="cell">Pod throughput.</div>
+      <div class="cell">Outcome &amp; platform revenue.</div>
+
+      <div class="rh">Key move</div>
+      <div class="cell">Certify &amp; pay both bars of the T.</div>
+      <div class="cell">Replace utilization with throughput as the metric.</div>
+      <div class="cell">Carve out platform as standalone BU with external mandate.</div>
+
+      <div class="rh">If we don't</div>
+      <div class="cell">Top decile leaves to upstarts; median commoditizes.</div>
+      <div class="cell">Lose to upstarts on speed, to peers on cost, to in-house on scope.</div>
+      <div class="cell">Margin scissor closes underneath us.</div>
+    </div>
+    <div class="body-text" style="margin-top: 36px; font-size: 24px; color: var(--ink); max-width: 1600px;">The answers are deliberately stacked: the engineer answer enables the practice answer, and the practice answer enables the firm answer. <strong>Doing one without the others is wasted motion. Doing all three, ahead of peers, is the strategy.</strong></div>
+  </div>
+  <div class="foot">
+    <div>Workforce strategy · End</div>
+    <div>35 / 35</div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script>
+/* ── Presenter window (press P) ──────────────────────────────────────────
+   Opens a second window with speaker notes, current/next slide labels,
+   a clock + elapsed timer, and prev/next controls. Bidirectional sync:
+   - main → popup via slidechange CustomEvent on <deck-stage>
+   - popup → main via opener.__deckGoTo(n)
+*/
+(() => {
+  const deck = document.querySelector("deck-stage");
+  if (!deck) return;
+
+  let popup = null;
+
+  // Expose a tiny API the popup can call back into.
+  window.__deckGoTo = (n) => {
+    if (typeof deck.goTo === "function") deck.goTo(n);
+  };
+  window.__deckAdvance = (delta) => {
+    const total = deck.children.length;
+    const cur = parseInt(deck.querySelector("[data-deck-active]")?.getAttribute("data-deck-slide") || "0", 10);
+    const next = Math.max(0, Math.min(total - 1, cur + delta));
+    window.__deckGoTo(next);
+  };
+
+  function presenterHTML() {
+    return `<!doctype html><html><head><meta charset="utf-8"/>
+<title>Presenter · The Future of App Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0b1020; --bg-2:#131829; --line:#232a44;
+    --ink:#ece9df; --ink-2:#b8bccc; --ink-3:#7c8195;
+    --accent:#6b8aff; --warm:#d9b07a;
+    --sans:"IBM Plex Sans",system-ui,sans-serif;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;}
+  body{display:grid;grid-template-rows:auto 1fr auto;height:100vh;overflow:hidden;}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .topbar .clocks{display:flex;gap:36px;}
+  .topbar .clocks .v{color:var(--ink);font-variant-numeric:tabular-nums;}
+  .topbar .clocks .k{color:var(--ink-3);margin-right:10px;}
+  .topbar .hint{color:var(--ink-3);}
+  .topbar .hint .kbd{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:2px 7px;margin:0 4px;border:1px solid var(--line);border-radius:4px;
+    color:var(--ink-2);font-size:12px;
+  }
+  .main{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:0;overflow:hidden;
+  }
+  .current{padding:28px 36px 0 36px;display:flex;flex-direction:column;min-height:0;}
+  .meta{
+    display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .meta .pos{font-family:var(--mono);font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .meta .label{font-family:var(--sans);font-size:30px;font-weight:400;letter-spacing:-.01em;color:var(--ink);line-height:1.2;flex:1;}
+  .meta .nav{display:flex;gap:8px;}
+  .meta .nav button{
+    appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink-2);
+    font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    padding:8px 14px;border-radius:6px;cursor:pointer;
+  }
+  .meta .nav button:hover{background:var(--bg-2);color:var(--ink);border-color:#3a4366;}
+  .notes-wrap{padding:24px 0 28px 0;overflow-y:auto;min-height:0;flex:1;}
+  .notes{
+    font-family:var(--serif);font-weight:300;font-size:28px;line-height:1.5;color:var(--ink);
+    letter-spacing:-.005em;text-wrap:pretty;
+  }
+  .notes.empty{font-family:var(--mono);color:var(--ink-3);font-size:16px;font-style:normal;letter-spacing:.1em;text-transform:uppercase;}
+  .next-pane{
+    border-left:1px solid var(--line);padding:28px 32px;
+    display:flex;flex-direction:column;gap:16px;background:#0a0e1c;overflow:hidden;
+  }
+  .next-pane .ek{font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);}
+  .next-pane .nlabel{font-size:22px;color:var(--ink);font-weight:400;line-height:1.25;}
+  .next-pane .nnotes{
+    font-family:var(--serif);font-weight:300;font-size:18px;line-height:1.5;color:var(--ink-2);
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:14;-webkit-box-orient:vertical;
+  }
+  .next-pane .nempty{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;}
+  .bottombar{
+    padding:14px 28px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .bottombar .progress{flex:1;margin:0 24px;height:3px;background:var(--bg-2);border-radius:2px;overflow:hidden;}
+  .bottombar .progress .fill{height:100%;background:var(--accent);width:0;transition:width .25s ease;}
+  @media (max-width: 820px){
+    .main{grid-template-columns:1fr;grid-template-rows:1fr auto;}
+    .next-pane{border-left:0;border-top:1px solid var(--line);}
+  }
+</style>
+</head><body>
+<div class="topbar">
+  <div class="clocks">
+    <span><span class="k">Now</span><span class="v" id="clock">--:--</span></span>
+    <span><span class="k">Elapsed</span><span class="v" id="elapsed">00:00</span></span>
+  </div>
+  <div class="hint"><span class="kbd">←</span><span class="kbd">→</span> nav &nbsp;·&nbsp; <span class="kbd">R</span> reset timer &nbsp;·&nbsp; <span class="kbd">Esc</span> close</div>
+</div>
+<div class="main">
+  <div class="current">
+    <div class="meta">
+      <div class="pos" id="pos">--/--</div>
+      <div class="label" id="label">—</div>
+      <div class="nav"><button id="prev">← Prev</button><button id="next">Next →</button></div>
+    </div>
+    <div class="notes-wrap"><div class="notes" id="notes">—</div></div>
+  </div>
+  <div class="next-pane">
+    <div class="ek">Up next</div>
+    <div class="nlabel" id="nlabel">—</div>
+    <div class="nnotes" id="nnotes">—</div>
+  </div>
+</div>
+<div class="bottombar">
+  <span id="start">Started —</span>
+  <div class="progress"><div class="fill" id="fill"></div></div>
+  <span id="totalbar">— slides</span>
+</div>
+<script>
+  const opener = window.opener;
+  if (!opener || opener.closed) { document.body.innerHTML = "<div style='padding:60px;font-family:monospace;color:#888'>Presenter window must be opened from the deck.</div>"; }
+  else {
+    const deck = opener.document.querySelector("deck-stage");
+    const notesTag = opener.document.getElementById("speaker-notes");
+    let notes = [];
+    try { notes = JSON.parse(notesTag.textContent || "[]"); } catch(e) { notes = []; }
+
+    const slides = Array.from(deck.children).filter(c => c.tagName === "SECTION");
+    const total = slides.length;
+    document.getElementById("totalbar").textContent = total + " slides";
+
+    function labelFor(i){
+      const s = slides[i];
+      if(!s) return "—";
+      const raw = s.getAttribute("data-label") || s.getAttribute("data-screen-label") || "";
+      return raw.replace(/^\\s*\\d+\\s*/,"").trim() || "Slide " + (i+1);
+    }
+
+    function render(i){
+      if(i<0||i>=total) return;
+      document.getElementById("pos").textContent = String(i+1).padStart(2,"0") + " / " + String(total).padStart(2,"0");
+      document.getElementById("label").textContent = labelFor(i);
+      const n = (notes[i]||"").trim();
+      const notesEl = document.getElementById("notes");
+      if(n){ notesEl.textContent = n; notesEl.classList.remove("empty"); }
+      else { notesEl.textContent = "No speaker notes for this slide."; notesEl.classList.add("empty"); }
+
+      // next
+      const ni = i+1;
+      if(ni<total){
+        document.getElementById("nlabel").textContent = labelFor(ni);
+        const nn = (notes[ni]||"").trim();
+        const nnEl = document.getElementById("nnotes");
+        if(nn){ nnEl.textContent = nn; nnEl.classList.remove("nempty"); }
+        else { nnEl.textContent = "No speaker notes."; nnEl.classList.add("nempty"); }
+      } else {
+        document.getElementById("nlabel").textContent = "End of deck";
+        document.getElementById("nnotes").textContent = "";
+      }
+
+      document.getElementById("fill").style.width = ((i+1)/total*100) + "%";
+    }
+
+    // initial
+    const active = deck.querySelector("[data-deck-active]");
+    const startIdx = active ? parseInt(active.getAttribute("data-deck-slide")||"0",10) : 0;
+    render(startIdx);
+
+    // sync from main deck
+    const onChange = (e) => { render(e.detail.index); };
+    deck.addEventListener("slidechange", onChange);
+
+    // nav controls call back into opener
+    document.getElementById("prev").addEventListener("click", () => opener.__deckAdvance && opener.__deckAdvance(-1));
+    document.getElementById("next").addEventListener("click", () => opener.__deckAdvance && opener.__deckAdvance(1));
+    window.addEventListener("keydown", (e) => {
+      if(e.key==="ArrowLeft" || e.key==="PageUp") opener.__deckAdvance && opener.__deckAdvance(-1);
+      else if(e.key==="ArrowRight" || e.key==="PageDown" || e.key===" ") opener.__deckAdvance && opener.__deckAdvance(1);
+      else if(e.key==="Escape") window.close();
+      else if(e.key==="r" || e.key==="R") { startTime = Date.now(); document.getElementById("start").textContent = "Started " + fmtClock(new Date()); }
+    });
+
+    // clean up when closing
+    window.addEventListener("beforeunload", () => {
+      try { deck.removeEventListener("slidechange", onChange); } catch(e){}
+    });
+
+    // clock + elapsed
+    let startTime = Date.now();
+    const fmtClock = (d) => d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+    const fmtElapsed = (ms) => {
+      const s = Math.floor(ms/1000);
+      const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+      return (h ? String(h).padStart(2,"0")+":" : "") + String(m).padStart(2,"0") + ":" + String(sec).padStart(2,"0");
+    };
+    document.getElementById("start").textContent = "Started " + fmtClock(new Date());
+    setInterval(() => {
+      document.getElementById("clock").textContent = fmtClock(new Date());
+      document.getElementById("elapsed").textContent = fmtElapsed(Date.now()-startTime);
+    }, 1000);
+    document.getElementById("clock").textContent = fmtClock(new Date());
+  }
+<\/script>
+</body></html>`;
+  }
+
+  function openPresenter(){
+    if (popup && !popup.closed) { popup.focus(); return; }
+    const w = Math.min(1200, screen.availWidth - 100);
+    const h = Math.min(800, screen.availHeight - 100);
+    popup = window.open("", "deckPresenter", `width=${w},height=${h},menubar=no,toolbar=no,location=no,status=no`);
+    if (!popup) {
+      alert("Presenter window was blocked by the browser. Allow popups for this page and press P again.");
+      return;
+    }
+    popup.document.open();
+    popup.document.write(presenterHTML());
+    popup.document.close();
+  }
+
+  window.addEventListener("keydown", (e) => {
+    // Ignore when typing into form fields.
+    const t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    if (e.key === "p" || e.key === "P") {
+      e.preventDefault();
+      openPresenter();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

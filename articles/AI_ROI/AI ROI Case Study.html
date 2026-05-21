@@ -1,0 +1,1467 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+<meta charset="utf-8">
+<title>Case 01 · The AI ROI Re-baseline — The Hive Mind HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="deck-stage.js"></script>
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome. This is a field note — a real two-week diagnostic I led earlier this year for a mid-market enterprise. The client name is anonymised by agreement, the structure of the work and the numbers are real. I want to walk you through what was achieved in fourteen working days, because most AI ROI conversations conflate a diagnostic with a transformation. They are not the same thing. A diagnostic is the instrument you build before you spend the next eighteen months. This is one of those.",
+
+  "The mandate, in one paragraph. The client had been investing in AI for roughly two years. Around four point two million dollars annual run-rate. Seventeen live initiatives. The CFO had stopped signing off the line item because nobody could tell him what it was returning. He didn't ask for a transformation. He asked for an instrument — something that would let him answer one question in a board meeting without it taking three weeks of preparation. Two weeks, fixed scope, leave behinds defined up front. That is the entire brief.",
+
+  "The situation when I walked in. A billion-four revenue business. Roughly six thousand employees. Seventeen AI initiatives live, but no shared definition of what counted as AI. Spend was visible to IT, not to Finance. Governance had been delegated downward to a working group that met monthly and decided nothing. And the CFO had a board paper due in eleven weeks. That is the timer that mattered. Everything we did was paced against that paper.",
+
+  "I want to be specific about why these programmes stall — because it isn't because the technology fails. It's three structural fault lines. Governance, which is set up for the last decade. Pricing and commercial models that can't price what AI delivers. And an operating layer that treats AI as an IT project. These three lines explain the dropout rate the BCG number on the cover speaks to. The diagnostic we ran maps directly onto these three.",
+
+  "Two weeks. Five working blocks. Day one to three: scoping and interview design. Day four to eight: stakeholder interviews and artefact collection. Day nine to eleven: synthesis and rubric build. Day twelve to thirteen: workshops to pressure-test. Day fourteen: executive readout. I want to emphasise that this is not consulting theatre — it is paced because the CFO's board paper is paced. Everything we built had to survive a CFO challenge by day fourteen, or it had no value.",
+
+  "Where we looked. Twenty-three stakeholder interviews across function and altitude — CFO, CDO, COO, the heads of the three business units, the IT leadership, finance business partners, and crucially the engineers actually building the things. Five workshops. Thirty-one initiatives reviewed against tool logs and finance journals. The point I make with this slide is that a two-week diagnostic is not light — it is dense. You compress what would otherwise be six weeks of cadence into fourteen days of overlap.",
+
+  "Headline findings. Three numbers. Sixty-four percent of what the organisation called AI was not AI — it was business intelligence, rules-based automation, or vendor-supplied features. Eleven percent of the run-rate spend went through any form of governed funding. And zero of the seventeen live initiatives had a counterfactual baseline — meaning none of them could tell you what would have happened without the investment. Each one of these has a remediation. The next three slides take them in turn.",
+
+  "Finding one — data quality. We assessed six priority data domains against five dimensions. Four of the six domains were grade C or below on completeness and lineage. The headline mattered less than the implication: any ROI claim built on these domains carries a measurement confidence rating of Low. We didn't tell the client to fix the data. We told them which two domains to fix first, because those two underpinned eighty-one percent of the prioritised use case value.",
+
+  "Finding two — governance. The AI working group met monthly. Decisions were logged but rarely escalated. There was no funding gate. There was no kill criterion. Initiatives could continue indefinitely without producing evidence. We mapped the actual decision rights against the documented decision rights. They didn't match. The remediation here was simple structurally and hard politically — collapse the working group, install a quarterly steerco with a funding mandate, and create a kill-criterion that is enforced.",
+
+  "Finding three — operating model. The AI talent was distributed across three business units, two shared services, and a small central team that had been stood up but not staffed. Nobody owned an AI use case end-to-end. Decisions took an average of eighty-seven days to fund. We proposed a hub-and-spoke target operating model — a central capability that owns the rubric, the platform, and the data foundation, with embedded delivery teams in each business unit. We'll come back to the picture in three slides.",
+
+  "The instrument we built. A six-criterion ROI scoring rubric. Strategic alignment, value potential, data readiness, technical feasibility, ethical and regulatory exposure, organisational readiness. Each scored on a five-point scale with anchored definitions — meaning a three on data readiness has the same meaning regardless of who scored it. The rubric is the most important artefact we left behind. Every future funding decision flows through it. The CFO can now ask one question — what did this score? — and get a comparable answer.",
+
+  "What the rubric produced. We ran all thirty-one inventoried initiatives through it. Nineteen made the cut for scoring. Seven prioritised for the first funding gate. Twelve placed on watch. Twelve more reclassified as non-AI — which means the organisation immediately stopped calling them AI in its board reporting, which itself is a credibility win. This heatmap is the single most useful page of the report — the CFO carries this into the board meeting.",
+
+  "The target operating model. Central capability — rubric ownership, platform, data foundation, governance. Federated delivery — embedded teams in each business unit. Joint accountability — funding decisions flow up to a quarterly steerco. Three roles named on day one: an AI portfolio lead, a finance business partner dedicated to AI, and a data domain steward for the two priority domains. This is not a re-org. It is the smallest set of role and meeting changes that closes the governance gap.",
+
+  "The ninety-day plan. Eleven actions. Six named owners. Three funding gates — one at day thirty, one at sixty, one at ninety. The plan is intentionally short. A long plan in a diagnostic is a sign that the diagnostic didn't make any choices. We made the choices. The first thirty days are governance — stand up the steerco, name the owners, kill the working group. The next thirty are portfolio — fund the top three, place the next four on watch, retire the bottom seven. The final thirty are foundation — start the data fix on the two priority domains.",
+
+  "At handover, fourteen working days in. The CFO had a one-page portfolio view he could defend in the board paper. The three priority initiatives had a funded business case. Seven non-AI initiatives were reclassified out of the AI line item — that alone removed one point six million dollars from the noise. Eight point four million dollars of risk-adjusted pipeline value was identified across the seven prioritised initiatives. And the next funding decision now has an instrument. That is what a two-week diagnostic is supposed to do. It is not transformation. It is the thing that makes the next eighteen months of transformation worth doing."
+]
+</script>
+<style>
+  :root {
+    --bg: #f6f3ed;
+    --bg-alt: #efeae0;
+    --bg-deep: #1a1a1f;
+    --ink: #15161a;
+    --ink-soft: #2a2a30;
+    --muted: #6b6862;
+    --muted-soft: #9a968e;
+    --rule: #d9d3c7;
+    --rule-soft: #e6e0d3;
+    --accent: oklch(0.52 0.14 35);
+    --accent-soft: oklch(0.52 0.14 35 / 0.12);
+    --warn: oklch(0.62 0.13 65);
+    --good: oklch(0.55 0.10 145);
+    --bad: oklch(0.50 0.13 25);
+
+    --type-display: 132px;
+    --type-title: 64px;
+    --type-subtitle: 44px;
+    --type-lead: 32px;
+    --type-body: 28px;
+    --type-small: 24px;
+    --type-eyebrow: 24px;
+    --type-fig-big: 96px;
+    --type-fig-med: 64px;
+
+    --pad-top: 96px;
+    --pad-bottom: 80px;
+    --pad-x: 100px;
+    --gap-title: 40px;
+    --gap-item: 24px;
+
+    --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
+    --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #0c0c0e; }
+  deck-stage { background: #0c0c0e; }
+
+  /* Slide base */
+  section {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--type-body);
+    line-height: 1.4;
+    box-sizing: border-box;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    position: relative;
+    overflow: hidden;
+  }
+  section.dark {
+    background: var(--bg-deep);
+    color: #efeae0;
+  }
+  section.dark .ink { color: #efeae0; }
+  section.dark .muted { color: #b8b3a8; }
+  section.dark .rule { background: #34343b; }
+
+  /* Editorial chrome — eyebrow + page number + folio */
+  .folio {
+    position: absolute;
+    top: 40px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 24px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .folio .rule-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 22px;
+  }
+  section.dark .folio { color: #b8b3a8; }
+  section.dark .folio .rule-line { background: #34343b; }
+
+  .footline {
+    position: absolute;
+    bottom: 32px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 24px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-soft);
+  }
+  section.dark .footline { color: #7a766e; }
+
+  /* Typography primitives */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--type-eyebrow);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow-soft {
+    font-family: var(--mono);
+    font-size: var(--type-eyebrow);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1, h2, h3, h4 { margin: 0; font-weight: 500; }
+  .title {
+    font-family: var(--serif);
+    font-size: var(--type-title);
+    line-height: 1.04;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .title em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .subtitle {
+    font-family: var(--serif);
+    font-size: var(--type-subtitle);
+    line-height: 1.16;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-style: italic;
+    text-wrap: balance;
+  }
+  .lead {
+    font-family: var(--serif);
+    font-size: var(--type-lead);
+    line-height: 1.32;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .body { font-size: var(--type-body); line-height: 1.45; color: var(--ink-soft); text-wrap: pretty; }
+  .small { font-size: var(--type-small); line-height: 1.4; color: var(--muted); }
+  .muted { color: var(--muted); }
+  .ink { color: var(--ink); }
+  .strong { font-weight: 500; color: var(--ink); }
+  .mono { font-family: var(--mono); letter-spacing: 0.04em; }
+  .fig-big {
+    font-family: var(--serif);
+    font-size: var(--type-fig-big);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .fig-med {
+    font-family: var(--serif);
+    font-size: var(--type-fig-med);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .fig-big em, .fig-med em { font-style: italic; color: var(--accent); }
+
+  hr.rule {
+    border: 0; height: 1px; background: var(--rule); margin: 0;
+  }
+
+  /* Cover */
+  .cover {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .cover .masthead {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+  }
+  .cover .masthead .brand {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .cover .masthead .brand em { font-style: italic; color: var(--accent); }
+  .cover .masthead .meta {
+    font-family: var(--mono); font-size: 24px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  }
+  .cover .stage {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: end;
+    padding: 60px 0;
+  }
+  .cover .stage h1 {
+    font-family: var(--serif);
+    font-size: 128px;
+    line-height: 0.96;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  .cover .stage h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .cover .stage .side {
+    display: flex; flex-direction: column; gap: 28px;
+    border-left: 1px solid var(--rule); padding-left: 36px;
+  }
+  .cover .stage .side .label { font-family: var(--mono); font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .cover .stage .side .val { font-family: var(--serif); font-size: 30px; color: var(--ink); line-height: 1.15; }
+  .cover .stage .side .val em { font-style: italic; color: var(--accent); }
+  .cover .colophon {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  }
+  .cover .plate {
+    width: 360px; height: 360px;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(184,68,46,0.06) 14px 15px),
+      radial-gradient(circle at 40% 35%, rgba(184,68,46,0.18), transparent 55%),
+      var(--bg-alt);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .cover .plate::before {
+    content: "PLATE I"; position: absolute; top: 18px; left: 22px;
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.2em; color: var(--muted);
+  }
+  .cover .plate::after {
+    content: "AI · ROI"; position: absolute; bottom: 18px; right: 22px;
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.2em; color: var(--muted);
+  }
+  .cover .plate .glyph {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-family: var(--serif); font-size: 220px; font-style: italic; color: var(--accent); line-height: 1; font-weight: 500;
+    opacity: 0.85;
+  }
+
+  /* Common slide grid */
+  .slide-grid {
+    display: grid; gap: var(--gap-title);
+    height: 100%; box-sizing: border-box;
+  }
+  .slide-grid.with-eyebrow { grid-template-rows: auto auto 1fr; }
+
+  /* Two/three/four column grids */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; }
+  .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; }
+
+  /* Stat card / KPI block */
+  .stat {
+    display: flex; flex-direction: column; gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .stat .n {
+    font-family: var(--serif); font-size: 88px; line-height: 1; font-weight: 500;
+    color: var(--ink); letter-spacing: -0.02em;
+  }
+  .stat .n em { font-style: italic; color: var(--accent); }
+  .stat .l { font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .stat .d { font-size: 24px; color: var(--ink-soft); line-height: 1.35; font-family: var(--sans); }
+
+  /* Numbered item (used for fault lines, findings, plan) */
+  .num-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 28px;
+    align-items: start;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .num-item .num {
+    font-family: var(--serif); font-style: italic; color: var(--accent);
+    font-size: 80px; line-height: 0.9; font-weight: 500;
+  }
+  .num-item h3 {
+    font-family: var(--serif); font-size: 36px; line-height: 1.1; font-weight: 500; color: var(--ink); margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .num-item p { margin: 0; font-size: 24px; line-height: 1.45; color: var(--ink-soft); }
+
+  /* Timeline (5 blocks, approach slide) */
+  .timeline {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
+    margin-top: 12px;
+  }
+  .timeline .block {
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .timeline .block .day { font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .timeline .block h4 { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1.15; color: var(--ink); }
+  .timeline .block p { margin: 0; font-size: 24px; line-height: 1.4; color: var(--muted); }
+
+  /* Data table */
+  table.data {
+    width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 24px;
+  }
+  table.data th, table.data td {
+    text-align: left; padding: 10px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+  }
+  table.data thead th {
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 2px solid var(--ink);
+    font-weight: 500;
+    padding-bottom: 14px;
+  }
+  table.data tbody td { color: var(--ink-soft); }
+  table.data tbody td.c-ink { color: var(--ink); }
+  table.data tbody tr:last-child td { border-bottom: none; }
+  table.data .mono { font-family: var(--mono); font-size: 24px; letter-spacing: 0.04em; }
+  .grade { display: inline-block; padding: 4px 12px; font-family: var(--mono); font-size: 24px; letter-spacing: 0.1em; border: 1px solid var(--rule); }
+  .grade.a { background: rgba(75,160,90,0.12); border-color: rgba(75,160,90,0.4); color: #2d6a3a; }
+  .grade.b { background: rgba(214,168,60,0.16); border-color: rgba(214,168,60,0.45); color: #7a5a14; }
+  .grade.c { background: rgba(184,68,46,0.12); border-color: rgba(184,68,46,0.4); color: #8a3220; }
+  .grade.d { background: rgba(120,30,18,0.16); border-color: rgba(120,30,18,0.5); color: #5e1810; }
+
+  /* Heatmap (portfolio) */
+  .heatmap {
+    display: grid;
+    grid-template-columns: 220px repeat(6, 1fr) 100px;
+    column-gap: 4px;
+    row-gap: 4px;
+    align-items: center;
+  }
+  .heatmap .h-head {
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    padding: 8px 4px 14px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .heatmap .h-head.left { text-align: left; padding-left: 0; }
+  .heatmap .h-row { font-family: var(--sans); font-size: 24px; color: var(--ink); padding: 10px 0; }
+  .heatmap .h-cell {
+    height: 44px;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 24px; color: var(--ink);
+  }
+  .heatmap .h-cell.s1 { background: oklch(0.94 0.02 35); color: #8a3220; }
+  .heatmap .h-cell.s2 { background: oklch(0.88 0.05 40); color: #6e2818; }
+  .heatmap .h-cell.s3 { background: oklch(0.78 0.09 45); color: #4a1810; }
+  .heatmap .h-cell.s4 { background: oklch(0.66 0.12 38); color: #fff7ef; }
+  .heatmap .h-cell.s5 { background: oklch(0.52 0.14 35); color: #fff7ef; font-weight: 500; }
+  .heatmap .h-total {
+    font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--ink); text-align: right; padding: 10px 0 10px 12px;
+  }
+  .heatmap .h-total em { font-style: italic; color: var(--accent); }
+
+  /* TOM diagram */
+  .tom {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 28px;
+  }
+  .tom .layer {
+    display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: stretch;
+  }
+  .tom .layer .lbl {
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    padding: 22px 0; border-right: 1px solid var(--rule);
+  }
+  .tom .nodes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tom .node {
+    border: 1px solid var(--rule); background: var(--bg-alt);
+    padding: 20px 22px; min-height: 110px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .tom .node .role { font-family: var(--mono); font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .tom .node h4 { font-family: var(--serif); font-size: 26px; line-height: 1.15; font-weight: 500; color: var(--ink); margin-top: 8px; }
+  .tom .node p { margin: 6px 0 0; font-size: 24px; line-height: 1.35; color: var(--muted); }
+  .tom .node.solid { background: var(--ink); border-color: var(--ink); }
+  .tom .node.solid h4 { color: #f6f3ed; }
+  .tom .node.solid .role { color: oklch(0.78 0.12 45); }
+  .tom .node.solid p { color: #b8b3a8; }
+
+  /* Plan list */
+  .plan-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+  }
+  .plan-grid .phase {
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .plan-grid .phase .ph-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .plan-grid .phase .ph-head .days { font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .plan-grid .phase .ph-head h4 { font-family: var(--serif); font-size: 32px; font-weight: 500; color: var(--ink); }
+  .plan-grid .phase ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .plan-grid .phase ul li {
+    display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: baseline;
+    font-size: 24px; line-height: 1.4; color: var(--ink-soft);
+  }
+  .plan-grid .phase ul li .mk {
+    font-family: var(--mono); font-size: 24px; letter-spacing: 0.1em; color: var(--accent); padding-top: 4px;
+  }
+  .plan-grid .phase ul li .own { display: block; font-family: var(--mono); font-size: 24px; letter-spacing: 0.06em; color: var(--muted); margin-top: 4px; }
+
+  /* Sankey-ish portfolio bar (slide 12 footer) */
+  .bar-strip {
+    display: grid; grid-template-columns: 7fr 12fr 12fr; height: 30px; gap: 4px; margin-top: 12px;
+  }
+  .bar-strip .seg { display: grid; place-items: center; font-family: var(--mono); font-size: 24px; letter-spacing: 0.1em; color: #fff7ef; }
+  .bar-strip .seg.s1 { background: oklch(0.52 0.14 35); }
+  .bar-strip .seg.s2 { background: oklch(0.66 0.12 38); }
+  .bar-strip .seg.s3 { background: oklch(0.78 0.09 45); color: #4a1810; }
+
+  /* Quote block */
+  blockquote.pull {
+    margin: 0; font-family: var(--serif); font-style: italic;
+    font-size: 56px; line-height: 1.18; color: var(--ink);
+    text-wrap: balance; max-width: 1500px;
+    border-left: 3px solid var(--accent); padding-left: 36px;
+  }
+  blockquote.pull cite {
+    display: block; margin-top: 28px; font-family: var(--mono); font-style: normal;
+    font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* Side-by-side comparison */
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .compare .col {
+    padding: 32px 36px;
+  }
+  .compare .col.before { background: var(--bg-alt); border-right: 1px solid var(--rule); }
+  .compare .col .tag { font-family: var(--mono); font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .compare .col .tag.warn { color: var(--accent); }
+  .compare .col h4 { font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.2; color: var(--ink); margin-bottom: 16px; }
+  .compare .col p { margin: 0; font-size: 24px; line-height: 1.45; color: var(--ink-soft); }
+
+  /* dot grid for stakeholder visual */
+  .stake-grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 14px; margin-top: 16px;
+  }
+  .stake-grid .dot {
+    aspect-ratio: 1; border-radius: 999px; background: var(--ink); opacity: 0.85;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 24px; color: #f6f3ed;
+  }
+  .stake-grid .dot.accent { background: var(--accent); }
+  .stake-grid .dot.outline { background: transparent; border: 1px solid var(--rule); color: var(--muted); }
+
+  /* Final slide outcome KPIs */
+  .kpis-final {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px;
+  }
+  .kpis-final .k { border-top: 1px solid #34343b; padding-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .kpis-final .k .n { font-family: var(--serif); font-size: 96px; line-height: 1; font-weight: 500; color: #f6f3ed; letter-spacing: -0.02em; }
+  .kpis-final .k .n em { font-style: italic; color: oklch(0.72 0.14 45); }
+  .kpis-final .k .l { font-family: var(--mono); font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.72 0.14 45); }
+  .kpis-final .k .d { font-size: 24px; line-height: 1.4; color: #b8b3a8; }
+
+  /* Plate background blocks */
+  .plate-mini {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 12px, rgba(184,68,46,0.06) 12px 13px),
+      var(--bg-alt);
+    border: 1px solid var(--rule);
+  }
+
+  /* Misc helpers */
+  .stack { display: flex; flex-direction: column; }
+  .stack-sm { gap: 12px; }
+  .stack-md { gap: 22px; }
+  .stack-lg { gap: 36px; }
+  .row { display: flex; align-items: baseline; gap: 16px; }
+  .grow { flex: 1; }
+  .right { text-align: right; }
+  .center { text-align: center; }
+  .nowrap { white-space: nowrap; }
+
+  .key-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+  .key-list li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; font-size: 24px; line-height: 1.4; color: var(--ink-soft); }
+  .key-list li .b { font-family: var(--mono); color: var(--accent); font-size: 24px; }
+</style>
+</head>
+<body style="">
+
+<deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;">
+
+<!-- ============================================================
+     SLIDE 01 · COVER
+============================================================ -->
+<section data-label="01 Cover" class="cover">
+  <div class="masthead">
+    <div class="brand">The Hive Mind <em>HQ</em></div>
+    <div class="meta">Field Note · No. 01 · MMXXVI</div>
+  </div>
+
+  <div class="stage">
+    <div class="stack-md" style="gap: 32px;">
+      <div class="eyebrow">Case Study · Two Weeks · Mid-Market Enterprise</div>
+      <h1>The AI ROI<br><em>Re-baseline.</em></h1>
+      <p class="lead" style="max-width: 1000px; margin-top: 24px;">
+        How a fourteen-day diagnostic restored governed funding, retired the noise, and gave a CFO a single page he could defend in the boardroom.
+      </p>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <span style="">The Hive Mind HQ · in collaboration with a global consulting partner</span>
+    <span>Anonymised by Agreement · Bengaluru · 12.97°N</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 02 · THE MANDATE
+============================================================ -->
+<section data-label="02 The Mandate">
+  <div class="folio">
+    <span>02 · The Mandate</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 02</div>
+    <h2 class="title" style="max-width: 1400px;">A CFO had stopped signing off the AI line item. <em>The brief was to put it back on his desk in two weeks.</em></h2>
+
+    <div class="cols-2" style="margin-top: 8px;">
+      <div class="stack-md">
+        <p class="lead" style="max-width: 720px;">
+          Not a transformation. An instrument. Something that would let one person answer one question — <em>what is this returning?</em> — without three weeks of preparation each time the board asked.
+        </p>
+        <div class="stack" style="margin-top: 12px;">
+          <hr class="rule">
+          <div class="row" style="padding: 18px 0; border-bottom: 1px solid var(--rule);">
+            <span class="mono small" style="width: 220px;">CLIENT</span>
+            <span class="strong" style="font-size: 26px;">Mid-market enterprise · ~$1.4B revenue · anonymised</span>
+          </div>
+          <div class="row" style="padding: 18px 0; border-bottom: 1px solid var(--rule);">
+            <span class="mono small" style="width: 220px;">SPONSOR</span>
+            <span class="strong" style="font-size: 26px;">Group CFO · co-sponsored by CDO</span>
+          </div>
+          <div class="row" style="padding: 18px 0; border-bottom: 1px solid var(--rule);">
+            <span class="mono small" style="width: 220px;">SCOPE</span>
+            <span class="strong" style="font-size: 26px;">Diagnostic only · no implementation · fixed fee</span>
+          </div>
+          <div class="row" style="padding: 18px 0; border-bottom: 1px solid var(--rule);">
+            <span class="mono small" style="width: 220px;">DURATION</span>
+            <span class="strong" style="font-size: 26px;">14 working days · Mar 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-md">
+        <div class="eyebrow-soft">The Three Asks · As Briefed</div>
+        <ol class="key-list" style="counter-reset: ask; margin-top: 8px;">
+          <li><span class="b">01</span><span>Tell us what we are actually spending on <span class="strong">AI</span> — not what IT calls AI.</span></li>
+          <li><span class="b">02</span><span>Score the portfolio. Tell us which initiatives are worth funding next quarter.</span></li>
+          <li><span class="b">03</span><span>Close the governance gap. Design an operating model we can stand up <span class="strong">without a re-org</span>, and leave a 90-day plan with <span class="strong">named owners.</span></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Case 01 · The AI ROI Re-baseline</span>
+    <span>The Hive Mind HQ · 02 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 03 · CLIENT SITUATION
+============================================================ -->
+<section data-label="03 Situation">
+  <div class="folio">
+    <span>03 · Situation</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 03</div>
+    <h2 class="title" style="max-width: 1500px;">Two years into AI investment, <em>seventeen things were live</em> and nobody could tell the board what any of them returned.</h2>
+
+    <div class="cols-4" style="align-items: end; margin-top: 8px;">
+      <div class="stat">
+        <div class="l">Annual AI Spend</div>
+        <div class="n">$4.2<em>M</em></div>
+        <div class="d">Run-rate, FY25. Visible to IT — invisible to Finance.</div>
+      </div>
+      <div class="stat">
+        <div class="l">Live Initiatives</div>
+        <div class="n">17</div>
+        <div class="d">Spread across 3 business units and 2 shared services.</div>
+      </div>
+      <div class="stat">
+        <div class="l">Counterfactual Baselines</div>
+        <div class="n">0<em>/17</em></div>
+        <div class="d">No programme had a stated “what would have happened anyway” line.</div>
+      </div>
+      <div class="stat">
+        <div class="l">Days to Board Paper</div>
+        <div class="n">77</div>
+        <div class="d">The CFO's timer. Every deliverable paced against this.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <blockquote class="pull" style="font-size: 44px; padding-left: 28px;">
+        We don't have an AI portfolio. We have <em>seventeen things on a slide</em> and a finance line item I am no longer comfortable signing.
+        <cite>— Group CFO, kickoff meeting, Day 1</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Source · Kickoff interview, finance journal extracts, IT asset register</span>
+    <span>03 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 04 · THREE FAULT LINES
+============================================================ -->
+<section data-label="04 Fault Lines">
+  <div class="folio">
+    <span>04 · Three Fault Lines</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 04 · Diagnostic Frame</div>
+    <h2 class="title" style="max-width: 1500px;">Three structural fault lines explain why AI investment stalls. <em>The diagnostic maps directly onto them.</em></h2>
+
+    <div class="cols-3" style="margin-top: 12px;">
+      <div class="num-item" style="grid-template-columns: 1fr; border-top-width: 2px; border-color: var(--ink); padding-top: 28px;">
+        <div class="num" style="font-size: 88px;">I</div>
+        <div>
+          <div class="eyebrow-soft" style="margin-bottom: 12px;">Fault Line One</div>
+          <h3 style="font-size: 40px;">Governance</h3>
+          <p>Decision rights designed for steady-state IT. No funding gate. No kill criterion. A working group that meets monthly and decides nothing.</p>
+        </div>
+      </div>
+      <div class="num-item" style="grid-template-columns: 1fr; border-top-width: 2px; border-color: var(--ink); padding-top: 28px;">
+        <div class="num" style="font-size: 88px;">II</div>
+        <div>
+          <div class="eyebrow-soft" style="margin-bottom: 12px;">Fault Line Two</div>
+          <h3 style="font-size: 40px;">Measurement</h3>
+          <p>No shared definition of AI. No counterfactual baseline. ROI claims that cannot be aggregated or compared between any two programmes.</p>
+        </div>
+      </div>
+      <div class="num-item" style="grid-template-columns: 1fr; border-top-width: 2px; border-color: var(--ink); padding-top: 28px;">
+        <div class="num" style="font-size: 88px;">III</div>
+        <div>
+          <div class="eyebrow-soft" style="margin-bottom: 12px;">Fault Line Three</div>
+          <h3 style="font-size: 40px;">Operating Layer</h3>
+          <p>AI treated as an IT project. Talent fragmented across three BUs and a central team that exists on paper. End-to-end ownership undefined.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 24px 32px; background: var(--bg-alt); border: 1px solid var(--rule); display: flex; align-items: baseline; gap: 32px;">
+      <span class="mono small" style="color: var(--accent); letter-spacing: 0.14em;">REPORTED FINDING</span>
+      <span class="lead" style="font-size: 28px; line-height: 1.4;">74 of every 100 enterprise AI proofs-of-concept never reach production. Most are not killed by the technology. <em>They are killed by the organisation around them.</em></span>
+      <span class="mono small" style="margin-left: auto;">BCG · Oct 2024</span>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Diagnostic frame · The Hive Mind HQ</span>
+    <span>04 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 05 · DIAGNOSTIC APPROACH (TIMELINE)
+============================================================ -->
+<section data-label="05 Approach">
+  <div class="folio">
+    <span>05 · Approach</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 05 · Fourteen Working Days</div>
+    <h2 class="title" style="max-width: 1500px;">Five compressed blocks. <em>Every artefact had to survive a CFO challenge by Day 14.</em></h2>
+
+    <div class="timeline">
+      <div class="block">
+        <span class="day">Day 1–3</span>
+        <h4>Scoping &amp; Instrument Design</h4>
+        <p>Interview protocol, document request list, rubric scaffolding, working hypotheses.</p>
+      </div>
+      <div class="block">
+        <span class="day">Day 4–8</span>
+        <h4>Stakeholder Interviews</h4>
+        <p>23 interviews · finance journal extracts · IT asset register · 31 initiatives documented.</p>
+      </div>
+      <div class="block">
+        <span class="day">Day 9–11</span>
+        <h4>Synthesis &amp; Rubric Build</h4>
+        <p>Findings triangulated. Six-criterion scoring rubric anchored. Portfolio scored end-to-end.</p>
+      </div>
+      <div class="block">
+        <span class="day">Day 12–13</span>
+        <h4>Pressure-Test Workshops</h4>
+        <p>5 workshops with CFO, CDO, COO and BU heads. TOM and 90-day plan stress-tested live.</p>
+      </div>
+      <div class="block">
+        <span class="day">Day 14</span>
+        <h4>Executive Readout</h4>
+        <p>One-page portfolio view. Funded business case for top 3. Plan with owners and dates.</p>
+      </div>
+    </div>
+
+    <div class="cols-3" style="margin-top: 56px;">
+      <div class="stat" style="border-top-color: var(--ink); border-top-width: 2px;">
+        <div class="l">Working Principle 01</div>
+        <div class="d strong" style="font-family: var(--serif); font-size: 28px; font-style: italic; line-height: 1.25;">No artefact without a stated counterfactual method.</div>
+      </div>
+      <div class="stat" style="border-top-color: var(--ink); border-top-width: 2px;">
+        <div class="l">Working Principle 02</div>
+        <div class="d strong" style="font-family: var(--serif); font-size: 28px; font-style: italic; line-height: 1.25;">Every recommendation names an owner — not a function.</div>
+      </div>
+      <div class="stat" style="border-top-color: var(--ink); border-top-width: 2px;">
+        <div class="l">Working Principle 03</div>
+        <div class="d strong" style="font-family: var(--serif); font-size: 28px; font-style: italic; line-height: 1.25;">If the CFO cannot defend it cold, it does not ship.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Engagement structure · 14 working days · Mar 2026</span>
+    <span>05 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 06 · WHERE WE LOOKED
+============================================================ -->
+<section data-label="06 Where We Looked">
+  <div class="folio">
+    <span>06 · Where We Looked</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 06 · Inputs &amp; Coverage</div>
+    <h2 class="title" style="max-width: 1500px;">A diagnostic is only as honest as <em>the people in the room.</em> Coverage was deliberate.</h2>
+
+    <div class="cols-2" style="grid-template-columns: 460px 1fr; gap: 72px;">
+      <div class="stack" style="gap: 32px;">
+        <div class="stat">
+          <div class="l">Interviews</div>
+          <div class="n" style="font-size: 76px;">19</div>
+          <div class="d">Across 3 altitudes and 6 functions. Transcript-coded.</div>
+        </div>
+        <div class="stat">
+          <div class="l">Workshops</div>
+          <div class="n" style="font-size: 76px;">5</div>
+          <div class="d">Two scoping, two pressure-test, one executive readout.</div>
+        </div>
+      </div>
+
+      <div class="stack-md" style="gap: 24px;">
+        <div class="eyebrow-soft">Stakeholder Coverage · 19 Interviews</div>
+        <table class="data">
+          <thead>
+            <tr><th>Altitude</th><th>Function</th><th class="right">N</th><th class="right">Hrs</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="c-ink">BU leadership</td><td>BU Heads × 3, Strategy × 2</td><td class="right mono">5</td><td class="right mono">5.0</td></tr>
+            <tr><td class="c-ink">Function leadership</td><td>Finance BP, Risk, HR, Procurement</td><td class="right mono">4</td><td class="right mono">3.8</td></tr>
+            <tr><td class="c-ink">Technology &amp; data</td><td>IT Director, Data Lead, Architecture</td><td class="right mono">4</td><td class="right mono">4.0</td></tr>
+            <tr><td class="c-ink">Delivery &amp; build</td><td>AI engineers, BU PMs, vendor leads</td><td class="right mono">6</td><td class="right mono">5.0</td></tr>
+            <tr><td class="c-ink"><span class="strong">Total</span></td><td></td><td class="right mono strong">19</td><td class="right mono strong">17.8</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 4px; padding: 18px 24px; border: 1px solid var(--rule); background: var(--bg-alt);">
+          <div class="mono small" style="color: var(--accent); margin-bottom: 6px;">DOCUMENT BASE</div>
+          <div class="body" style="font-size: 24px; line-height: 1.4;">Finance journals (24 mo) · IT asset register · 17 active SOWs · 9 vendor contracts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Source · Engagement record, anonymised. Hours = facilitated time only.</span>
+    <span>06 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 07 · HEADLINE FINDINGS
+============================================================ -->
+<section data-label="07 Headline Findings" class="dark">
+  <div class="folio">
+    <span>07 · Headline Findings</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow" style="color: oklch(0.72 0.14 45);">§ 07 · The Three Numbers</div>
+    <h2 class="title ink" style="max-width: 1500px; color: #f6f3ed;">Three findings reset the conversation. <em style="color: oklch(0.72 0.14 45);">The rest of the report follows from them.</em></h2>
+
+    <div class="cols-3" style="margin-top: 24px;">
+      <div class="stat" style="border-top-color: #34343b;">
+        <div class="l" style="color: oklch(0.72 0.14 45);">Finding 01 · Definition</div>
+        <div class="n" style="color: #f6f3ed;">64<em>%</em></div>
+        <div class="d" style="color: #b8b3a8;">of initiatives called <span class="strong" style="color:#f6f3ed">AI</span> were business intelligence, rules-based automation, or vendor features. Reclassifying them removed the noise.</div>
+      </div>
+      <div class="stat" style="border-top-color: #34343b;">
+        <div class="l" style="color: oklch(0.72 0.14 45);">Finding 02 · Governance</div>
+        <div class="n" style="color: #f6f3ed;">11<em>%</em></div>
+        <div class="d" style="color: #b8b3a8;">of run-rate spend passed through any governed funding gate. The other 89% accumulated in line items nobody owned.</div>
+      </div>
+      <div class="stat" style="border-top-color: #34343b;">
+        <div class="l" style="color: oklch(0.72 0.14 45);">Finding 03 · Measurement</div>
+        <div class="n" style="color: #f6f3ed;">0<em>/17</em></div>
+        <div class="d" style="color: #b8b3a8;">live programmes had a counterfactual baseline. No initiative could state what would have happened without it.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; padding-top: 28px; border-top: 1px solid #34343b;">
+      <div>
+        <div class="eyebrow-soft" style="color: oklch(0.72 0.14 45);">IMPLICATION</div>
+        <p class="lead" style="color: #efeae0; font-size: 26px; margin-top: 12px;">The line item is overstated. Real AI spend is closer to <span class="strong" style="color: #fff;">$1.5M</span> — not $4.2M.</p>
+      </div>
+      <div>
+        <div class="eyebrow-soft" style="color: oklch(0.72 0.14 45);">IMPLICATION</div>
+        <p class="lead" style="color: #efeae0; font-size: 26px; margin-top: 12px;">Every reported ROI carries a confidence rating of <span class="strong" style="color: #fff;">Low</span> until baselines exist.</p>
+      </div>
+      <div>
+        <div class="eyebrow-soft" style="color: oklch(0.72 0.14 45);">IMPLICATION</div>
+        <p class="lead" style="color: #efeae0; font-size: 26px; margin-top: 12px;">The fix is sequenced: <span class="strong" style="color: #fff;">classify, then govern, then measure.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline" style="color: #7a766e;">
+    <span>Three findings · Case 01</span>
+    <span>07 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 08 · FINDING 01 · DATA QUALITY
+============================================================ -->
+<section data-label="08 Finding · Data Quality">
+  <div class="folio">
+    <span>08 · Finding 01 · Data Quality</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 08 · Finding 01</div>
+    <h2 class="title" style="max-width: 1500px;">Three of five priority domains scored <em>grade C or below.</em> Two carry 81% of the prioritised value.</h2>
+
+    <div class="cols-2" style="grid-template-columns: 1.5fr 1fr; gap: 60px; align-content: start;">
+      <div>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Data Domain</th>
+              <th class="center">Compl.</th>
+              <th class="center">Lineage</th>
+              <th class="center">Timely</th>
+              <th class="center">Overall</th>
+              <th class="right">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-ink">Customer · master</td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade d">D</span></td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade c">C-</span></td>
+              <td class="right mono c-ink">$3.1M</td>
+            </tr>
+            <tr>
+              <td class="c-ink">Service · operations</td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade d">D</span></td>
+              <td class="center"><span class="grade c">C-</span></td>
+              <td class="right mono c-ink">$3.7M</td>
+            </tr>
+            <tr>
+              <td class="c-ink">Product · catalogue</td>
+              <td class="center"><span class="grade b">B</span></td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade b">B</span></td>
+              <td class="center"><span class="grade b">B-</span></td>
+              <td class="right mono c-ink">$0.8M</td>
+            </tr>
+            <tr>
+              <td class="c-ink">HR · workforce</td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade d">D</span></td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="center"><span class="grade c">C</span></td>
+              <td class="right mono c-ink">$0.4M</td>
+            </tr>
+            <tr>
+              <td class="c-ink">Finance · GL</td>
+              <td class="center"><span class="grade a">A</span></td>
+              <td class="center"><span class="grade a">A</span></td>
+              <td class="center"><span class="grade b">B</span></td>
+              <td class="center"><span class="grade a">A-</span></td>
+              <td class="right mono c-ink">$0.4M</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack" style="gap: 22px;">
+        <div class="eyebrow-soft">Recommendation</div>
+        <p class="lead" style="font-size: 26px;">
+          Fix two domains first — <em>Customer · master</em> and <em>Service · operations.</em> Together they underpin 81% of prioritised use-case value.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="stat" style="border-top-color: var(--ink); border-top-width: 2px;">
+            <div class="l">Value at Risk</div>
+            <div class="n" style="font-size: 68px;">$6.8<em>M</em></div>
+            <div class="d">Pipeline blocked by these two domains.</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--ink); border-top-width: 2px;">
+            <div class="l">Fix Window</div>
+            <div class="n" style="font-size: 68px;">90<em>d</em></div>
+            <div class="d">Targeted. Not a multi-year MDM programme.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span style="">Scoring · independent and internal scoring triangulated</span>
+    <span>08 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 09 · FINDING 02 · GOVERNANCE
+============================================================ -->
+<section data-label="09 Finding · Governance">
+  <div class="folio">
+    <span>09 · Finding 02 · Governance</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 09 · Finding 02</div>
+    <h2 class="title" style="max-width: 1500px;">Documented governance and actual governance <em>were not the same system.</em></h2>
+
+    <div class="compare" style="margin-top: 4px;">
+      <div class="col before">
+        <div class="tag warn">As Documented</div>
+        <h4>Monthly AI Working Group with stage gates, decision log, and escalation to ExCo.</h4>
+        <p>Charter signed Q3 2024. RACI defined for nine decision types including funding, sunset, and ethical review.</p>
+      </div>
+      <div class="col">
+        <div class="tag">As Operated</div>
+        <h4>Attendance ritual. No funding mandate, no kill criterion, nothing escalated.</h4>
+        <p>11 of last 12 meetings logged “noted” with no decision. Two escalations absorbed back into IT plan. Average funding decision: 87 days.</p>
+      </div>
+    </div>
+
+    <div class="cols-3" style="margin-top: 32px;">
+      <div class="stat">
+        <div class="l">Avg Decision Latency</div>
+        <div class="n" style="font-size: 72px;">87<em>d</em></div>
+        <div class="d">Sponsor pitch to funded charter.</div>
+      </div>
+      <div class="stat">
+        <div class="l">With Kill Criteria</div>
+        <div class="n" style="font-size: 72px;">2<em>/17</em></div>
+        <div class="d">15 could continue indefinitely.</div>
+      </div>
+      <div class="stat">
+        <div class="l">Funding Gates FY25</div>
+        <div class="n" style="font-size: 72px;">3</div>
+        <div class="d">Versus 14 initiatives that started spending.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Source · Meeting minutes audit 14 mo · funding ticket trace</span>
+    <span>09 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 10 · FINDING 03 · OPERATING MODEL
+============================================================ -->
+<section data-label="10 Finding · Operating Model">
+  <div class="folio">
+    <span>10 · Finding 03 · Operating Model</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 10 · Finding 03</div>
+    <h2 class="title" style="max-width: 1500px;">AI talent was spread across <em>six places.</em> Nobody owned a use case end-to-end.</h2>
+
+    <div class="cols-2" style="grid-template-columns: 1fr 1fr; gap: 60px;">
+      <div class="stack-md">
+        <div class="eyebrow-soft">Talent Footprint · FTE Equivalent</div>
+        <table class="data">
+          <thead>
+            <tr><th>Location</th><th class="right">FTE</th><th class="right">Use Cases</th><th>End-to-End Owner?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="c-ink">BU 1 · Commercial</td><td class="right mono">3.5</td><td class="right mono">6</td><td>Partial — delivery only</td></tr>
+            <tr><td class="c-ink">BU 2 · Operations</td><td class="right mono">2.0</td><td class="right mono">4</td><td>No</td></tr>
+            <tr><td class="c-ink">BU 3 · Customer</td><td class="right mono" style="">2.5</td><td class="right mono">3</td><td>No</td></tr>
+            <tr><td class="c-ink">Shared · Data &amp; BI</td><td class="right mono" style="">8.0</td><td class="right mono">7</td><td>No — claims data only</td></tr>
+            <tr><td class="c-ink">Shared · IT platform</td><td class="right mono" style="">3.5</td><td class="right mono">9</td><td>Partial — infra only</td></tr>
+            <tr><td class="c-ink">Central AI team</td><td class="right mono" style="">8.5</td><td class="right mono">2</td><td>No — “on paper”</td></tr>
+            <tr><td class="c-ink strong">Total</td><td class="right mono strong" style="">28.0</td><td class="right mono strong">31</td><td><span class="strong" style="color: var(--accent);">Nobody, end-to-end</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack-md">
+        <div class="eyebrow-soft">The Ownership Gap</div>
+        <p class="lead" style="font-size: 28px;">
+          Of 31 inventoried initiatives, <span class="strong">zero</span> had a single named owner accountable for both <span class="strong">value delivered</span> and <span class="strong">value measured.</span>
+        </p>
+
+        <div class="stake-grid" style="margin-top: 4px; gap: 10px;">
+          <span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span>
+          <span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span>
+          <span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span>
+          <span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span><span class="dot outline"></span>
+        </div>
+        <p class="small" style="margin-top: 8px; font-size: 24px;">31 initiatives · 0 with a single accountable owner — fix in slide 13.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>FTE figures from HR allocation extracts · adjusted for partial allocation</span>
+    <span>10 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 11 · ROI SCORING RUBRIC
+============================================================ -->
+<section data-label="11 ROI Scoring Rubric">
+  <div class="folio">
+    <span>11 · The Scoring Rubric</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 11 · Artefact 01</div>
+    <h2 class="title" style="max-width: 1500px;">A six-criterion rubric. <em>Every future funding decision flows through it.</em></h2>
+
+    <div class="cols-2" style="grid-template-columns: 1.55fr 1fr; gap: 60px; align-items: start;">
+      <div>
+        <table class="data">
+          <thead>
+            <tr><th>Criterion</th><th>What It Measures</th><th class="center">Weight</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-ink"><span class="strong">01 · Strategic alignment</span></td>
+              <td>Closeness to the three FY26 priorities</td>
+              <td class="center mono">20%</td>
+            </tr>
+            <tr>
+              <td class="c-ink"><span class="strong">02 · Value potential</span></td>
+              <td>3-yr NPV, risk-adjusted, with stated counterfactual</td>
+              <td class="center mono">25%</td>
+            </tr>
+            <tr>
+              <td class="c-ink"><span class="strong">03 · Data readiness</span></td>
+              <td>Grade of the data domains the use case depends on</td>
+              <td class="center mono">15%</td>
+            </tr>
+            <tr>
+              <td class="c-ink"><span class="strong">04 · Technical feasibility</span></td>
+              <td>Pattern maturity · build-vs-buy · vendor risk</td>
+              <td class="center mono">15%</td>
+            </tr>
+            <tr>
+              <td class="c-ink"><span class="strong">05 · Ethical &amp; regulatory exposure</span></td>
+              <td>Risk function red-flag matrix · inverted</td>
+              <td class="center mono">10%</td>
+            </tr>
+            <tr>
+              <td class="c-ink"><span class="strong">06 · Organisational readiness</span></td>
+              <td>Sponsor · ownership · adoption pre-conditions</td>
+              <td class="center mono">15%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack-md">
+        <div class="eyebrow-soft">Decision Thresholds</div>
+        <div class="stack" style="gap: 0;">
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+            <div class="fig-med" style="font-size: 56px; color: var(--accent);">4.0<span style="font-size: 28px; color: var(--muted);">+</span></div>
+            <div><div class="strong mono small" style="color: var(--accent);">FUND</div><div class="body" style="font-size: 24px;">Eligible for funding at next steerco</div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+            <div class="fig-med" style="font-size: 56px; color: var(--ink);">3.0<span style="font-size: 28px; color: var(--muted);">–3.9</span></div>
+            <div><div class="strong mono small" style="color: var(--muted);">WATCH</div><div class="body" style="font-size: 24px;">Reassess at 90 days</div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: center;">
+            <div class="fig-med" style="font-size: 56px; color: var(--ink);">&lt;3.0</div>
+            <div><div class="strong mono small" style="color: var(--muted);">RETIRE</div><div class="body" style="font-size: 24px;">Sunset or reclassify</div></div>
+          </div>
+        </div>
+
+        <div class="stat" style="margin-top: 22px; border-top-color: var(--ink); border-top-width: 2px;">
+          <div class="l">Single Question for the CFO</div>
+          <div class="d strong" style="font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.3;">“What did this score?”</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Artefact 01 of 5 · Rubric handed to Group Finance · v1.0</span>
+    <span>11 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 12 · PORTFOLIO RE-BASELINE (HEATMAP)
+============================================================ -->
+<section data-label="12 Portfolio Re-baseline">
+  <div class="folio">
+    <span>12 · Portfolio Re-baseline</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 12 · Artefact 02</div>
+    <h2 class="title" style="max-width: 1500px;">Thirty-one initiatives, scored. <em>Seven fund, twelve watch, twelve retire.</em></h2>
+
+    <div style="margin-top: 4px;">
+      <div class="heatmap">
+        <div class="h-head left">Initiative · Top 6 of 31</div>
+        <div class="h-head">Strat.</div>
+        <div class="h-head">Value</div>
+        <div class="h-head">Data</div>
+        <div class="h-head">Tech</div>
+        <div class="h-head">Risk</div>
+        <div class="h-head">Org</div>
+        <div class="h-head" style="text-align: right;">Total</div>
+
+        <div class="h-row">Demand forecasting</div>
+        <div class="h-cell s5">5</div><div class="h-cell s5">5</div><div class="h-cell s4">4</div><div class="h-cell s5">5</div><div class="h-cell s5">5</div><div class="h-cell s4">4</div><div class="h-total"><em>4.7</em></div>
+
+        <div class="h-row">Service triage agent</div>
+        <div class="h-cell s5">5</div><div class="h-cell s5">5</div><div class="h-cell s3">3</div><div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-cell s5">5</div><div class="h-total"><em>4.4</em></div>
+
+        <div class="h-row">Pricing assistant</div>
+        <div class="h-cell s4">4</div><div class="h-cell s5">5</div><div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-total"><em>4.3</em></div>
+
+        <div class="h-row">Field tech agent</div>
+        <div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-cell s3">3</div><div class="h-cell s5">5</div><div class="h-cell s5">5</div><div class="h-cell s4">4</div><div class="h-total"><em>4.1</em></div>
+
+        <div class="h-row" style="border-top: 1px dashed var(--rule); padding-top: 12px;">VoC synthesis</div>
+        <div class="h-cell s4">4</div><div class="h-cell s3">3</div><div class="h-cell s2">2</div><div class="h-cell s4">4</div><div class="h-cell s4">4</div><div class="h-cell s3">3</div><div class="h-total">3.4</div>
+
+        <div class="h-row">Marketing creative</div>
+        <div class="h-cell s2">2</div><div class="h-cell s2">2</div><div class="h-cell s4">4</div><div class="h-cell s5">5</div><div class="h-cell s3">3</div><div class="h-cell s2">2</div><div class="h-total">2.7</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 18px; margin-top: 28px; align-items: center;">
+        <span class="mono small" style="color: var(--muted); font-size: 24px;">PORTFOLIO SHAPE · 31 INITIATIVES</span>
+        <div class="bar-strip" style="margin-top: 0; height: 44px;">
+          <div class="seg s1">FUND · 7</div>
+          <div class="seg s2">WATCH · 12</div>
+          <div class="seg s3">RETIRE / RECLASSIFY · 12</div>
+        </div>
+        <span class="mono small" style="color: var(--muted); font-size: 24px;">v1.0 · Day 14</span>
+      </div>
+
+      <p class="lead" style="margin-top: 32px; font-size: 28px; max-width: 1500px;">
+        <em>$2.2M</em> committed at the next steerco · <em>$8.4M</em> 3-year pipeline · <em>$1.6M</em> returned to the pool.
+      </p>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Top 6 of 31 shown · full register handed over as Excel + dashboard schema</span>
+    <span>12 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 13 · TARGET OPERATING MODEL
+============================================================ -->
+<section data-label="13 Target Operating Model">
+  <div class="folio">
+    <span>13 · Target Operating Model</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 13 · Artefact 03</div>
+    <h2 class="title" style="max-width: 1500px;">Hub-and-spoke. <em>Three named roles in week one.</em> No re-org.</h2>
+
+    <div class="tom" style="margin-top: 8px;">
+      <div class="layer">
+        <div class="lbl">Decide</div>
+        <div class="nodes" style="grid-template-columns: 1fr 1fr;">
+          <div class="node solid">
+            <div class="role">Quarterly · Voting</div>
+            <h4>AI Steerco</h4>
+            <p>CFO chairs · CDO, COO, 3 BU Heads · funding mandate · published kill criterion</p>
+          </div>
+          <div class="node solid">
+            <div class="role">Monthly · Operational</div>
+            <h4>Portfolio Review</h4>
+            <p>AI Portfolio Lead · Finance BP · BU PMs · rubric-driven · single agenda template</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="lbl">Own</div>
+        <div class="nodes">
+          <div class="node">
+            <div class="role">NEW ROLE · Wk 1</div>
+            <h4>AI Portfolio Lead</h4>
+            <p>Owns rubric, register, steerco pack. Reports to CFO. From existing team.</p>
+          </div>
+          <div class="node">
+            <div class="role">NEW ROLE · Wk 1</div>
+            <h4>Finance BP for AI</h4>
+            <p>Dedicated finance partner. Owns counterfactual baselines and confidence rating.</p>
+          </div>
+          <div class="node">
+            <div class="role">NEW ROLE · Wk 1</div>
+            <h4>Priority Data Steward</h4>
+            <p>Single accountable owner for the two priority data domains.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <div class="lbl">Deliver</div>
+        <div class="nodes">
+          <div class="node">
+            <div class="role">EMBEDDED</div>
+            <h4>BU1 Pod · Commercial</h4>
+            <p>Demand forecasting · pricing assistant · proposal &amp; bid · 4.5 FTE</p>
+          </div>
+          <div class="node">
+            <div class="role">EMBEDDED</div>
+            <h4>BU2 Pod · Operations</h4>
+            <p>Service triage · field tech knowledge · QA vision · 3.5 FTE</p>
+          </div>
+          <div class="node">
+            <div class="role">SHARED</div>
+            <h4>Platform &amp; Data Foundation</h4>
+            <p>Models, evaluation, MLOps, RAG, priority data domain fix · 5.0 FTE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;"></div>
+  </div>
+
+  <div class="footline">
+    <span>Artefact 03 · TOM v1.0 · pressure-tested in Day 13 workshop</span>
+    <span>13 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 14 · 90-DAY PLAN
+============================================================ -->
+<section data-label="14 90-Day Plan">
+  <div class="folio">
+    <span>14 · The 90-Day Plan</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow">§ 14 · Artefact 04</div>
+    <h2 class="title" style="max-width: 1500px;">Eleven actions. Six named owners. <em>Three funding gates.</em></h2>
+
+    <div class="plan-grid" style="margin-top: 8px;">
+      <div class="phase">
+        <div class="ph-head">
+          <h4>Govern</h4>
+          <span class="days">Day 0 – 30</span>
+        </div>
+        <ul>
+          <li><span class="mk">01</span><span>Sunset Working Group · stand up AI Steerco · first session by Day 28<span class="own">Owner · Group CFO</span></span></li>
+          <li><span class="mk">02</span><span>Name the three new roles · sign role specs · transition memos<span class="own">Owner · BU Heads + CFO</span></span></li>
+          <li><span class="mk">03</span><span>Publish kill criterion and funding gate template firm-wide<span class="own">Owner · AI Portfolio Lead</span></span></li>
+          <li><span class="mk">04</span><span>First funding gate · top 3 charters approved or held<span class="own">Owner · AI Steerco</span></span></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="ph-head">
+          <h4>Re-baseline</h4>
+          <span class="days">Day 31 – 60</span>
+        </div>
+        <ul>
+          <li><span class="mk">05</span><span>Counterfactual baselines stood up for top 7 funded initiatives<span class="own">Owner · Finance BP for AI</span></span></li>
+          <li><span class="mk">06</span><span>Retire / reclassify bottom 12 · spend returned to pool<span class="own">Owner · BU Heads</span></span></li>
+          <li><span class="mk">07</span><span>Watch-list 12 — reassessment criteria assigned per initiative<span class="own">Owner · AI Portfolio Lead</span></span></li>
+          <li><span class="mk">08</span><span>Second funding gate · watch-list reassessment cycle one<span class="own">Owner · AI Steerco</span></span></li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="ph-head">
+          <h4>Build Foundation</h4>
+          <span class="days">Day 61 – 90</span>
+        </div>
+        <ul>
+          <li><span class="mk">09</span><span>Priority data fix · Customer · master · 80% completeness target<span class="own">Owner · Priority Data Steward</span></span></li>
+          <li><span class="mk">10</span><span>Priority data fix · Service · operations · lineage to grade B<span class="own">Owner · Priority Data Steward</span></span></li>
+          <li><span class="mk">11</span><span>Day-90 board paper · portfolio view · single page · CFO co-presents<span class="own">Owner · Group CFO</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline">
+    <span>Artefact 04 · 90-Day Plan v1.0 · owners confirmed by name at Day 14 readout</span>
+    <span>14 / 15</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 15 · AT HANDOVER
+============================================================ -->
+<section data-label="15 At Handover" class="dark" data-deck-last-visible="">
+  <div class="folio">
+    <span>15 · At Handover</span><div class="rule-line"></div><span>Case 01 · AI ROI</span>
+  </div>
+
+  <div class="slide-grid with-eyebrow" style="padding-top: 40px;">
+    <div class="eyebrow" style="color: oklch(0.72 0.14 45);">§ 15 · Outcome</div>
+    <h2 class="title" style="max-width: 1500px; color: #f6f3ed;">A diagnostic is not a transformation. <em style="color: oklch(0.72 0.14 45);">It is the instrument that makes the next eighteen months worth doing.</em></h2>
+
+    <div class="kpis-final" style="margin-top: 12px;">
+      <div class="k">
+        <div class="l">Risk-Adjusted Pipeline</div>
+        <div class="n">$8.4<em>M</em></div>
+        <div class="d">Across 7 prioritised initiatives · 3-yr NPV · stated counterfactual</div>
+      </div>
+      <div class="k">
+        <div class="l">Stop-Loss · Annual</div>
+        <div class="n">$1.6<em>M</em></div>
+        <div class="d">Removed from the AI line item via reclassification + retirement</div>
+      </div>
+      <div class="k">
+        <div class="l">First Funded Decision</div>
+        <div class="n">$2.2<em>M</em></div>
+        <div class="d">Approved at Day-30 steerco · top 3 charters live</div>
+      </div>
+      <div class="k">
+        <div class="l">Decision Latency</div>
+        <div class="n">87 <span style="font-size: 56px;">→</span> 30<em>d</em></div>
+        <div class="d">From 87-day funding decisions to a 30-day steerco cadence</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 60px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; padding-top: 28px; border-top: 1px solid #34343b;">
+      <div>
+        <div class="eyebrow-soft" style="color: oklch(0.72 0.14 45);">FIVE ARTEFACTS · LEFT BEHIND</div>
+        <ol class="key-list" style="margin-top: 14px;">
+          <li><span class="b" style="color: oklch(0.72 0.14 45);">01</span><span style="color: #efeae0;">Diagnostic Report · 32 pages · findings, evidence, sources</span></li>
+          <li><span class="b" style="color: oklch(0.72 0.14 45);">02</span><span style="color: #efeae0;">ROI Scoring Rubric · v1.0 · with anchored definitions</span></li>
+          <li><span class="b" style="color: oklch(0.72 0.14 45);">03</span><span style="color: #efeae0;">Portfolio Register · 31 initiatives · scored, ranked, decisioned</span></li>
+          <li><span class="b" style="color: oklch(0.72 0.14 45);">04</span><span style="color: #efeae0;">Target Operating Model · roles, cadences, RACI</span></li>
+          <li><span class="b" style="color: oklch(0.72 0.14 45);">05</span><span style="color: #efeae0;">90-Day Plan · 11 actions, 6 named owners, 3 funding gates</span></li>
+        </ol>
+      </div>
+
+      <div class="stack-md">
+        <div class="eyebrow-soft" style="color: oklch(0.72 0.14 45);">THE FINAL TEST</div>
+        <blockquote class="pull" style="color: #f6f3ed; border-color: oklch(0.72 0.14 45); font-size: 38px; padding-left: 28px;">
+          I can defend this <em style="color: oklch(0.72 0.14 45);">cold</em> at the next board.
+          <cite style="color: oklch(0.72 0.14 45);">— Group CFO · Day 14 readout</cite>
+        </blockquote>
+
+        <div style="margin-top: 28px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid #34343b; padding-top: 22px;">
+          <span class="mono small" style="color: oklch(0.72 0.14 45);">CONTACT</span>
+          <span style="font-family: var(--serif); font-size: 28px; color: #f6f3ed;">vikram@<em style="color: oklch(0.72 0.14 45); font-style: italic;">thehivemindhq.com</em></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footline" style="color: #7a766e;">
+    <span>End of Case 01 · The Hive Mind HQ · MMXXVI</span>
+    <span>15 / 15</span>
+  </div>
+</section>
+
+</deck-stage>
+
+
+
+</body></html>

@@ -897,6 +897,9 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
   .case{grid-template-columns: 1fr}
   .case-main{border-right:0;border-bottom: 1px solid var(--rule);padding-right:0}
   .case-stat{padding-left:0}
+  .cases-row{grid-template-columns: 1fr !important}
+  .cases-row > article:first-child{border-right:0 !important;border-bottom:1px solid var(--rule);padding-right:0 !important}
+  .cases-row > article:last-child{padding-left:0 !important}
   .persp{grid-template-columns: 1fr}
   .persp .feat{border-right:0;border-bottom: 1px solid var(--rule);padding-right:0}
   .persp .side > article{padding-left:0}
@@ -1173,25 +1176,56 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
       </div>
     </div>
 
-    <p style="font-family:var(--serif-body);font-size: clamp(18px, 1.3vw, 21px);max-width: 64ch;color:var(--ink-soft);margin-bottom: clamp(28px, 4vw, 56px);line-height:1.5;">Selected engagements. Client details anonymised by agreement; sector, challenge, and outcome disclosed with permission.</p>
+    <p style="font-family:var(--serif-body);font-size: clamp(18px, 1.3vw, 21px);max-width: 64ch;color:var(--ink-soft);margin-bottom: clamp(20px, 2.6vw, 36px);line-height:1.5;">Selected engagements. Client details anonymised by agreement; sector, challenge, and outcome disclosed with permission.</p>
 
-    <article class="case">
-      <div class="case-main">
-        <div class="case-meta">
-          <span>Global Technology Services · Asia Pacific · 2023–2025</span>
-          <span class="case-active">Active Case</span>
+    <div class="cases-row" style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);">
+      <!-- Featured · AI ROI -->
+      <article id="case-ai-roi" style="padding: clamp(32px, 3.8vw, 52px) clamp(28px, 3vw, 44px) clamp(32px, 3.8vw, 52px) 0;border-right:1px solid var(--rule);display:flex;flex-direction:column;">
+        <div class="case-meta" style="margin-bottom:24px;">
+          <span>Mid-market Enterprise · ~$1.4B Revenue · March 2026</span>
+          <span class="case-active">New · Field Note 01</span>
         </div>
-        <h3 class="case-h">Rebuilding a Digital &amp; Cloud Practice in the <em>AI Age</em></h3>
-        <p class="case-prose">A major technology services firm had built a compelling Digital &amp; Cloud portfolio but was failing to convert it into predictable revenue. The GTM motion was technology-out. The sales team was pitching capability, not outcomes. Vikram led a full portfolio structural and commercial architecture redesign — from pricing model to partner ecosystem to the metrics the business would be held to.</p>
-      </div>
-      <aside class="case-stat">
-        <div class="kicker" style="margin-bottom:18px;">Outcome — Year One</div>
-        <div class="ev-num"><span class="num">35</span><em>%</em></div>
-        <p class="ev-body">YoY revenue growth following commercial redesign.</p>
-      </aside>
-    </article>
+        <h3 class="case-h" style="font-size: clamp(28px, 3vw, 44px);max-width:none;margin-bottom:20px;">The AI ROI <em>Re-baseline.</em></h3>
+        <p class="case-prose" style="font-size: clamp(16px, 1.1vw, 18px);line-height:1.55;max-width:none;">A Group CFO had stopped signing off the AI line item. Two years of investment. <span class="italic" style="color:var(--ink);">$4.2M annual run-rate. Seventeen live initiatives. Zero counterfactual baselines.</span> The brief was not a transformation — it was an <span class="italic" style="color:var(--ink);">instrument</span>: something one person could carry into the boardroom and defend cold. In fourteen working days, sixty-four percent of what the organisation called AI was reclassified out of the line item, governed funding was reinstalled with named owners, and an <span class="italic" style="color:var(--ink);">$8.4M risk-adjusted pipeline</span> landed on the CFO's desk before the board paper went out.</p>
 
-    <p class="case-foot">Additional case studies are being prepared in consultation with clients. If you would like to discuss a specific challenge or sector, <a href="#contact">reach out directly →</a></p>
+        <div style="margin-top: clamp(22px, 2.4vw, 30px); padding-top: 20px; border-top: 1px solid var(--rule); display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+          <div>
+            <div class="kicker" style="margin-bottom:8px;">Window</div>
+            <div style="font-family:var(--serif);font-size: clamp(36px, 3.4vw, 48px);line-height:1;letter-spacing:-0.02em;color:var(--ink);">14<em style="font-style:italic;color:var(--accent);font-size:0.55em;margin-left:4px;">days</em></div>
+          </div>
+          <div>
+            <div class="kicker" style="margin-bottom:8px;">Reclassified</div>
+            <div style="font-family:var(--serif);font-size: clamp(36px, 3.4vw, 48px);line-height:1;letter-spacing:-0.02em;color:var(--ink);">64<em style="font-style:italic;color:var(--accent);">%</em></div>
+          </div>
+          <div>
+            <div class="kicker" style="margin-bottom:8px;">Pipeline</div>
+            <div style="font-family:var(--serif);font-size: clamp(36px, 3.4vw, 48px);line-height:1;letter-spacing:-0.02em;color:var(--ink);">$8.4<em style="font-style:italic;color:var(--accent);">M</em></div>
+          </div>
+        </div>
+
+        <a class="essay-link" href="articles/AI_ROI/AI%20ROI%20Case%20Study.html" style="margin-top: clamp(22px, 2.4vw, 32px); display:inline-flex;align-self:flex-start;">Read the Field Note · 15-slide deck <span class="arr">→</span></a>
+      </article>
+
+      <!-- Companion · Digital & Cloud -->
+      <article style="padding: clamp(32px, 3.8vw, 52px) 0 clamp(32px, 3.8vw, 52px) clamp(28px, 3vw, 44px);display:flex;flex-direction:column;">
+        <div class="case-meta" style="margin-bottom:24px;">
+          <span>Global Tech Services · APAC · 2023–25</span>
+          <span style="color:var(--ink-mute);">Companion Case</span>
+        </div>
+        <h3 style="font-family:var(--serif);font-weight:400;font-size: clamp(24px, 2.4vw, 34px);line-height:1.1;letter-spacing:-0.012em;margin-bottom:18px;">Rebuilding a Digital &amp; Cloud Practice in the <em style="font-style:italic;color:var(--accent);">AI Age</em></h3>
+        <p style="font-family:var(--serif-body);font-size: clamp(16px, 1.1vw, 18px);line-height:1.55;color:var(--ink-soft);">A technology services firm had built a compelling Digital &amp; Cloud portfolio but was failing to convert it into predictable revenue — pitching capability, not outcomes. A full structural and commercial architecture redesign followed: pricing model, partner ecosystem, growth metrics.</p>
+
+        <div style="margin-top:auto;padding-top: clamp(22px, 2.4vw, 30px); border-top: 1px solid var(--rule);">
+          <div class="kicker" style="margin-bottom:10px;">Outcome · Year One</div>
+          <div style="display:flex;align-items:baseline;gap:18px;">
+            <div style="font-family:var(--serif);font-size: clamp(64px, 6.4vw, 96px);line-height:0.9;letter-spacing:-0.03em;color:var(--ink);">35<em style="font-style:italic;color:var(--accent);">%</em></div>
+            <p class="ev-body" style="margin-bottom:0;max-width: 24ch;">YoY revenue growth following commercial redesign.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="case-foot" style="margin-top: clamp(22px, 2.6vw, 32px);">Additional case studies are being prepared in consultation with clients. If you would like to discuss a specific challenge or sector, <a href="#contact">reach out directly →</a></p>
   </div>
 </section>
 

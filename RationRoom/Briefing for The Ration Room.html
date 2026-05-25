@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>A Briefing for The Ration Room — Breaking the Discount Trap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ece0;
+    --paper-deep:#ede4d3;
+    --paper-card:#faf5ea;
+    --ink:#1a1714;
+    --ink-soft:#3a342c;
+    --ink-mute:#6e6557;
+    --rule:#d9cfba;
+    --rule-soft:#e6dcc8;
+    --accent:#b14a2b;       /* terracotta */
+    --accent-deep:#8a3517;
+    --accent-soft:#e9d1c4;
+    --olive:#5c6233;
+    --gold:#a07f2a;
+    --bad:#8a3517;
+    --good:#3d5a3a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{font-family:'Geist','Helvetica Neue',sans-serif;font-weight:400;line-height:1.5;letter-spacing:-0.005em;font-size:16px;}
+  .serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-feature-settings:"tnum" 1;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  ::selection{background:var(--accent);color:var(--paper);}
+
+  /* Reading progress */
+  .progress{position:fixed;top:0;left:0;right:0;height:2px;background:transparent;z-index:50;}
+  .progress > i{display:block;height:100%;width:0%;background:var(--accent);transition:width .1s linear;}
+
+  /* Top masthead */
+  .mast{padding:28px 48px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+  .mast .brand{display:flex;gap:10px;align-items:center;}
+  .mast .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);}
+  .mast .brand b{font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-size:11px;}
+  .mast .meta{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);}
+  .mast .meta span + span{margin-left:18px;}
+
+  /* Layout: side nav + content */
+  .shell{display:grid;grid-template-columns:220px minmax(0,1fr) 220px;gap:48px;padding:0 48px 120px;max-width:1440px;margin:0 auto;}
+  @media (max-width:1200px){.shell{grid-template-columns:200px minmax(0,1fr);}.rail-right{display:none}}
+  @media (max-width:900px){.shell{grid-template-columns:1fr;padding:0 24px 80px;}.rail-left{display:none}}
+
+  /* Left rail: chapter list */
+  .rail-left{position:sticky;top:84px;align-self:start;padding-top:8px;font-size:13px;}
+  .rail-left .label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:14px;}
+  .rail-left ol{list-style:none;padding:0;margin:0;}
+  .rail-left li{padding:0;margin:0;}
+  .rail-left a{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:7px 0;text-decoration:none;color:var(--ink-mute);border-top:1px solid var(--rule-soft);align-items:baseline;line-height:1.25;}
+  .rail-left a:hover{color:var(--ink);}
+  .rail-left a.active{color:var(--ink);}
+  .rail-left a.active .num{color:var(--accent);}
+  .rail-left .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
+  .rail-left a.active{background:linear-gradient(to right, rgba(177,74,43,0.06), transparent 70%);margin-left:-8px;padding-left:8px;}
+
+  /* Right rail: signal / quick links */
+  .rail-right{position:sticky;top:84px;align-self:start;padding-top:8px;font-size:12px;color:var(--ink-mute);}
+  .rail-right .block{border-top:1px solid var(--rule);padding:14px 0;}
+  .rail-right .label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);}
+  .rail-right b{display:block;color:var(--ink);font-weight:600;font-size:13px;margin-top:6px;}
+  .rail-right .stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--rule-soft);}
+  .rail-right .stat:last-child{border-bottom:none;}
+  .rail-right .stat span:last-child{color:var(--ink);font-family:'JetBrains Mono',monospace;}
+
+  /* Content */
+  main{min-width:0;max-width:760px;}
+  section{padding:80px 0 0;scroll-margin-top:60px;}
+  section:first-child{padding-top:32px;}
+  .ch{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;}
+  .ch .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--accent);}
+  .ch .k{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);}
+  h1.title{font-family:'Instrument Serif',serif;font-weight:400;font-size:88px;line-height:0.95;letter-spacing:-0.025em;margin:8px 0 22px;}
+  h1.title em{font-style:italic;color:var(--accent);}
+  h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:48px;line-height:1.02;letter-spacing:-0.02em;margin:0 0 18px;}
+  h2 em{font-style:italic;color:var(--accent-deep);}
+  h3{font-family:'Geist',sans-serif;font-weight:600;font-size:17px;letter-spacing:-0.01em;margin:30px 0 8px;}
+  p{margin:0 0 14px;color:var(--ink-soft);font-size:16px;line-height:1.6;}
+  p strong{color:var(--ink);font-weight:600;}
+  p.lede{font-family:'Instrument Serif',serif;font-size:24px;line-height:1.35;color:var(--ink);letter-spacing:-0.005em;margin:0 0 22px;}
+
+  /* Inline citation chip */
+  .cite{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;background:var(--paper-card);color:var(--accent-deep);border:1px solid var(--accent-soft);padding:1px 5px;border-radius:3px;vertical-align:super;margin-left:2px;cursor:help;text-decoration:none;letter-spacing:0;}
+  .cite:hover{background:var(--accent);color:var(--paper);border-color:var(--accent);}
+
+  /* Stat strip */
+  .stripe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:28px 0 36px;}
+  .stripe > div{padding:18px 14px;border-left:1px solid var(--rule);}
+  .stripe > div:first-child{border-left:none;}
+  .stripe .v{font-family:'Instrument Serif',serif;font-size:42px;line-height:1;letter-spacing:-0.02em;}
+  .stripe .v em{font-style:italic;color:var(--accent);}
+  .stripe .l{font-size:11px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase;margin-top:8px;line-height:1.3;}
+
+  /* Audit table */
+  table.audit{width:100%;border-collapse:collapse;font-size:13px;margin:20px 0 8px;}
+  table.audit th{font-weight:500;text-align:left;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);padding:8px 12px 8px 0;border-bottom:1px solid var(--ink);}
+  table.audit td{padding:14px 12px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-soft);}
+  table.audit td.platform{color:var(--ink);font-weight:600;}
+  table.audit .deal{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-deep);font-weight:500;}
+  table.audit .deal.none{color:var(--ink-mute);}
+
+  /* Three facts blocks */
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+  .facts > div{padding:20px 16px 22px;border-left:1px solid var(--rule);}
+  .facts > div:first-child{border-left:none;}
+  .facts .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:0.06em;}
+  .facts h4{font-family:'Instrument Serif',serif;font-weight:400;font-size:22px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.01em;}
+  .facts p{font-size:13px;line-height:1.5;margin:0;color:var(--ink-mute);}
+
+  /* Money flow visual */
+  .flow{background:var(--paper-card);border:1px solid var(--rule);border-radius:4px;padding:24px;margin:24px 0;}
+  .flow .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;}
+  .flow .head h3{margin:0;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-mute);font-weight:500;}
+  .flow .head .source{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
+  .bar{display:grid;grid-template-columns:120px 1fr 100px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--rule);font-size:13px;}
+  .bar:last-child{border-bottom:none;}
+  .bar .label{color:var(--ink-soft);}
+  .bar .label small{display:block;color:var(--ink-mute);font-size:11px;margin-top:2px;}
+  .bar .track{height:18px;background:var(--paper-deep);border-radius:2px;position:relative;overflow:hidden;}
+  .bar .fill{height:100%;background:var(--ink);border-radius:2px;}
+  .bar .fill.acc{background:var(--accent);}
+  .bar .fill.gold{background:var(--gold);}
+  .bar .fill.olive{background:var(--olive);}
+  .bar .fill.bad{background:var(--bad);}
+  .bar .fill.good{background:var(--good);}
+  .bar .v{font-family:'JetBrains Mono',monospace;font-size:13px;text-align:right;color:var(--ink);}
+  .bar.total{border-top:1px solid var(--ink);border-bottom:none;padding-top:14px;margin-top:6px;}
+  .bar.total .label{font-weight:600;color:var(--ink);}
+  .bar.total .v{font-weight:600;}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 6px;}
+  .vs > div{background:var(--paper-deep);padding:16px 18px;border-radius:4px;border:1px solid var(--rule);}
+  .vs .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-mute);}
+  .vs .big{font-family:'Instrument Serif',serif;font-size:34px;line-height:1;margin:6px 0 4px;letter-spacing:-0.015em;}
+  .vs .big.bad{color:var(--bad);}
+  .vs .big.good{color:var(--good);}
+  .vs .cap{font-size:12px;color:var(--ink-mute);line-height:1.4;}
+
+  /* Pull quote */
+  blockquote{margin:32px 0;padding:0 0 0 22px;border-left:2px solid var(--accent);}
+  blockquote p{font-family:'Instrument Serif',serif;font-size:26px;line-height:1.3;font-style:italic;color:var(--ink);margin:0 0 8px;letter-spacing:-0.005em;}
+  blockquote cite{font-style:normal;font-size:12px;letter-spacing:0.04em;color:var(--ink-mute);}
+  blockquote cite b{color:var(--ink);font-weight:600;}
+
+  /* Inaction list */
+  .clock{margin:24px 0;}
+  .clock-row{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--rule);align-items:baseline;}
+  .clock-row:last-child{border-bottom:1px solid var(--rule);}
+  .clock-row .t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.06em;text-transform:uppercase;}
+  .clock-row h4{font-family:'Geist',sans-serif;font-weight:600;font-size:15px;margin:0 0 4px;color:var(--ink);}
+  .clock-row p{margin:0;font-size:13px;color:var(--ink-mute);line-height:1.5;}
+
+  /* Proof points */
+  .proofs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0;}
+  .proof{background:var(--paper-card);border:1px solid var(--rule);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+  .proof .where{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);}
+  .proof .name{font-family:'Instrument Serif',serif;font-size:24px;line-height:1.1;letter-spacing:-0.01em;}
+  .proof .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);}
+  .proof .num b{color:var(--ink);font-weight:600;}
+  .proof p{font-size:13px;line-height:1.5;margin:6px 0 0;color:var(--ink-soft);}
+
+  /* Action cards */
+  .actions{margin:24px 0;}
+  .action{display:grid;grid-template-columns:48px 1fr 180px;gap:18px;padding:22px 0;border-top:1px solid var(--rule);align-items:start;}
+  .action:last-of-type{border-bottom:1px solid var(--rule);}
+  .action .idx{font-family:'Instrument Serif',serif;font-size:42px;line-height:0.9;color:var(--accent);letter-spacing:-0.02em;}
+  .action h4{font-family:'Geist',sans-serif;font-weight:600;font-size:17px;margin:6px 0 6px;color:var(--ink);letter-spacing:-0.005em;}
+  .action p{font-size:13.5px;line-height:1.55;margin:0;color:var(--ink-soft);}
+  .action .cb{display:flex;flex-direction:column;gap:8px;font-size:11px;}
+  .action .cb div{display:grid;grid-template-columns:42px 1fr;gap:8px;align-items:baseline;}
+  .action .cb .k{font-family:'JetBrains Mono',monospace;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase;}
+  .action .cb .vv{color:var(--ink);font-weight:500;line-height:1.4;}
+
+  /* Membership tiers */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 8px;}
+  .tier{background:var(--paper-card);border:1px solid var(--rule);border-radius:4px;padding:22px 22px 24px;}
+  .tier.gold{border-color:var(--accent);background:linear-gradient(180deg, rgba(177,74,43,0.05), transparent 60%);}
+  .tier .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mute);}
+  .tier.gold .tag{color:var(--accent);}
+  .tier .price{font-family:'Instrument Serif',serif;font-size:42px;line-height:1;letter-spacing:-0.02em;margin:4px 0 2px;}
+  .tier .price small{font-size:14px;color:var(--ink-mute);font-family:'Geist',sans-serif;font-style:normal;}
+  .tier .name{font-family:'Instrument Serif',serif;font-size:22px;margin:8px 0 12px;letter-spacing:-0.01em;}
+  .tier ul{list-style:none;padding:0;margin:0;font-size:13px;color:var(--ink-soft);}
+  .tier li{padding:8px 0 8px 18px;position:relative;border-top:1px dashed var(--rule);line-height:1.4;}
+  .tier li:first-child{border-top:none;}
+  .tier li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .tier.gold li::before{background:var(--accent);}
+
+  /* Triggers callout */
+  .triggers{background:var(--paper-card);border-left:3px solid var(--gold);padding:22px 24px;margin:24px 0;border-radius:0 4px 4px 0;}
+  .triggers h4{font-family:'Geist',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 12px;color:var(--gold);}
+  .trigger{display:grid;grid-template-columns:14px 1fr;gap:10px;padding:8px 0;font-size:13px;line-height:1.5;border-top:1px dashed var(--rule);}
+  .trigger:first-of-type{border-top:none;}
+  .trigger .ifx{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);font-weight:600;line-height:1.7;letter-spacing:0.06em;}
+  .trigger p{margin:0;color:var(--ink-soft);}
+  .trigger p b{color:var(--ink);font-weight:600;}
+
+  /* Caveats */
+  .caveats{font-size:13px;color:var(--ink-mute);line-height:1.55;}
+  .caveats li{margin-bottom:10px;}
+
+  /* Bibliography */
+  .refs{margin-top:28px;font-size:12px;color:var(--ink-mute);line-height:1.5;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;}
+  .refs div{padding:6px 0;border-top:1px solid var(--rule-soft);display:grid;grid-template-columns:36px 1fr;gap:8px;}
+  .refs div .k{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:10px;letter-spacing:0.06em;}
+  .refs div b{color:var(--ink);font-weight:600;}
+
+  /* Hero specifics */
+  .verdict{margin-top:16px;}
+  .verdict-row{display:flex;gap:12px;align-items:baseline;margin-bottom:10px;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-mute);}
+  .verdict-row .pip{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+  .signoff{margin:32px 0 0;padding-top:22px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase;}
+
+  /* Tooltip behavior */
+  .cite[data-tip]{position:relative;}
+  .tip-pop{position:fixed;background:var(--ink);color:var(--paper);padding:10px 12px;border-radius:4px;font-size:11px;line-height:1.45;font-family:'Geist',sans-serif;letter-spacing:0;text-transform:none;max-width:280px;z-index:60;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,0.18);}
+  .tip-pop b{color:#f3d6c5;font-weight:600;}
+
+  /* Margin notes */
+  .note{display:flex;gap:10px;padding:14px 16px;background:var(--paper-card);border:1px dashed var(--rule);border-radius:3px;margin:14px 0;font-size:12px;color:var(--ink-mute);line-height:1.5;}
+  .note .lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap;margin-top:1px;}
+
+  /* TOC duplicate for mobile */
+  .mobile-toc{display:none;}
+  @media (max-width:900px){
+    .mast{padding:20px 24px 0;flex-wrap:wrap;}
+    h1.title{font-size:52px;}
+    h2{font-size:36px;}
+    .stripe{grid-template-columns:1fr 1fr;}
+    .stripe > div{border-left:1px solid var(--rule);}
+    .stripe > div:nth-child(odd){border-left:none;}
+    .stripe > div:nth-child(3),.stripe > div:nth-child(4){border-top:1px solid var(--rule);}
+    .facts,.proofs,.tiers,.vs,.refs{grid-template-columns:1fr;}
+    .facts > div{border-left:none;border-top:1px solid var(--rule);}
+    .facts > div:first-child{border-top:none;}
+    .action{grid-template-columns:36px 1fr;}
+    .action .cb{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;}
+    .action .cb div{flex:1 1 45%;}
+    .mobile-toc{display:block;}
+  }
+</style>
+</head>
+<body>
+<div class="progress"><i id="progressBar"></i></div>
+
+<header class="mast">
+  <div class="brand">
+    <span class="dot"></span>
+    <b>A briefing prepared for the owner / The Ration Room</b>
+  </div>
+  <div class="meta">
+    <span>Bengaluru &middot; 25 May 2026</span>
+    <span>Read time ~14 min</span>
+    <span>Confidential</span>
+  </div>
+</header>
+
+<div class="shell">
+
+  <aside class="rail-left">
+    <div class="label">Chapters</div>
+    <ol id="toc">
+      <li><a href="#verdict" data-num="01"><span class="num">01</span><span>The verdict</span></a></li>
+      <li><a href="#today" data-num="02"><span class="num">02</span><span>Where you stand today</span></a></li>
+      <li><a href="#trap" data-num="03"><span class="num">03</span><span>The trap you&rsquo;re in</span></a></li>
+      <li><a href="#cost" data-num="04"><span class="num">04</span><span>The cost of doing nothing</span></a></li>
+      <li><a href="#proof" data-num="05"><span class="num">05</span><span>Proof it&rsquo;s solvable</span></a></li>
+      <li><a href="#now" data-num="06"><span class="num">06</span><span>The next 30 days</span></a></li>
+      <li><a href="#quarter" data-num="07"><span class="num">07</span><span>The next 90 days</span></a></li>
+      <li><a href="#year" data-num="08"><span class="num">08</span><span>The next 6&ndash;18 months</span></a></li>
+      <li><a href="#triggers" data-num="09"><span class="num">09</span><span>What changes the plan</span></a></li>
+      <li><a href="#refs" data-num="10"><span class="num">10</span><span>Sources</span></a></li>
+    </ol>
+  </aside>
+
+  <main>
+
+    <!-- 01 VERDICT -->
+    <section id="verdict">
+      <div class="ch"><span class="n">CH. 01</span><span class="k">The verdict, in a single page</span></div>
+      <h1 class="title">A 4.7-star bar,<br/>quietly <em>losing money</em><br/>on its busiest tables.</h1>
+      <p class="lede">The walk-in product is working. The platforms are working against it. This briefing explains why &mdash; and what to do, in the order to do it.</p>
+
+      <div class="stripe">
+        <div>
+          <div class="v">4.7<em>&#9733;</em></div>
+          <div class="l">Google rating <br/>(196 reviews)</div>
+        </div>
+        <div>
+          <div class="v">~6<em>mo</em></div>
+          <div class="l">Since soft-launch <br/>(Dec &lsquo;25)</div>
+        </div>
+        <div>
+          <div class="v"><em>65</em>%</div>
+          <div class="l">Off, stacked on EazyDiner <br/>(40% off + 25% PayEazy)</div>
+        </div>
+        <div>
+          <div class="v">&#8377;<em>150-400</em></div>
+          <div class="l">Net contribution per<br/>platform-discounted cover</div>
+        </div>
+      </div>
+
+      <p>You opened a rooftop bar on 80 Feet Road in late December and you have, by any reasonable measure, a hit on your hands &mdash; <strong>4.7 stars across 196 Google reviews in six months</strong> is what a working product looks like.<a class="cite" href="#r1" data-tip="EazyDiner photo timestamps (earliest 17 Dec 2025) place the soft launch in late Dec '25 / early Jan '26. Google: 4.7/196.">R1</a></p>
+      <p>The problem is invisible from the floor: nearly every cover that walks in via EazyDiner, Zomato District or Swiggy Dineout right now is contributing somewhere between <strong>&#8377;150 and &#8377;400</strong> &mdash; <em>versus &#8377;1,000+ on a full-price cover</em>. Full tables, empty cash register.<a class="cite" href="#r2" data-tip="Margin walk: ₹3,000 gross → ~₹2,025 paid after 40%+25% stack → restaurant nets ~₹1,820–1,940 after EazyDiner commission → COGS ~₹1,000 + labour/rent ~₹500–700 = ~₹150–400 contribution.">R2</a></p>
+      <p>This briefing tells you the situation in ten short chapters &mdash; what&rsquo;s happening, what it costs to do nothing, who else has gotten out of this trap, and exactly what to do in the next 30 days, 90 days, and 18 months. <strong>You can read it in fourteen minutes.</strong></p>
+
+      <div class="signoff">
+        <span>&mdash;&nbsp; Begin with Chapter 02 &rarr;</span>
+        <span>10 chapters &middot; 14 min</span>
+      </div>
+    </section>
+
+    <!-- 02 TODAY -->
+    <section id="today">
+      <div class="ch"><span class="n">CH. 02</span><span class="k">Public footprint audit</span></div>
+      <h2>Three things the internet says about your bar &mdash; <em>and one it doesn&rsquo;t.</em></h2>
+      <p>Before we get to strategy, here is the picture a Bengaluru regular sees when they look up Ration Room across the platforms. It is a useful mirror.</p>
+
+      <table class="audit">
+        <thead>
+          <tr><th>Platform</th><th>Signal</th><th>Cuisine listed</th><th>Live deal</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="platform">Google</td>
+            <td>4.7&#9733; &middot; 196 reviews</td>
+            <td>North Indian</td>
+            <td class="deal none">&mdash;</td>
+          </tr>
+          <tr>
+            <td class="platform">Zomato</td>
+            <td>&ldquo;New &middot; Newly Opened&rdquo;</td>
+            <td>Continental, Italian</td>
+            <td class="deal">Flat 10% Off</td>
+          </tr>
+          <tr>
+            <td class="platform">EazyDiner</td>
+            <td>4.2&#9733; cross-list &middot; 51 photos<br/><span class="mono" style="font-size:11px;color:var(--ink-mute)">637 photos uploaded</span></td>
+            <td>Multicuisine</td>
+            <td class="deal">40% Off + 25% PayEazy</td>
+          </tr>
+          <tr>
+            <td class="platform">Swiggy Dineout</td>
+            <td>Surfaces Google 4.7&#9733;</td>
+            <td>North Indian</td>
+            <td class="deal">Deal active</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="facts">
+        <div>
+          <div class="tag">FACT 01</div>
+          <h4>Walk-ins love you.</h4>
+          <p>4.7/196 on Google in six months is, plainly, a strong product. Whatever you&rsquo;re doing on the floor &mdash; the rooftop, the service, the bar &mdash; works.<a class="cite" href="#r1" data-tip="4.7★ on 196 Google reviews, surfaced via Swiggy header.">R1</a></p>
+        </div>
+        <div>
+          <div class="tag">FACT 02</div>
+          <h4>Your story is fragmented.</h4>
+          <p>Zomato says you&rsquo;re Continental/Italian. Swiggy and Google say North Indian. EazyDiner says &ldquo;Multicuisine&rdquo;. For a craft bar that dilutes pricing power and confuses discovery.</p>
+        </div>
+        <div>
+          <div class="tag">FACT 03</div>
+          <h4>No press, anywhere.</h4>
+          <p>No LBB, Whatshot, Cond&eacute; Nast, Deccan Herald, Times of India profile exists. Comparable BLR bars (Soka, Bar Sama) got editorial within weeks of opening.<a class="cite" href="#r3" data-tip="No press footprint located across LBB, Whatshot, Condé Nast Traveller, Deccan Herald, TOI, Architect & Interiors, The Drinks Business.">R3</a></p>
+        </div>
+      </div>
+
+      <p>One quiet observation worth saying out loud: the brief frames Ration Room as a <em>&ldquo;premium craft bar&rdquo;</em>, but the public signal &mdash; karaoke, DJ, dance floor, stags allowed, multi-cuisine, 12pm&ndash;1am &mdash; reads as a high-energy rooftop. <strong>This is a positioning gap, not a quality gap.</strong> Both paths are commercially viable; the rest of this briefing assumes you want the craft path (higher margin, less competition in RT Nagar), but the playbook holds either way.</p>
+    </section>
+
+    <!-- 03 TRAP -->
+    <section id="trap">
+      <div class="ch"><span class="n">CH. 03</span><span class="k">How the discount trap works</span></div>
+      <h2>Why &ldquo;40% Off + 25% Off&rdquo; is <em>structurally unprofitable</em> &mdash; on every cover.</h2>
+      <p>Indian dine-in platforms run on a stack: <strong>restaurant-funded discount</strong> on top of <strong>platform commission</strong>, with payment-gateway fees underneath. Each layer is small. Stacked, they eat the contribution margin alive.</p>
+
+      <div class="flow">
+        <div class="head">
+          <h3>Walking through one EazyDiner cover</h3>
+          <span class="source">Cost-for-two: &#8377;3,000 &middot; beverage-heavy bill</span>
+        </div>
+        <div class="bar">
+          <div class="label">Menu price <small>what the guest sees</small></div>
+          <div class="track"><div class="fill" style="width:100%;"></div></div>
+          <div class="v">&#8377;3,000</div>
+        </div>
+        <div class="bar">
+          <div class="label">After 40% off <small>restaurant-funded</small></div>
+          <div class="track"><div class="fill acc" style="width:60%;"></div></div>
+          <div class="v">&#8377;1,800</div>
+        </div>
+        <div class="bar">
+          <div class="label">+ 25% PayEazy <small>bank-funded; guest pays</small></div>
+          <div class="track"><div class="fill acc" style="width:67%;"></div></div>
+          <div class="v">&#8377;2,025</div>
+        </div>
+        <div class="bar">
+          <div class="label">Net to bar <small>after ~5&ndash;10% platform commission</small></div>
+          <div class="track"><div class="fill" style="width:62%;"></div></div>
+          <div class="v">&#8377;1,820&ndash;1,940</div>
+        </div>
+        <div class="bar">
+          <div class="label">&minus; COGS <small>~33% blended (food+alcohol)</small></div>
+          <div class="track"><div class="fill bad" style="width:33%;"></div></div>
+          <div class="v">&minus;&#8377;1,000</div>
+        </div>
+        <div class="bar">
+          <div class="label">&minus; Labour + rent <small>per-cover allocation</small></div>
+          <div class="track"><div class="fill bad" style="width:20%;"></div></div>
+          <div class="v">&minus;&#8377;500&ndash;700</div>
+        </div>
+        <div class="bar total">
+          <div class="label">Contribution per cover</div>
+          <div class="track"><div class="fill good" style="width:9%;"></div></div>
+          <div class="v">&#8377;150&ndash;400</div>
+        </div>
+      </div>
+
+      <div class="vs">
+        <div>
+          <div class="tag">Platform cover</div>
+          <div class="big bad">&#8377;150&ndash;400</div>
+          <div class="cap">Contribution after discount + commission. Customer is now trained to return only with a coupon.</div>
+        </div>
+        <div>
+          <div class="tag">Full-price cover</div>
+          <div class="big good">&#8377;1,000+</div>
+          <div class="cap">Same guest, same drinks, same service. The discount, not the bar, is the problem.</div>
+        </div>
+      </div>
+
+      <h3>And the platforms know they have you.</h3>
+      <p>Zomato and Swiggy rank restaurants by ratings, booking velocity, deal participation and paid promotion. Skip the deal, drop down the page. The Competition Commission of India&rsquo;s 2022 order against Zomato &amp; Swiggy (Case 16/2021) records this in writing.<a class="cite" href="#r4" data-tip="CCI Case No. 16 of 2021, NRAI v. Zomato & Swiggy, 2022 order. Documents Swiggy email threatening ranking demotion and Zomato discount-parity clause.">R4</a></p>
+      <blockquote>
+        <p>&ldquo;What was supposed to be khaas (special) became an aam (commonplace) thing. That is where our problem began &mdash; customers who were not even my regular clients came with a Gold subscription, and I was compelled to give something free on something.&rdquo;</p>
+        <cite><b>Anurag Katriar</b>, then-NRAI President, on the moment dine-in discounting broke restaurant economics in India &middot; <em>Quartz, 2019</em><a class="cite" href="#r5" data-tip="Quartz, August 2019, on the #Logout movement against Zomato Gold. 2,500+ restaurants delisted from Zomato Gold in August 2019.">R5</a></cite>
+      </blockquote>
+      <p>EateryClub&rsquo;s 2024 modelling makes the math simple: <strong>the break-even threshold for a 50%-off or BOGO promotion is roughly 50% margin</strong>. Below that, every promo cover loses money.<a class="cite" href="#r6" data-tip="EateryClub, 2024, restaurant discount modelling. ~50% margin is the break-even threshold for a 50%-off promotion.">R6</a> Bar beverage margins are healthy (60&ndash;80%), but blended food margins (25&ndash;35%) and stacked commission pull the average below the line.</p>
+    </section>
+
+    <!-- 04 COST OF INACTION -->
+    <section id="cost">
+      <div class="ch"><span class="n">CH. 04</span><span class="k">The price of doing nothing</span></div>
+      <h2>What happens if we keep <em>exactly</em> what we&rsquo;re doing.</h2>
+      <p>This is the most important page of the briefing. Inaction is not neutral &mdash; it is the most expensive decision available, and the only one that compounds month over month.</p>
+
+      <div class="clock">
+        <div class="clock-row">
+          <div class="t">Month 1&ndash;3</div>
+          <div>
+            <h4>Weekend covers stay 60% platform-discounted.</h4>
+            <p>At current bill mix, that&rsquo;s an estimated <strong>&#8377;3&ndash;5 lakh / month of contribution margin</strong> left on the table &mdash; money the bar earned but did not capture.</p>
+          </div>
+        </div>
+        <div class="clock-row">
+          <div class="t">Month 3&ndash;6</div>
+          <div>
+            <h4>Customers get &ldquo;trained.&rdquo;</h4>
+            <p>The cohort acquired in months 1&ndash;6 returns expecting a coupon. Pulling the deal later becomes much harder &mdash; the move you can make in month 1 quietly becomes a churn event in month 7.</p>
+          </div>
+        </div>
+        <div class="clock-row">
+          <div class="t">Month 6&ndash;9</div>
+          <div>
+            <h4>Cuisine fragmentation hardens.</h4>
+            <p>Continental/Italian on Zomato, North Indian on Swiggy, Multicuisine on EazyDiner &mdash; every new review reinforces a different identity. The longer this runs, the more painful the rewrite.</p>
+          </div>
+        </div>
+        <div class="clock-row">
+          <div class="t">Month 9&ndash;12</div>
+          <div>
+            <h4>A new rooftop opens within 1km.</h4>
+            <p>Soka&rsquo;s co-founder Avinash Kapoli said it on the record: &ldquo;Everyone wants to open a cocktail bar now.&rdquo;<a class="cite" href="#r7" data-tip="The Drinks Business, August 2025, profile of Soka and Bengaluru's craft-cocktail wave.">R7</a> When the competitor lands, your only differentiator is price &mdash; because you never built one that wasn&rsquo;t.</p>
+          </div>
+        </div>
+        <div class="clock-row">
+          <div class="t">Month 12+</div>
+          <div>
+            <h4>Press window closes.</h4>
+            <p>Editorial outlets cover &ldquo;new bars,&rdquo; not 18-month-old ones. Soka, Spirit Forward, ZLB23 and Bar Sama all secured their profiles within weeks of opening. After year one, the only outlets that still write about you are the ones running pay-per-feature.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="lbl">Rough math</span>
+        <span>If 60% of Fri/Sat covers come through deal platforms, and you lose ~&#8377;600&ndash;800 of contribution per cover vs. full-price, a 100-cover weekend night costs roughly <strong>&#8377;36k&ndash;48k of forgone margin every weekend</strong>. Over six months, that&rsquo;s a mid-six-figure number you are paying to be visible on apps you don&rsquo;t own.</span>
+      </div>
+    </section>
+
+    <!-- 05 PROOF -->
+    <section id="proof">
+      <div class="ch"><span class="n">CH. 05</span><span class="k">Proof it&rsquo;s solvable</span></div>
+      <h2>Bars that escaped the trap &mdash; <em>in your city, your country, and globally.</em></h2>
+      <p>This is not a theoretical problem. It is a problem that other operators have already solved, in markets at every scale. Three categories of proof:</p>
+
+      <h3>In Bengaluru &middot; The craft wave doesn&rsquo;t discount.</h3>
+      <div class="proofs">
+        <div class="proof">
+          <div class="where">Indiranagar &middot; BLR</div>
+          <div class="name">Soka</div>
+          <div class="num">530 sq m &middot; 38 covers &middot; 15 cocktails &middot; <b>Asia&rsquo;s 50 Best 2024/25</b></div>
+          <p>Sub-&#8377;1,000 cocktails to stay accessible, no aggregator deals, intimate format. Built reputation through editorial &amp; one-off collaborations (Indu Anthony / &ldquo;Vasane&rdquo;).<a class="cite" href="#r7" data-tip="The Drinks Business, August 2025. Soka co-founder Avinash Kapoli: 'The success has shocked the city.'">R7</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">Leela Palace &middot; BLR</div>
+          <div class="name">ZLB23</div>
+          <div class="num"><b>55 guest-bartender shifts</b> in two years &middot; Coa, Paradiso, Argo, Himkok, Cosmo Pony</div>
+          <p>Programmed guest shifts as the press &amp; community engine, not coupons. F&amp;B Director Naval Kukreti made guest-shift cadence the published strategy.<a class="cite" href="#r7" data-tip="The Drinks Business, August 2025. ZLB23: 55 guest shifts in two years.">R7</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">Lavelle Road &middot; BLR</div>
+          <div class="name">Bar Spirit Forward</div>
+          <div class="num">Omakase cocktail format &middot; no platform deals</div>
+          <p>Tighter menu, narrative-led service, accessible pricing. Editorial pickup within weeks of opening &mdash; the exact gap Ration Room has today.</p>
+        </div>
+        <div class="proof">
+          <div class="where">Ulsoor &middot; BLR</div>
+          <div class="name">Bar Sama</div>
+          <div class="num">New-opening editorial across LBB, YourStory &amp; Whatshot</div>
+          <p>Used opening-window press as the primary acquisition channel. No aggregator deal stack. Demonstrates the press route is open for newcomers <em>this year</em>.</p>
+        </div>
+      </div>
+
+      <h3>In India &middot; Direct channels at scale.</h3>
+      <div class="proofs">
+        <div class="proof">
+          <div class="where">Social &middot; Impresario</div>
+          <div class="name">All-day &amp; membership hybrid</div>
+          <div class="num"><b>57 outlets</b> &middot; ~&#8377;800 cr revenue FY25 &middot; 20&ndash;21% store EBITDA</div>
+          <p>SOCIAL Works co-working membership at <strong>&#8377;3,000&ndash;4,500/mo</strong> with F&amp;B credits; layered day-part revenue (morning eggs &rarr; lunch &rarr; 7pm cocktails &rarr; 10pm cover charge).<a class="cite" href="#r8" data-tip="BBFT, August 2025 + Business Standard, April 2024 citing Tofler. Impresario FY23 ₹573.66cr → FY25 ~₹800cr, 57 Social outlets.">R8</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">Hunger Inc.</div>
+          <div class="name">Bombay Canteen / O Pedro</div>
+          <div class="num">No aggregator dine-in deals &middot; 5th-edition cocktail book (2025)</div>
+          <p>Bookings flow through brand&rsquo;s own site + WhatsApp. Annual cycle of menu launches, Canteen Class series, collaborations &mdash; loyalty is editorial, not coupon-led.<a class="cite" href="#r9" data-tip="Hunger Inc. own channels. Bombay Canteen 'Make Mine A Bombay', 5th edition, 2025.">R9</a></p>
+        </div>
+      </div>
+
+      <h3>Globally &middot; Subscription &amp; wallet loyalty.</h3>
+      <div class="proofs">
+        <div class="proof">
+          <div class="where">USA &middot; Panera Bread</div>
+          <div class="name">MyPanera+ Coffee</div>
+          <div class="num">US$8.99/mo &middot; <b>~500,000 paid subs</b> &middot; 8&times; visit frequency</div>
+          <p>Subscription as a brand-loyalty &amp; cash-flow tool, not a margin tool. Frequency lift, not margin lift, is the prize.<a class="cite" href="#r10" data-tip="Craver / Square / Panera press, 2020+. MyPanera+ Coffee, ~500k subs, 8× visit frequency.">R10</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">SF &middot; El Lopo</div>
+          <div class="name">Take-Care-of-Me Club</div>
+          <div class="num">Monthly fee &middot; kitchen builds bespoke meal each visit</div>
+          <p>Independent wine bar via Table 22. Proof that a small operator (not a chain) can run a subscription &mdash; <strong>this is the closest model to Ration Room</strong>.<a class="cite" href="#r11" data-tip="OpenTable / Table 22 case studies. El Lopo Take-Care-of-Me Club, launched 2021.">R11</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">UK pubs</div>
+          <div class="name">WhatsApp + Wallet loyalty</div>
+          <div class="num">CAC: <b>&pound;250&ndash;375 &rarr; &pound;75&ndash;100</b> per regular</div>
+          <p>Perkstar &amp; SmartPubTools document Apple/Google Wallet sign-ups via QR (10 sec, no app) with 70&ndash;80% push open rates; WhatsApp broadcast is the highest-converting VIP channel.<a class="cite" href="#r12" data-tip="Perkstar + SmartPubTools UK pub case studies. CAC reduction from £250–375 to £75–100 per regular.">R12</a></p>
+        </div>
+        <div class="proof">
+          <div class="where">USA &middot; PYMNTS &lsquo;23</div>
+          <div class="name">The aggregator illusion</div>
+          <div class="num"><b>58%</b> of users already know which restaurant before opening the app</div>
+          <p>Aggregators are functioning as a routing layer to brands customers already know &mdash; not as discovery. Owning the relationship is the leverage.<a class="cite" href="#r13" data-tip="PYMNTS, May 2023, 'Connected Dining' study, ~2,300 US consumers surveyed Mar 2023.">R13</a></p>
+        </div>
+      </div>
+
+      <blockquote>
+        <p>&ldquo;Don&rsquo;t look for high margins on subscriptions. Your customers will recommend your brand via these subscriptions&hellip; It&rsquo;s a complete win for the brand.&rdquo;</p>
+        <cite><b>Lisa Carter-Knight</b>, Drinkwater Marketing &middot; on what bar subscriptions actually do</cite>
+      </blockquote>
+    </section>
+
+    <!-- 06 NEXT 30 DAYS -->
+    <section id="now">
+      <div class="ch"><span class="n">CH. 06</span><span class="k">Short term &middot; the next 30 days</span></div>
+      <h2>Five moves. <em>This month.</em></h2>
+      <p>None of these require capex. None require a new hire. Each one is a setting, a sign, or a conversation.</p>
+
+      <div class="actions">
+
+        <div class="action">
+          <div class="idx">01</div>
+          <div>
+            <h4>Cut the EazyDiner deal from 40% to 20% &mdash; Mon&ndash;Wed only.</h4>
+            <p>Keep 10% off on Thursday. <strong>No deal Friday&ndash;Saturday.</strong> The weekend cocktail crowd in BLR doesn&rsquo;t need a discount &mdash; they need a reason to choose you over Toit, Bier Library or BLR Brewing Co. On Zomato, restrict the 10% to lunch / early-dinner (12&ndash;7:30pm). On Swiggy Dineout, switch the % off to food bill only &mdash; protect the high-margin pour.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">1 hour of platform settings</span></div>
+            <div><span class="k">GAIN</span><span class="vv">~&#8377;3&ndash;5 lakh / mo margin recovery</span></div>
+            <div><span class="k">RISK</span><span class="vv">~15&ndash;20% drop in platform-booked covers in week 1&ndash;4</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">02</div>
+          <div>
+            <h4>Build the WhatsApp database before anything else.</h4>
+            <p>Put a QR code at every table and the bar pass. One tap to WhatsApp Business &mdash; capture name, phone, birthday, go-to drink. The line on the table tent reads: <em>&ldquo;Join the Pantry. Skip the platform. Free cocktail on your birthday.&rdquo;</em> WhatsApp open rates run 90%+ vs. 20&ndash;25% for email; the data is yours, not Zomato&rsquo;s.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">~&#8377;3,000 in signage</span></div>
+            <div><span class="k">GAIN</span><span class="vv">1,500 contacts in 90 days &mdash; the foundation for everything else</span></div>
+            <div><span class="k">RISK</span><span class="vv">Effectively none</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">03</div>
+          <div>
+            <h4>Launch the &#8377;999 &ldquo;Founder&rsquo;s Tab.&rdquo;</h4>
+            <p>Customer pays &#8377;999, gets &#8377;1,200 of bar credit (6-month validity) + a free welcome cocktail on first redemption. Pattern proven by Blue Tokai &amp; Third Wave in India. Materially better unit economics than a 50%-off platform deal &mdash; <strong>and it creates real cash today.</strong></p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">Marketing time only</span></div>
+            <div><span class="k">GAIN</span><span class="vv">~&#8377;2 lakh upfront + 200 locked return visits</span></div>
+            <div><span class="k">TARGET</span><span class="vv">200 cards sold in 30 days</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">04</div>
+          <div>
+            <h4>Pitch one piece of press. This week.</h4>
+            <p>Six months in with 4.7/196 and zero editorial is an immediately fixable gap. Three targets: <strong>LBB Bangalore, Whatshot, YourStory&rsquo;s ys-life desk</strong> (who covered Soka, Spirit Forward, ZLB23, Bar Sama). Lead with a story angle, not a discount &mdash; e.g. &ldquo;Why a craft bar opened on the 5th floor of RT Nagar (and not Indiranagar).&rdquo;</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">Nil</span></div>
+            <div><span class="k">GAIN</span><span class="vv">First editorial footprint &middot; permanent SEO &middot; back-link asset</span></div>
+            <div><span class="k">RISK</span><span class="vv">Press window closes after year one</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">05</div>
+          <div>
+            <h4>Resolve the cuisine identity across listings.</h4>
+            <p>Pick one descriptor &mdash; <em>&ldquo;Continental small plates&rdquo;</em> is the defensible match for a craft bar. Update Zomato, Swiggy Dineout, EazyDiner and Google Business in the same week. This is free, takes one day, and is the single highest-leverage SEO fix on the page.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">~1 working day</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Brand clarity + consolidated discovery</span></div>
+            <div><span class="k">RISK</span><span class="vv">None &mdash; reversible</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 07 NEXT 90 DAYS -->
+    <section id="quarter">
+      <div class="ch"><span class="n">CH. 07</span><span class="k">Short term &middot; the next 90 days</span></div>
+      <h2>Programme your slowest night. <em>Own your booking layer.</em></h2>
+      <p>By day 60, the deal architecture is fixed and the WhatsApp list is real. Now invest in the things that turn a bar into a place.</p>
+
+      <div class="actions">
+
+        <div class="action">
+          <div class="idx">06</div>
+          <div>
+            <h4>One weekly anchor night you own.</h4>
+            <p>Tuesday or Wednesday. <strong>&ldquo;Pantry Tuesdays &mdash; Bartender&rsquo;s Choice&rdquo;</strong> at &#8377;449 for a three-cocktail flight. Or a vinyl listening night. Or a Karnataka spirits-led menu (Mossant, Bombay Duck Brewing, umamibrew). Lowest-cost lever to fill the slowest day, highest-impact for Instagram content that justifies &ldquo;craft.&rdquo;</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">Bartender time + ~&#8377;5k weekly content spend</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Slow night utilization + content engine</span></div>
+            <div><span class="k">PROOF</span><span class="vv">Soka, ZLB23 cadence model</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">07</div>
+          <div>
+            <h4>Programme the first guest-bartender shift.</h4>
+            <p>Q3 2026. Invite one mid-tier name from Soka, ZLB23 or a Singapore/Bangkok bar &mdash; ZLB23 ran 55 such shifts in two years.<a class="cite" href="#r7" data-tip="The Drinks Business, August 2025, ZLB23 guest-shift programming.">R7</a> Each shift = a press hook + a member-only preview + an Instagram event in one. Members get early-access tickets; everyone else pays.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">Flights + spirits + ~&#8377;30&ndash;50k all-in</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Editorial pickup + member acquisition + brand premium</span></div>
+            <div><span class="k">CADENCE</span><span class="vv">Quarterly</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">08</div>
+          <div>
+            <h4>Move the booking layer to channels you own.</h4>
+            <p>WhatsApp shortcode (&ldquo;BOOK&rdquo; to a number), Google Reserve on the Business listing, a Restroworks/Tabology booking page on the Instagram bio. <strong>Keep EazyDiner / Dineout as marginal demand only.</strong> Add a &#8377;500 hold for parties of 6+ on Fri/Sat &mdash; UK no-shows hit 12% of bookings; India is worse on unsecured weekend bookings.<a class="cite" href="#r14" data-tip="Zonal + CGA by NIQ #ShowUpForHospitality. UK 12% no-shows = £17.59bn lost sales annually.">R14</a></p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">~&#8377;2&ndash;3k/mo per booking tool</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Direct CRM data + no-show defense</span></div>
+            <div><span class="k">RISK</span><span class="vv">Operational onboarding for floor team</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">09</div>
+          <div>
+            <h4>Decide the cuisine identity. For real this time.</h4>
+            <p>Two viable lanes: <em>(a) tight craft-cocktail bar with Continental small plates</em> &mdash; Soka / Spirit Forward adjacency, higher margin, less competition in RT Nagar; or <em>(b) premium high-energy rooftop</em> &mdash; Social / Toit adjacency, accept the karaoke/DJ identity. The ambiguity today dilutes pricing power. <strong>Pick (a) unless the floor data tells you otherwise.</strong></p>
+          </div>
+          <div class="cb">
+            <div><span class="k">COST</span><span class="vv">Menu rewrite + listings sweep</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Pricing power + defensible positioning</span></div>
+            <div><span class="k">RISK</span><span class="vv">Short-term churn of the wrong-fit cohort</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 08 LONG TERM -->
+    <section id="year">
+      <div class="ch"><span class="n">CH. 08</span><span class="k">Long term &middot; 6&ndash;18 months</span></div>
+      <h2>Become a destination. <em>Not a deal.</em></h2>
+      <p>Once the deal architecture is reset and you own the database, the long-term plays are about turning loyalty into a product and platforms into a top-of-funnel ad buy.</p>
+
+      <h3>The Pantry Club &mdash; an annual membership.</h3>
+      <p>Two tiers. Discrimination tool for the platform problem &mdash; members get a tangible benefit that aggregator deal-seekers do not, restoring &ldquo;khaas&rdquo; vs. &ldquo;aam.&rdquo; Benchmark from El Lopo, P.F. Chang&rsquo;s, Panera. <strong>At 300 members in year one, that&rsquo;s &#8377;7.5&ndash;15 lakh of upfront cash with high contribution margin.</strong></p>
+
+      <div class="tiers">
+        <div class="tier">
+          <div class="tag">TIER 01 &middot; THE PANTRY</div>
+          <div class="price">&#8377;2,499<small> / year</small></div>
+          <div class="name">For the regular.</div>
+          <ul>
+            <li>One complimentary welcome cocktail per visit</li>
+            <li>Birthday-month free starter</li>
+            <li>Priority Friday/Saturday reservation window</li>
+            <li>Early access to events &amp; menu launches</li>
+          </ul>
+        </div>
+        <div class="tier gold">
+          <div class="tag">TIER 02 &middot; THE PROVISIONS</div>
+          <div class="price">&#8377;4,999<small> / year</small></div>
+          <div class="name">For the believer.</div>
+          <ul>
+            <li>Everything in Tier 01</li>
+            <li>One ticketed event per quarter (guest shift, themed tasting)</li>
+            <li>10% off F&amp;B credit topped up via app</li>
+            <li>Plus-one for the quarterly Pantry Dinner</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="lbl">Why this works</span>
+        <span>Perkstar&rsquo;s UK numbers translate: 30 monthly Pantry sign-ups at average annual value produces <strong>~&#8377;1.25 lakh/mo of forward revenue per cohort</strong>. The membership is a cash-flow tool, not a margin tool &mdash; the win is frequency + advocacy, exactly as Lisa Carter-Knight argues.</span>
+      </div>
+
+      <div class="actions">
+
+        <div class="action">
+          <div class="idx">10</div>
+          <div>
+            <h4>Programme a 12-month editorial calendar.</h4>
+            <p>Quarterly cocktail-menu launches with a theme &mdash; the Bombay Canteen model. One guest shift per quarter (ZLB23 cadence). Each launch is a press hook + a member-only preview. Calendar lives on the WhatsApp broadcast and the Instagram bio.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">CADENCE</span><span class="vv">4 launches + 4 guest shifts / year</span></div>
+            <div><span class="k">PROOF</span><span class="vv">Hunger Inc. &middot; ZLB23 &middot; Soka</span></div>
+            <div><span class="k">OWNER</span><span class="vv">Head bartender + brand lead</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">11</div>
+          <div>
+            <h4>Rotate platform spend from deals to ads.</h4>
+            <p>By month 9, the EazyDiner deal should be &le;10% Mon&ndash;Wed only, with the saved discount budget redeployed to <strong>Zomato Ads geo-fenced to RT Nagar, Hebbal, Sahakar Nagar, Sanjay Nagar, Yelahanka, Hennur</strong> &mdash; a realistic 5&ndash;7km catchment. Ad spend buys visibility without training the discount habit. UrbanPiper &amp; Spice Advisors document 15&ndash;30% ranking lifts on this rotation.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">SHIFT</span><span class="vv">Discount budget &rarr; ad budget</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Visibility without coupon training</span></div>
+            <div><span class="k">PROOF</span><span class="vv">UrbanPiper, Spice Advisors</span></div>
+          </div>
+        </div>
+
+        <div class="action">
+          <div class="idx">12</div>
+          <div>
+            <h4>Build the community rituals.</h4>
+            <p>Three small, recurring formats: <strong>monthly</strong> cocktail-making class for 8 members at &#8377;1,500/head; <strong>quarterly</strong> 10-course Pantry Dinner at &#8377;3,500/head (20 seats); <strong>annual</strong> collaboration with a Bangalore producer (Mossant, Bombay Duck, umamibrew). This is the Canteen Class + Soka &times; Indu Anthony model.</p>
+          </div>
+          <div class="cb">
+            <div><span class="k">REVENUE</span><span class="vv">Self-funding from member tickets</span></div>
+            <div><span class="k">GAIN</span><span class="vv">Highest-LTV cohort retention</span></div>
+            <div><span class="k">PROOF</span><span class="vv">Canteen Class &middot; Soka &lsquo;Vasane&rsquo;</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 09 TRIGGERS -->
+    <section id="triggers">
+      <div class="ch"><span class="n">CH. 09</span><span class="k">What changes the plan</span></div>
+      <h2>Four triggers to <em>re-think, not re-run.</em></h2>
+      <p>This plan assumes things go roughly as expected. They won&rsquo;t. Here are the four signals that should change the plan, not just the pace.</p>
+
+      <div class="triggers">
+        <h4>If &hellip; Then</h4>
+        <div class="trigger">
+          <div class="ifx">IF</div>
+          <p><b>Google rating drops below 4.4 after the deal cut</b> &mdash; pause the deal reduction. Audit service consistency before continuing. The product hypothesis is what makes this plan work.</p>
+        </div>
+        <div class="trigger">
+          <div class="ifx">IF</div>
+          <p><b>Platform-booked covers fall &gt;30% in month 1</b> after the deal cut &mdash; do not replace the deal with a price cut. Replace it with a <em>value-add</em>: e.g. a complimentary welcome cocktail on 4+ covers booked via the platform. Same gross cost, very different signal.</p>
+        </div>
+        <div class="trigger">
+          <div class="ifx">IF</div>
+          <p><b>Pantry Club sells fewer than 50 memberships in the first 60 days</b> &mdash; the membership is wrongly priced or wrongly programmed. Pivot to a prepaid-credit-only model (Square / Peblla pattern). The membership concept is not the failure.</p>
+        </div>
+        <div class="trigger">
+          <div class="ifx">IF</div>
+          <p><b>A competing rooftop opens within 1 km in the next 12 months</b> (high probability per Kapoli&rsquo;s on-record comment) &mdash; accelerate the editorial / press calendar to defend the destination position before footfall fragments.</p>
+        </div>
+      </div>
+
+      <h3>Honest caveats</h3>
+      <ul class="caveats">
+        <li><strong>The &ldquo;premium craft&rdquo; positioning is unverified.</strong> No press, no founder interview, no LinkedIn footprint exists publicly. The public signal (karaoke, DJ, dance floor, multi-cuisine, 1am close) reads as a high-energy rooftop. This briefing recommends the craft direction because it commands higher margin &mdash; but both paths are commercially viable.</li>
+        <li><strong>Platform commissions vary by individual contract.</strong> The 15&ndash;30% range is what NRAI &amp; trade reporting publish; the real number on your contract may differ. Verify your specific terms before finalising per-cover math.</li>
+        <li><strong>Indian bar memberships are nascent.</strong> Social Offline is the closest documented hybrid, but it couples co-working with bar. Pure premium-bar memberships in India remain unproven at scale &mdash; expect a 60&ndash;90 day test-and-iterate period before scaling Pantry Club marketing.</li>
+        <li><strong>Don&rsquo;t fully delist.</strong> The 2019&ndash;23 #Logout campaigns were driven by multi-outlet established brands. A six-month-old bar still needs the discovery funnel. The recommendation is <em>reduction and re-architecture</em>, not exit.</li>
+        <li><strong>The 4.7/196 review velocity may include early promo-driven reviews.</strong> A separate sentiment audit of the verbatims is recommended before committing fully to the &ldquo;craft&rdquo; bet.</li>
+      </ul>
+    </section>
+
+    <!-- 10 REFERENCES -->
+    <section id="refs">
+      <div class="ch"><span class="n">CH. 10</span><span class="k">Sources cited in this briefing</span></div>
+      <h2>Where the numbers came from.</h2>
+      <p>Every figure in this briefing is traceable. Click the <span class="cite" style="cursor:default">R#</span> chips in the body, or scan the list below.</p>
+
+      <div class="refs">
+        <div id="r1"><span class="k">R1</span><span><b>EazyDiner &amp; Google.</b> Photo timestamps (earliest 17 Dec 2025) place soft-launch in late Dec &lsquo;25 / early Jan &lsquo;26. Google 4.7&#9733; / 196 reviews surfaced via Swiggy header.</span></div>
+        <div id="r2"><span class="k">R2</span><span><b>Margin walk &mdash; computed.</b> &#8377;3,000 gross &rarr; ~&#8377;2,025 paid after 40%+25% stack &rarr; bar nets ~&#8377;1,820&ndash;1,940 after EazyDiner commission &rarr; less COGS ~&#8377;1,000 + labour/rent ~&#8377;500&ndash;700 = ~&#8377;150&ndash;400 net contribution.</span></div>
+        <div id="r3"><span class="k">R3</span><span><b>Press audit.</b> No coverage located across LBB, Whatshot, Cond&eacute; Nast Traveller, Deccan Herald, TOI, Architect &amp; Interiors, The Drinks Business.</span></div>
+        <div id="r4"><span class="k">R4</span><span><b>CCI Case No. 16/2021,</b> NRAI v. Zomato &amp; Swiggy (2022 order). Records Swiggy email threatening ranking demotion + Zomato discount-parity clause.</span></div>
+        <div id="r5"><span class="k">R5</span><span><b>Quartz,</b> Aug 2019. Anurag Katriar interview on #Logout. 2,500+ restaurants delisted from Zomato Gold.</span></div>
+        <div id="r6"><span class="k">R6</span><span><b>EateryClub, 2024.</b> Restaurant discount modelling. ~50% margin threshold for a 50%-off promotion to break even.</span></div>
+        <div id="r7"><span class="k">R7</span><span><b>The Drinks Business,</b> Aug 2025. Soka / ZLB23 / Spirit Forward profiles. ZLB23 = 55 guest shifts in 2 yrs.</span></div>
+        <div id="r8"><span class="k">R8</span><span><b>BBFT, Aug 2025 + Business Standard, Apr 2024</b> citing Tofler. Impresario FY23 &#8377;573.66cr &rarr; FY25 ~&#8377;800cr, 57 Social outlets, 20&ndash;21% store EBITDA.</span></div>
+        <div id="r9"><span class="k">R9</span><span><b>Hunger Inc. own channels.</b> &lsquo;Make Mine A Bombay&rsquo; cocktail book, 5th edition (2025). Canteen Class series.</span></div>
+        <div id="r10"><span class="k">R10</span><span><b>Craver, Square &amp; Panera press,</b> 2020+. MyPanera+ Coffee &mdash; ~500k subs, 8&times; visit frequency.</span></div>
+        <div id="r11"><span class="k">R11</span><span><b>OpenTable / Table 22</b> case studies. El Lopo Take-Care-of-Me Club, launched 2021. The Four Horsemen, Salt Collective.</span></div>
+        <div id="r12"><span class="k">R12</span><span><b>Perkstar + SmartPubTools.</b> UK pub case studies. CAC reduction &pound;250&ndash;375 &rarr; &pound;75&ndash;100. 70&ndash;80% Wallet push open rates.</span></div>
+        <div id="r13"><span class="k">R13</span><span><b>PYMNTS, May 2023.</b> &lsquo;Connected Dining&rsquo;, ~2,300 US consumers surveyed Mar 2023. 58% know restaurant before opening aggregator.</span></div>
+        <div id="r14"><span class="k">R14</span><span><b>Zonal + CGA by NIQ.</b> #ShowUpForHospitality. UK 12% no-shows = &pound;17.59bn in lost sales annually.</span></div>
+      </div>
+
+      <div class="signoff" style="margin-top:48px;">
+        <span>End of briefing</span>
+        <span>Ration Room / RT Nagar / 2026</span>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="rail-right">
+    <div class="block">
+      <div class="label">Briefing at a glance</div>
+      <b>Breaking the discount trap</b>
+    </div>
+    <div class="block">
+      <div class="label">Headline figures</div>
+      <div class="stat"><span>Google rating</span><span>4.7&#9733;</span></div>
+      <div class="stat"><span>Reviews</span><span>196</span></div>
+      <div class="stat"><span>EazyDiner deal</span><span>40+25%</span></div>
+      <div class="stat"><span>Net / cover now</span><span>&#8377;150&ndash;400</span></div>
+      <div class="stat"><span>Net / cover full</span><span>&#8377;1,000+</span></div>
+    </div>
+    <div class="block">
+      <div class="label">90-day targets</div>
+      <div class="stat"><span>WhatsApp opt-ins</span><span>1,500</span></div>
+      <div class="stat"><span>Founder&rsquo;s Tabs</span><span>200</span></div>
+      <div class="stat"><span>Press placements</span><span>1&ndash;2</span></div>
+      <div class="stat"><span>Anchor nights</span><span>weekly</span></div>
+    </div>
+    <div class="block">
+      <div class="label">Year-one target</div>
+      <div class="stat"><span>Pantry members</span><span>300</span></div>
+      <div class="stat"><span>Guest shifts</span><span>4</span></div>
+      <div class="stat"><span>Menu launches</span><span>4</span></div>
+    </div>
+    <div class="block">
+      <div class="label">Models followed</div>
+      <div style="font-size:12px;color:var(--ink);line-height:1.7">Soka &middot; ZLB23 &middot; Spirit Forward<br/>Bombay Canteen &middot; Social<br/>El Lopo &middot; Panera &middot; UK pubs</div>
+    </div>
+  </aside>
+
+</div>
+
+<div id="tipPop" class="tip-pop" style="display:none;"></div>
+
+<script>
+  // Reading progress
+  const bar = document.getElementById('progressBar');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Active chapter highlight via IntersectionObserver
+  const tocLinks = Array.from(document.querySelectorAll('.rail-left a'));
+  const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const id = e.target.id;
+      const link = tocLinks.find(a => a.getAttribute('href') === '#' + id);
+      if (!link) return;
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => s && obs.observe(s));
+
+  // Citation tooltips
+  const tip = document.getElementById('tipPop');
+  document.querySelectorAll('.cite[data-tip]').forEach(el => {
+    el.addEventListener('mouseenter', (e) => {
+      tip.innerHTML = el.getAttribute('data-tip');
+      tip.style.display = 'block';
+    });
+    el.addEventListener('mousemove', (e) => {
+      const padding = 14;
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      let x = e.clientX + padding;
+      let y = e.clientY + padding;
+      if (x + tw > window.innerWidth - 12) x = e.clientX - tw - padding;
+      if (y + th > window.innerHeight - 12) y = e.clientY - th - padding;
+      tip.style.left = x + 'px';
+      tip.style.top  = y + 'px';
+    });
+    el.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+  });
+
+  // Smooth scroll for TOC clicks
+  tocLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 24, behavior: 'smooth' });
+        history.replaceState(null, '', href);
+      }
+    });
+  });
+</script>
+</body>
+</html>

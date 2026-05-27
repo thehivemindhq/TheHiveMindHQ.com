@@ -263,7 +263,7 @@ function CreateProfileScreen({ onDone }) {
   return (
     <div style={{ width: "100%", height: "100%", background: "#f5f1ea",
                   display: "flex", flexDirection: "column",
-                  padding: "56px 24px 40px", overflow: "auto" }}>
+                  padding: "28px 24px 32px", overflow: "auto" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
                       letterSpacing: "0.22em", color: "#79736a", textTransform: "uppercase" }}>
@@ -437,7 +437,7 @@ function LoginScreen({ profile, onUnlock, onForget }) {
   return (
     <div style={{ width: "100%", height: "100%", background: "#f5f1ea",
                   display: "flex", flexDirection: "column",
-                  padding: "56px 24px 40px" }}>
+                  padding: "28px 24px 32px" }}>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
                     letterSpacing: "0.22em", color: "#79736a", textTransform: "uppercase" }}>
         Welcome back
@@ -486,7 +486,7 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
                   display: "flex", flexDirection: "column" }}>
       {/* top bar */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
-                    padding: "50px 20px 6px", gap: 12 }}>
+                    padding: "22px 20px 6px", gap: 12 }}>
         <button onClick={onBack} aria-label="Back" style={{
           width: 36, height: 36, borderRadius: 18,
           background: "rgba(26,24,21,0.06)", border: "none", cursor: "pointer",

@@ -118,7 +118,7 @@ const Pulse = ({ size = 14, color = tk.accent }) => (
 const TopBar = ({ title, onBack, right }) => (
   <div style={{
     display: "flex", alignItems: "center", justifyContent: "space-between",
-    padding: "50px 20px 6px", gap: 12,
+    padding: "22px 20px 6px", gap: 12,
   }}>
     <button onClick={onBack} aria-label="Back" style={{
       width: 36, height: 36, borderRadius: 18,
@@ -138,7 +138,7 @@ const TopBar = ({ title, onBack, right }) => (
 
 // ─── Screen: Splash / Home ────────────────────────────────────────
 const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfile }) => (
-  <div style={{ ...styles.page, padding: "56px 24px 44px" }}>
+  <div style={{ ...styles.page, padding: "28px 24px 32px" }}>
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
       <div style={{ ...styles.mono, fontSize: 11, letterSpacing: "0.22em", color: tk.mute, textTransform: "uppercase" }}>
         Tempo

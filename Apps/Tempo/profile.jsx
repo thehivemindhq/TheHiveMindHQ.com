@@ -559,18 +559,11 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
         {/* danger row */}
         <div style={{ marginTop: 32, padding: "14px 16px", borderRadius: 12,
                       background: "rgba(26,24,21,0.04)", border: "1px solid rgba(26,24,21,0.06)" }}>
-          <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={onLogout} style={{
-              flex: 1, background: "transparent", border: "1px solid rgba(26,24,21,0.16)",
-              borderRadius: 10, padding: "12px", fontFamily: "inherit",
-              fontSize: 13, color: "#3d3934", cursor: "pointer",
-            }}>Sign out</button>
-            <button onClick={onReset} style={{
-              flex: 1, background: "transparent", border: "1px solid rgba(211,90,58,0.4)",
-              borderRadius: 10, padding: "12px", fontFamily: "inherit",
-              fontSize: 13, color: "#7a2a14", cursor: "pointer",
-            }}>Delete profile</button>
-          </div>
+          <button onClick={onReset} style={{
+            width: "100%", background: "transparent", border: "1px solid rgba(211,90,58,0.4)",
+            borderRadius: 10, padding: "12px", fontFamily: "inherit",
+            fontSize: 13, color: "#7a2a14", cursor: "pointer",
+          }}>Delete profile</button>
           <p style={{ marginTop: 10, marginBottom: 0, fontSize: 11, color: "#79736a", lineHeight: 1.5 }}>
             Everything is stored on this device only. Deleting removes all sessions and milestones.
           </p>

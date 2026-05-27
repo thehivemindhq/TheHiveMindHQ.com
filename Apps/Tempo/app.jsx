@@ -203,15 +203,16 @@ const Tile = ({ label, sub, selected, onClick }) => (
     background: selected ? tk.ink : tk.surface,
     color: selected ? tk.bg : tk.ink,
     border: `1px solid ${selected ? tk.ink : tk.line}`,
-    borderRadius: 14, padding: "16px 14px",
+    borderRadius: 14, padding: "14px 10px",
     fontFamily: "inherit", cursor: "pointer",
     display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4,
     transition: "all 0.15s ease",
     boxShadow: selected ? "0 6px 18px rgba(26,24,21,0.12)" : "none",
   }}>
-    <span style={{ fontSize: 17, fontWeight: 600 }}>{label}</span>
-    <span style={{ ...styles.mono, fontSize: 10, letterSpacing: "0.08em",
-                   textTransform: "uppercase", opacity: 0.7 }}>{sub}</span>
+    <span style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.1,
+                   letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>{label}</span>
+    <span style={{ ...styles.mono, fontSize: 9.5, letterSpacing: "0.06em",
+                   textTransform: "uppercase", opacity: 0.7, whiteSpace: "nowrap" }}>{sub}</span>
   </button>
 );
 
@@ -409,10 +410,13 @@ const ListRow = ({ ex, idx, log, onClick }) => {
 };
 
 // ─── Screen: Exercise detail ──────────────────────────────────────
-const DetailScreen = ({ ex, path, log, profile, onBack, onComplete }) => {
+const DetailScreen = ({ ex, path, log, profile, onBack, onComplete, onUnitChange }) => {
   const [stage, setStage] = useState("ready"); // ready | logging | done
   const [weight, setWeight] = useState("");
-  const [unit, setUnit] = useState(profile?.unit || "lb");
+  // Unit lives on the profile, so the LB/KG toggle stays aligned across every
+  // exercise page and stays in sync with the profile screen.
+  const unit = profile?.unit || "lb";
+  const setUnit = (u) => onUnitChange?.(u);
   const sessions = log[ex.id] || [];
   const lastWithWeight = sessions.find(s => s.weight != null);
   const lastW = lastWithWeight?.weight;
@@ -610,6 +614,15 @@ const LogWeightInline = ({ lastW, lastUnit, unit, setUnit, weight, setWeight, on
   const otherVal = showConv
     ? (unit === "lb" ? (numeric / LB_PER_KG) : (numeric * LB_PER_KG))
     : null;
+  // Toggle logic: whatever unit is highlighted IS the unit we save in.
+  // Convert last session's value into the active unit so the placeholder and
+  // the LAST shortcut stay consistent with the toggle.
+  const lastInActive = (lastW != null && lastUnit)
+    ? (lastUnit === unit
+        ? lastW
+        : (unit === "lb" ? toLb(lastW, lastUnit) : toKg(lastW, lastUnit)))
+    : null;
+  const lastDisplay = lastInActive != null ? fmtNum(lastInActive) : null;
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
@@ -627,7 +640,7 @@ const LogWeightInline = ({ lastW, lastUnit, unit, setUnit, weight, setWeight, on
         }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
             <input ref={inputRef} type="number" inputMode="decimal"
-              placeholder={lastW != null ? String(lastW) : "0"}
+              placeholder={lastDisplay != null ? lastDisplay : "0"}
               value={weight} onChange={e => setWeight(e.target.value)}
               style={{
                 flex: 1, border: "none", outline: "none", background: "transparent",
@@ -640,16 +653,16 @@ const LogWeightInline = ({ lastW, lastUnit, unit, setUnit, weight, setWeight, on
             {showConv ? `≈ ${fmtNum(otherVal)} ${other}` : `also shown in ${other}`}
           </div>
         </div>
-        {lastW != null && (
-          <button onClick={() => setWeight(String(lastW))} style={{
+        {lastDisplay != null && (
+          <button onClick={() => setWeight(lastDisplay)} style={{
             background: tk.surface, border: `1px solid ${tk.lineSolid}`,
             borderRadius: 12, padding: "0 12px", color: tk.inkSoft,
             fontFamily: "inherit", fontSize: 12, cursor: "pointer",
             display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 1,
           }}>
             <span style={{ ...styles.mono, fontSize: 9, letterSpacing: "0.1em" }}>LAST</span>
-            <span style={{ ...styles.mono, fontSize: 13, color: tk.ink, fontWeight: 600 }}>{lastW}</span>
-            <span style={{ ...styles.mono, fontSize: 8, color: tk.mute }}>{lastUnit}</span>
+            <span style={{ ...styles.mono, fontSize: 13, color: tk.ink, fontWeight: 600 }}>{lastDisplay}</span>
+            <span style={{ ...styles.mono, fontSize: 8, color: tk.mute }}>{unit}</span>
           </button>
         )}
       </div>
@@ -796,6 +809,7 @@ const App = () => {
           ex={active} path={path} log={log} profile={profile}
           onBack={goList}
           onComplete={complete}
+          onUnitChange={setUnit}
         />
       )}
       <MilestoneToast milestone={toast} onDone={() => setToast(null)} />

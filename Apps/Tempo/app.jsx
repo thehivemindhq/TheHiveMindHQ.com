@@ -143,12 +143,18 @@ const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfil
       <div style={{ ...styles.mono, fontSize: 11, letterSpacing: "0.22em", color: tk.mute, textTransform: "uppercase" }}>
         Tempo
       </div>
-      <button onClick={onProfile} aria-label="Profile" style={{
-        background: "transparent", border: "none", cursor: "pointer",
-        padding: 0, display: "flex", alignItems: "center", gap: 8,
+      <button onClick={onProfile} aria-label="Open profile" style={{
+        background: tk.surface,
+        border: `1px solid ${tk.line}`,
+        borderRadius: 999,
+        cursor: "pointer",
+        padding: "4px 6px 4px 12px",
+        display: "flex", alignItems: "center", gap: 8,
+        boxShadow: "0 1px 0 rgba(26,24,21,0.04)",
       }}>
-        <span style={{ ...styles.mono, fontSize: 11, color: tk.inkSoft }}>{profile?.alias}</span>
-        <Avatar glyph={profile?.glyph} size={32} />
+        <span style={{ ...styles.mono, fontSize: 11, color: tk.inkSoft,
+                       letterSpacing: "0.04em" }}>{profile?.alias}</span>
+        <Avatar glyph={profile?.glyph} size={28} />
       </button>
     </div>
 

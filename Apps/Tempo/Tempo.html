@@ -42,15 +42,18 @@
 
     const DEVICE_W = 402, DEVICE_H = 874;
     function Root() {
-      const [scale, setScale] = useState(1);
+      const [box, setBox] = useState({ scale: 1, bare: false, w: DEVICE_W, h: DEVICE_H });
       useEffect(() => {
         const fit = () => {
-          const s = Math.min(
-            1,
-            (window.innerHeight - 24) / DEVICE_H,
-            (window.innerWidth  - 24) / DEVICE_W,
-          );
-          setScale(s);
+          const vw = window.innerWidth, vh = window.innerHeight;
+          // Phone / narrow viewport → fill the screen edge-to-edge, no bezel.
+          if (vw <= 600) {
+            setBox({ scale: 1, bare: true, w: vw, h: vh });
+            return;
+          }
+          // Desktop → framed device, scaled to fit with breathing room.
+          const s = Math.min(1, (vh - 24) / DEVICE_H, (vw - 24) / DEVICE_W);
+          setBox({ scale: s, bare: false, w: DEVICE_W, h: DEVICE_H });
         };
         fit();
         window.addEventListener("resize", fit);
@@ -59,24 +62,24 @@
       return (
         <div style={{
           width: "100%", height: "100vh",
-          background: "radial-gradient(circle at 30% 0%, #2a2522 0%, #16140f 70%)",
+          background: box.bare ? "#f5f1ea"
+            : "radial-gradient(circle at 30% 0%, #2a2522 0%, #16140f 70%)",
           display: "grid", placeItems: "center",
           overflow: "hidden",
         }}>
-          {/* outer box takes the SCALED footprint so the grid centers correctly */}
           <div style={{
-            width: DEVICE_W * scale,
-            height: DEVICE_H * scale,
+            width: box.w * box.scale,
+            height: box.h * box.scale,
             position: "relative",
           }}>
             <div style={{
               position: "absolute", top: 0, left: 0,
-              width: DEVICE_W, height: DEVICE_H,
-              transform: `scale(${scale})`,
+              width: box.w, height: box.h,
+              transform: `scale(${box.scale})`,
               transformOrigin: "top left",
               willChange: "transform",
             }}>
-              <IOSDevice>
+              <IOSDevice width={box.w} height={box.h} bare={box.bare}>
                 <App />
               </IOSDevice>
             </div>

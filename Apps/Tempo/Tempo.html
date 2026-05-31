@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    html, body { margin: 0; padding: 0; background: #1a1815; height: 100%; }
+    html, body { margin: 0; padding: 0; background: #f5f1ea; height: 100%; overscroll-behavior: none; }
     * { box-sizing: border-box; }
     #root { height: 100%; }
     button { font-family: inherit; }
@@ -42,18 +42,13 @@
 
     const DEVICE_W = 402, DEVICE_H = 874;
     function Root() {
-      const [box, setBox] = useState({ scale: 1, bare: false, w: DEVICE_W, h: DEVICE_H });
+      const [box, setBox] = useState({ w: DEVICE_W, h: DEVICE_H });
       useEffect(() => {
         const fit = () => {
-          const vw = window.innerWidth, vh = window.innerHeight;
-          // Phone / narrow viewport → fill the screen edge-to-edge, no bezel.
-          if (vw <= 600) {
-            setBox({ scale: 1, bare: true, w: vw, h: vh });
-            return;
-          }
-          // Desktop → framed device, scaled to fit with breathing room.
-          const s = Math.min(1, (vh - 24) / DEVICE_H, (vw - 24) / DEVICE_W);
-          setBox({ scale: s, bare: false, w: DEVICE_W, h: DEVICE_H });
+          // No device frame. Fill height; cap width to a comfortable column on
+          // wide screens so phone UI never stretches awkwardly.
+          const w = Math.min(window.innerWidth, 460);
+          setBox({ w, h: window.innerHeight });
         };
         fit();
         window.addEventListener("resize", fit);
@@ -62,27 +57,19 @@
       return (
         <div style={{
           width: "100%", height: "100vh",
-          background: box.bare ? "#f5f1ea"
-            : "radial-gradient(circle at 30% 0%, #2a2522 0%, #16140f 70%)",
-          display: "grid", placeItems: "center",
+          background: "#f5f1ea",
+          display: "flex", justifyContent: "center",
           overflow: "hidden",
         }}>
           <div style={{
-            width: box.w * box.scale,
-            height: box.h * box.scale,
+            width: box.w, height: box.h,
             position: "relative",
+            boxShadow: window.innerWidth > 460
+              ? "0 0 0 1px rgba(26,24,21,0.06)" : "none",
           }}>
-            <div style={{
-              position: "absolute", top: 0, left: 0,
-              width: box.w, height: box.h,
-              transform: `scale(${box.scale})`,
-              transformOrigin: "top left",
-              willChange: "transform",
-            }}>
-              <IOSDevice width={box.w} height={box.h} bare={box.bare}>
-                <App />
-              </IOSDevice>
-            </div>
+            <IOSDevice width={box.w} height={box.h} bare={true}>
+              <App />
+            </IOSDevice>
           </div>
         </div>
       );

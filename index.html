@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="oxblood" data-serif="garamond" data-density="editorial">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -671,7 +671,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   aspect-ratio: 4/5;
   overflow:hidden;
 }
-.about-portrait img{width:100%;height:100%;object-fit:cover;filter: grayscale(1) contrast(1.05)}
+.about-portrait img{width:100%;height:100%;object-fit:cover}
 .about-portrait .frame-tag{
   position:absolute;left:0;right:0;bottom:0;
   display:flex;justify-content:space-between;align-items:flex-end;
@@ -898,6 +898,68 @@ html[data-density="airy"] .kicker{letter-spacing: 0.32em}
 }
 html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
 
+/* ---------- BUILT, NOT BOUGHT (§07) ---------- */
+.masthead-nav a{position:relative;transition:color .25s ease}
+.masthead-nav a.active{color:var(--accent)}
+.masthead-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--accent)}
+
+.bnb-lede{font-family:var(--serif-body);font-size:clamp(18px,1.3vw,21px);max-width:64ch;color:var(--ink-soft);margin-bottom:clamp(36px,5vw,72px);line-height:1.5}
+.bnb-plate{max-width:880px;margin:0 auto;text-align:center;padding:clamp(40px,6vw,96px) 0}
+.bnb-plate + .bnb-plate{border-top:1px solid var(--rule)}
+.bnb-divider{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;text-align:left;border-top:1px solid var(--ink);padding-top:14px;margin-bottom:clamp(26px,4vw,44px)}
+.bnb-divider .pl{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent)}
+.bnb-divider .pc{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-mute);text-align:center}
+.bnb-divider .pr{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--ink-mute);text-align:right}
+.bnb-shot{border:1px solid var(--rule);overflow:hidden;background:#0b0b0c;box-shadow:0 30px 64px -38px oklch(0.18 0.012 80 / 0.55)}
+.bnb-shot img{width:100%;display:block}
+.bnb-phones{display:flex;gap:20px;justify-content:center;align-items:flex-start;background:linear-gradient(165deg,#DBE6F4,#C7D7EB);border:1px solid var(--rule);padding:clamp(24px,3vw,38px) clamp(18px,2vw,28px) clamp(20px,2.6vw,32px);max-width:560px;margin:0 auto}
+.bnb-phone{width:46%;max-width:218px;border-radius:24px;overflow:hidden;border:6px solid #14233A;box-shadow:0 24px 46px -26px rgba(20,35,58,.6)}
+.bnb-phone:nth-child(2){margin-top:30px}
+.bnb-phone img{width:100%;display:block}
+.bnb-figcap{display:flex;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute)}
+.bnb-name{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,60px);line-height:1;letter-spacing:-0.016em;margin:clamp(26px,3vw,40px) 0 0}
+.bnb-tag{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2vw,30px);line-height:1.3;color:var(--accent);margin:16px auto 0;max-width:32ch}
+.bnb-story{margin:clamp(22px,3vw,32px) auto 0;max-width:58ch}
+.bnb-story p{font-family:var(--serif-body);font-size:clamp(17px,1.2vw,19px);line-height:1.6;color:var(--ink-soft)}
+.bnb-story p + p{margin-top:1em}
+.bnb-story .hi{font-style:italic;color:var(--ink)}
+.bnb-specs{list-style:none;max-width:580px;margin:clamp(26px,3vw,38px) auto 0;text-align:left;border-top:1px solid var(--rule)}
+.bnb-specs li{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--rule)}
+.bnb-specs .st{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.bnb-specs .sd{font-family:var(--serif-body);font-size:16px;line-height:1.45;color:var(--ink-soft)}
+.bnb-honest{max-width:580px;margin:clamp(22px,3vw,30px) auto 0;text-align:left;border-left:2px solid var(--accent);padding:4px 0 4px 22px}
+.bnb-honest .hk{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:7px}
+.bnb-honest p{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.3vw,20px);line-height:1.4;color:var(--ink)}
+.bnb-cta{display:flex;gap:clamp(20px,3vw,36px);justify-content:center;align-items:center;margin-top:clamp(26px,3vw,38px);flex-wrap:wrap}
+@media (max-width: 980px){
+  .bnb-specs li{grid-template-columns:1fr;gap:4px}
+  .bnb-divider{grid-template-columns:auto 1fr;row-gap:6px}
+  .bnb-divider .pc{display:none}
+}
+
+/* ---------- WHAT'S NEW FLAG ---------- */
+.flag-new{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:3px 9px 2px;
+  line-height:1;
+  white-space:nowrap;
+  vertical-align:middle;
+}
+.flag-new::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite;flex:none}
+
+/* ---------- HERO "LATEST" TEASER ---------- */
+.hero-eyebrow{flex-wrap:wrap;gap:8px 18px}
+.hero-latest{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s ease}
+.hero-latest .lbl{display:inline-flex;align-items:center;gap:7px;color:var(--accent)}
+.hero-latest .lbl::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite;flex:none}
+.hero-latest .ttl{color:var(--ink)}
+.hero-latest:hover{color:var(--accent)}
+.hero-latest:hover .ttl{color:var(--accent)}
+.hero-latest .arr{font-family:var(--serif);font-style:italic;font-size:16px;letter-spacing:0;text-transform:none}
+
 /* ---------- SMALL SCREENS ---------- */
 @media (max-width: 980px){
   .masthead-row{grid-template-columns: 1fr}
@@ -953,6 +1015,7 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
         <a href="#evidence">Evidence</a>
         <a href="#cases">Cases</a>
         <a href="#perspectives">Perspectives</a>
+        <a href="#built">Built</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -964,10 +1027,8 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
 <section class="hero" id="hero" data-screen-label="Hero">
   <div class="wrap">
     <div class="hero-eyebrow">
-      <div class="kicker">
-</div>
-      <div class="kicker">
-</div>
+      <a class="hero-latest" href="#built"><span class="lbl">Latest</span> <span class="ttl">Built, Not Bought</span> — two private tools, made for myself <span class="arr">&rarr;</span></a>
+      <div class="kicker">An Independent Periodical</div>
     </div>
     <h1 class="hero-headline">
       <span class="l1">Cognitive</span>
@@ -1207,7 +1268,7 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
       <article id="case-ai-roi" style="padding: clamp(32px, 3.8vw, 52px) clamp(28px, 3vw, 44px) clamp(32px, 3.8vw, 52px) 0;border-right:1px solid var(--rule);display:flex;flex-direction:column;">
         <div class="case-meta" style="margin-bottom:24px;">
           <span>Mid-market Enterprise · ~$1.4B Revenue · March 2026</span>
-          <span class="case-active">New · Field Note 01</span>
+          <span class="flag-new">Just In · Field Note 01</span>
         </div>
         <h3 class="case-h" style="font-size: clamp(28px, 3vw, 44px);max-width:none;margin-bottom:20px;">The AI ROI <em>Re-baseline.</em></h3>
         <p class="case-prose" style="font-size: clamp(16px, 1.1vw, 18px);line-height:1.55;max-width:none;">A Group CFO had stopped signing off the AI line item. Two years of investment. <span class="italic" style="color:var(--ink);">$4.2M annual run-rate. Seventeen live initiatives. Zero counterfactual baselines.</span> The brief was not a transformation — it was an <span class="italic" style="color:var(--ink);">instrument</span>: something one person could carry into the boardroom and defend cold. In fourteen working days, sixty-four percent of what the organisation called AI was reclassified out of the line item, governed funding was reinstalled with named owners, and an <span class="italic" style="color:var(--ink);">$8.4M risk-adjusted pipeline</span> landed on the CFO's desk before the board paper went out.</p>
@@ -1269,6 +1330,7 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
     <div class="persp">
       <article class="feat">
         <div class="essay-tag">
+          <span class="flag-new">Just In</span>
           <span>Featured Briefing</span>
           <span class="bullet"></span>
           <span>May 2026</span>
@@ -1320,11 +1382,78 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
   </div>
 </section>
 
-<!-- ABOUT ============================================ -->
-<section class="section" id="about" data-screen-label="07 About">
+<!-- BUILT, NOT BOUGHT ============================================ -->
+<section class="section" id="built" data-screen-label="07 Built">
   <div class="wrap">
     <div class="section-head">
       <div class="section-num">07</div>
+      <div>
+        <div class="section-tag">The Workshop <span class="flag-new">Just In</span></div>
+        <h2 class="section-title">Built, <em>not bought</em><span class="dot"></span></h2>
+      </div>
+    </div>
+
+    <p class="bnb-lede">Two tools I made to fix problems the market only made noisier — then couldn't stop using. One watches a portfolio I intend to hold for a decade. The other coaches how I move. Both keep their data, and yours, entirely on the device.</p>
+
+    <!-- Plate I · India Equity Desk -->
+    <article class="bnb-plate">
+      <div class="bnb-figure">
+        <div class="bnb-shot"><img src="assets/equity-holdings.png" alt="India Equity Desk dashboard"/></div>
+        <div class="bnb-figcap"><span>India Equity Desk</span><span>Fig. I</span></div>
+      </div>
+      <h3 class="bnb-name">India Equity Desk</h3>
+      <p class="bnb-tag">A private analysis desk for the disciplined long-term investor — your portfolio, your framework, your machine.</p>
+      <div class="bnb-story">
+        <p>Serious long-term investors are stuck between two bad options: free broker apps that bury you in noise and nudge you to trade while your data feeds someone's business model, and Bloomberg-tier tools priced for institutions.</p>
+        <p>I wanted the missing middle — <span class="hi">somewhere to think clearly about a portfolio I intend to hold for a decade</span>, without the noise or the surveillance. So I built it.</p>
+      </div>
+      <ul class="bnb-specs">
+        <li><span class="st">Private</span><span class="sd">Runs locally — no account, no cloud, no data harvested.</span></li>
+        <li><span class="st">Framework-native</span><span class="sd">Cap-tier discipline, quality lenses, thesis-break exits.</span></li>
+        <li><span class="st">Claude bridge</span><span class="sd">One-click, context-filled prompts for every holding.</span></li>
+        <li><span class="st">Consolidated</span><span class="sd">Groww, Zerodha &amp; more, merged without account-linking.</span></li>
+      </ul>
+      <div class="bnb-honest"><span class="hk">The honest trade-off</span><p>Data is ~15 minutes delayed. It is a monitoring desk, not a trading screen — and a thinking tool, not advice. Both are deliberate.</p></div>
+      <div class="bnb-cta">
+        <a class="btn btn--solid" href="uploads/equity-desk.zip" download>Download the Desk <span class="arrow">→</span></a>
+        <a class="essay-link" href="uploads/getting_started.md">Read the build notes <span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- Plate II · Tempo -->
+    <article class="bnb-plate">
+      <div class="bnb-figure">
+        <div class="bnb-phones">
+          <div class="bnb-phone"><img src="assets/tempo-hero.jpg" alt="Tempo — find your tempo"/></div>
+          <div class="bnb-phone"><img src="assets/tempo-beat.jpg" alt="Tempo — set your beat"/></div>
+        </div>
+        <div class="bnb-figcap"><span>Tempo</span><span>Fig. II</span></div>
+      </div>
+      <h3 class="bnb-name">Tempo</h3>
+      <p class="bnb-tag">A pocket coach that trains how your body moves — not the muscles you have — and never asks who you are.</p>
+      <div class="bnb-story">
+        <p>Most fitness apps fail at once: built around muscles and machines only an expert understands, demanding your name and email before a single rep, then burying the workout under menus and streak guilt.</p>
+        <p>Tempo is <span class="hi">three taps — tools, style, pace — to a set balanced across the eight foundational human movements.</span> Your identity is an alias, a glyph, and a PIN. Everything lives on your phone.</p>
+      </div>
+      <ul class="bnb-specs">
+        <li><span class="st">Movements</span><span class="sd">Trains patterns, not muscles — the model a beginner needs.</span></li>
+        <li><span class="st">Zero-PII</span><span class="sd">No name, no email, no birthday. Genuinely anonymous.</span></li>
+        <li><span class="st">Three taps</span><span class="sd">Fastest path from “I should” to “I'm working out.”</span></li>
+        <li><span class="st">Quiet progress</span><span class="sd">Milestones and rhythm — not leaderboards or vanity stats.</span></li>
+      </ul>
+      <div class="bnb-honest"><span class="hk">The honest trade-off</span><p>Everything stays on your device. Privacy is the architecture, not a setting — which also means no cross-device sync, and that is on purpose.</p></div>
+      <div class="bnb-cta">
+        <a class="btn btn--solid" href="https://thehivemindhq.com/Apps/Tempo/Tempo.html" target="_blank" rel="noopener">Open Tempo <span class="arrow">→</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ABOUT ============================================ -->
+<section class="section" id="about" data-screen-label="08 About">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">08</div>
       <div>
         <div class="section-tag">About</div>
         <h2 class="section-title">About<br/>The Hive Mind <em>HQ</em><span class="dot"></span></h2>
@@ -1359,12 +1488,13 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
 </section>
 
 <!-- CONTACT ============================================ -->
-<section class="contact" id="contact" data-screen-label="08 Contact">
+<section class="contact" id="contact" data-screen-label="09 Contact">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-num">08</div>
+      <div class="section-num">09</div>
       <div>
         <div class="section-tag">Get in Touch</div>
+        <h2 class="section-title">Start a <em>conversation</em><span class="dot"></span></h2>
       </div>
     </div>
     <div class="contact-grid">
@@ -1467,10 +1597,6 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
       <div class="colophon-meta r">Built for the Intelligent Organisation</div>
     </div>
     <div class="colophon-rule"></div>
-    <div class="colophon-bottom">
-      <span>Bengaluru · 12.97°N · 77.59°E</span>
-      <span>An Independent Periodical</span>
-    </div>
     <div class="colophon-imprint" aria-label="Statutory registrations">
       <span class="imprint-label">Registered</span>
       <span class="imprint-sep" aria-hidden="true">/</span>
@@ -1481,90 +1607,10 @@ html[data-theme="ink"] .cursor-mark{mix-blend-mode: screen}
   </div>
 </footer>
 
-<!-- TWEAKS PANEL ============================================ -->
-<div class="tweaks" id="tweaks">
-  <span class="tweaks-close" id="tweaks-close">×</span>
-  <h4>Tweaks</h4>
-  <div class="sub">Three knobs that reshape the feel</div>
-
-  <div class="group">
-    <div class="label">Atmosphere</div>
-    <div class="opts" id="palette-opts" style="gap:10px;">
-      <div class="swatch on" data-theme="paper"   title="Paper · the broadsheet default" style="background:oklch(0.965 0.012 85); box-shadow: inset 0 0 0 1px oklch(0.18 0.012 80 / 0.4);"></div>
-      <div class="swatch"     data-theme="ink"     title="Ink · midnight edition"        style="background:oklch(0.16 0.012 80);"></div>
-      <div class="swatch"     data-theme="oxblood" title="Oxblood · letterpress"          style="background:oklch(0.97 0.01 60); box-shadow: inset 0 0 0 6px oklch(0.45 0.16 22);"></div>
-      <div class="swatch"     data-theme="forest"  title="Forest · field journal"         style="background:oklch(0.96 0.018 110); box-shadow: inset 0 0 0 6px oklch(0.5 0.14 60);"></div>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="label">Headline Voice</div>
-    <div class="seg" id="serif-opts">
-      <button class="on" data-serif="instrument">Instrument</button>
-      <button data-serif="garamond">Garamond</button>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="label">Composition</div>
-    <div class="seg" id="density-opts">
-      <button data-density="tight">Tight</button>
-      <button class="on" data-density="editorial">Editorial</button>
-      <button data-density="airy">Airy</button>
-    </div>
-  </div>
-</div>
-
 <!-- cursor mark removed — design frozen -->
 
 <script>
-/* ------ TWEAK STATE ------ */
-const TWEAKS = /*EDITMODE-BEGIN*/{
-  "theme": "paper",
-  "serif": "garamond",
-  "density": "editorial"
-}/*EDITMODE-END*/;
-
-const root = document.documentElement;
-function applyTweaks(){
-  if(TWEAKS.theme === 'paper'){ root.removeAttribute('data-theme'); }
-  else { root.setAttribute('data-theme', TWEAKS.theme); }
-  if(TWEAKS.serif === 'instrument'){ root.removeAttribute('data-serif'); }
-  else { root.setAttribute('data-serif', TWEAKS.serif); }
-  root.setAttribute('data-density', TWEAKS.density || 'editorial');
-}
-applyTweaks();
-
-function syncTweakUI(){
-  document.querySelectorAll('#palette-opts .swatch').forEach(el=>el.classList.toggle('on', el.dataset.theme === TWEAKS.theme));
-  document.querySelectorAll('#serif-opts button').forEach(el=>el.classList.toggle('on', el.dataset.serif === TWEAKS.serif));
-  document.querySelectorAll('#density-opts button').forEach(el=>el.classList.toggle('on', el.dataset.density === TWEAKS.density));
-}
-
-function setTweak(k,v){
-  TWEAKS[k] = v;
-  applyTweaks();
-  syncTweakUI();
-  try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]:v}}, '*'); }catch(e){}
-}
-
-document.querySelectorAll('#palette-opts .swatch').forEach(el=>el.addEventListener('click',()=>setTweak('theme', el.dataset.theme)));
-document.querySelectorAll('#serif-opts button').forEach(el=>el.addEventListener('click',()=>setTweak('serif', el.dataset.serif)));
-document.querySelectorAll('#density-opts button').forEach(el=>el.addEventListener('click',()=>setTweak('density', el.dataset.density)));
-syncTweakUI();
-
-/* ------ EDIT MODE PROTOCOL ------ */
-const panel = document.getElementById('tweaks');
-window.addEventListener('message', (e)=>{
-  const d = e.data || {};
-  if(d.type === '__activate_edit_mode'){ panel.classList.add('open'); }
-  if(d.type === '__deactivate_edit_mode'){ panel.classList.remove('open'); }
-});
-try{ window.parent.postMessage({type:'__edit_mode_available'}, '*'); }catch(e){}
-document.getElementById('tweaks-close').addEventListener('click', ()=>{
-  panel.classList.remove('open');
-  try{ window.parent.postMessage({type:'__edit_mode_dismissed'}, '*'); }catch(e){}
-});
+/* ------ APPEARANCE FROZEN — oxblood · garamond · editorial (set on <html>) ------ */
 
 /* ------ LIVE EDITION DATE ------ */
 (function(){
@@ -1645,6 +1691,23 @@ document.querySelectorAll('.act').forEach(act=>{
   } else {
     play();
   }
+})();
+
+/* ------ NAV SCROLL-SPY ------ */
+(function(){
+  const links = [...document.querySelectorAll('.masthead-nav a')];
+  const map = links
+    .map(a => ({ a, sec: document.querySelector(a.getAttribute('href')) }))
+    .filter(x => x.sec);
+  function onScroll(){
+    const y = window.scrollY + window.innerHeight * 0.32;
+    let current = null;
+    for(const m of map){ if(m.sec.offsetTop - 1 <= y) current = m; }
+    links.forEach(a => a.classList.toggle('active', !!current && a === current.a));
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 })();
 </script>
 

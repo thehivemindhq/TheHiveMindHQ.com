@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    html, body { margin: 0; padding: 0; background: #f5f1ea; height: 100%; overscroll-behavior: none; }
+    html, body { margin: 0; padding: 0; background: #000; height: 100%; overscroll-behavior: none; }
     * { box-sizing: border-box; }
     #root { height: 100%; }
     button { font-family: inherit; }
@@ -45,10 +45,9 @@
       const [box, setBox] = useState({ w: DEVICE_W, h: DEVICE_H });
       useEffect(() => {
         const fit = () => {
-          // No device frame. Fill height; cap width to a comfortable column on
-          // wide screens so phone UI never stretches awkwardly.
-          const w = Math.min(window.innerWidth, 460);
-          setBox({ w, h: window.innerHeight });
+          // Full-bleed: fill the whole viewport on phone and laptop alike —
+          // no device frame, no side bezels.
+          setBox({ w: window.innerWidth, h: window.innerHeight });
         };
         fit();
         window.addEventListener("resize", fit);
@@ -57,20 +56,12 @@
       return (
         <div style={{
           width: "100%", height: "100vh",
-          background: "#f5f1ea",
-          display: "flex", justifyContent: "center",
+          background: "#000",
           overflow: "hidden",
         }}>
-          <div style={{
-            width: box.w, height: box.h,
-            position: "relative",
-            boxShadow: window.innerWidth > 460
-              ? "0 0 0 1px rgba(26,24,21,0.06)" : "none",
-          }}>
-            <IOSDevice width={box.w} height={box.h} bare={true}>
-              <App />
-            </IOSDevice>
-          </div>
+          <IOSDevice width={box.w} height={box.h} bare={true}>
+            <App />
+          </IOSDevice>
         </div>
       );
     }

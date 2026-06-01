@@ -6,14 +6,14 @@ const { useState, useEffect, useMemo, useRef } = React;
 
 // ─── design tokens ────────────────────────────────────────────────
 const tk = {
-  bg:        "#f5f1ea",
-  bgDeep:    "#efe9df",
+  bg:        "#d8e6f3",
+  bgDeep:    "#c7dcef",
   surface:   "#ffffff",
-  ink:       "#1a1815",
-  inkSoft:   "#3d3934",
-  mute:      "#79736a",
-  line:      "rgba(26,24,21,0.08)",
-  lineSolid: "rgba(26,24,21,0.16)",
+  ink:       "#16263a",
+  inkSoft:   "#33465c",
+  mute:      "#6b7d92",
+  line:      "rgba(22,38,58,0.08)",
+  lineSolid: "rgba(22,38,58,0.16)",
   accent:    "#d35a3a",
   accentSoft:"#f7e4d8",
   accentInk: "#7a2a14",
@@ -74,7 +74,7 @@ const Tag = ({ children, soft, accent }) => (
     fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
     padding: "4px 8px", borderRadius: 6,
     border: `1px solid ${soft ? "transparent" : tk.lineSolid}`,
-    background: accent ? tk.accentSoft : soft ? "rgba(26,24,21,0.04)" : "transparent",
+    background: accent ? tk.accentSoft : soft ? "rgba(22,38,58,0.04)" : "transparent",
     color: accent ? tk.accentInk : tk.inkSoft,
     whiteSpace: "nowrap",
   }}>{children}</span>
@@ -83,7 +83,7 @@ const Tag = ({ children, soft, accent }) => (
 const PrimaryBtn = ({ children, onClick, disabled }) => (
   <button onClick={onClick} disabled={disabled} style={{
     width: "100%", border: "none", cursor: disabled ? "default" : "pointer",
-    background: disabled ? "#c8c2b6" : tk.ink, color: tk.bg,
+    background: disabled ? "#aebfcf" : tk.ink, color: tk.bg,
     padding: "16px 20px", borderRadius: 14,
     fontFamily: "inherit", fontSize: 16, fontWeight: 600, letterSpacing: "0.01em",
     transition: "transform 0.15s ease",
@@ -122,7 +122,7 @@ const TopBar = ({ title, onBack, right }) => (
   }}>
     <button onClick={onBack} aria-label="Back" style={{
       width: 36, height: 36, borderRadius: 18,
-      background: "rgba(26,24,21,0.06)", border: "none", cursor: "pointer",
+      background: "rgba(22,38,58,0.06)", border: "none", cursor: "pointer",
       display: "grid", placeItems: "center", color: tk.ink,
     }}>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -150,7 +150,7 @@ const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfil
         cursor: "pointer",
         padding: "4px 6px 4px 12px",
         display: "flex", alignItems: "center", gap: 8,
-        boxShadow: "0 1px 0 rgba(26,24,21,0.04)",
+        boxShadow: "0 1px 0 rgba(22,38,58,0.04)",
       }}>
         <span style={{ ...styles.mono, fontSize: 11, color: tk.inkSoft,
                        letterSpacing: "0.04em" }}>{profile?.alias}</span>
@@ -158,7 +158,7 @@ const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfil
       </button>
     </div>
 
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", marginTop: -20 }}>
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
       <div style={{ ...styles.display, fontSize: 68, lineHeight: 1.05, color: tk.ink }}>
         Find your<br/>
         <span style={{ fontStyle: "italic", color: tk.accent }}>tempo.</span>
@@ -172,9 +172,9 @@ const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfil
           <Tag key={p.label} soft>{p.label.toLowerCase()}</Tag>
         ))}
       </div>
-    </div>
 
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {/* same 28px rhythm between the moves and the Last-beat block */}
+      <div style={{ marginTop: 28, display: "flex", flexDirection: "column", gap: 10 }}>
       {savedPath ? (
         <>
           <div style={{ fontSize: 13, color: tk.mute, marginBottom: 4 }}>
@@ -198,6 +198,7 @@ const SplashScreen = ({ savedPath, profile, onStart, onResume, onReset, onProfil
           fontFamily: "inherit", fontSize: 12, padding: "4px 0", cursor: "pointer",
         }}>Reset all progress</button>
       )}
+      </div>
     </div>
   </div>
 );
@@ -213,7 +214,7 @@ const Tile = ({ label, sub, selected, onClick }) => (
     fontFamily: "inherit", cursor: "pointer",
     display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4,
     transition: "all 0.15s ease",
-    boxShadow: selected ? "0 6px 18px rgba(26,24,21,0.12)" : "none",
+    boxShadow: selected ? "0 6px 18px rgba(22,38,58,0.12)" : "none",
   }}>
     <span style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.1,
                    letterSpacing: "-0.01em", whiteSpace: "nowrap" }}>{label}</span>
@@ -696,7 +697,7 @@ const DoneState = ({ onBack }) => (
       <Pulse color={tk.accent} />
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 15, fontWeight: 600 }}>Logged. Beat held.</div>
-        <div style={{ fontSize: 12, color: "rgba(245,241,234,0.65)" }}>Pick the next move.</div>
+        <div style={{ fontSize: 12, color: "rgba(216,230,243,0.65)" }}>Pick the next move.</div>
       </div>
     </div>
     <PrimaryBtn onClick={onBack}>Back to the set</PrimaryBtn>

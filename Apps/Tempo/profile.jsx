@@ -185,7 +185,7 @@ function PinPad({ value, onChange, onSubmit, label, max = 4 }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                    letterSpacing: "0.18em", color: "#79736a", textTransform: "uppercase" }}>
+                    letterSpacing: "0.18em", color: "#6b7d92", textTransform: "uppercase" }}>
         {label || "Movement code"}
       </div>
       {/* dots */}
@@ -193,8 +193,8 @@ function PinPad({ value, onChange, onSubmit, label, max = 4 }) {
         {Array.from({ length: max }).map((_, i) => (
           <div key={i} style={{
             width: 14, height: 14, borderRadius: 7,
-            background: i < value.length ? "#1a1815" : "transparent",
-            border: `1.5px solid ${i < value.length ? "#1a1815" : "rgba(26,24,21,0.25)"}`,
+            background: i < value.length ? "#16263a" : "transparent",
+            border: `1.5px solid ${i < value.length ? "#16263a" : "rgba(22,38,58,0.25)"}`,
             transition: "all 0.1s ease",
           }} />
         ))}
@@ -222,10 +222,10 @@ function KeyBtn({ children, onClick, subtle }) {
   return (
     <button onClick={onClick} style={{
       width: 64, height: 64, borderRadius: 32,
-      background: subtle ? "transparent" : "rgba(26,24,21,0.05)",
+      background: subtle ? "transparent" : "rgba(22,38,58,0.05)",
       border: "none", cursor: "pointer",
       fontFamily: "'Instrument Serif', serif",
-      fontSize: 26, color: "#1a1815",
+      fontSize: 26, color: "#16263a",
       display: "grid", placeItems: "center",
       transition: "transform 0.1s ease",
     }}
@@ -261,12 +261,12 @@ function CreateProfileScreen({ onDone }) {
   };
 
   return (
-    <div style={{ width: "100%", height: "100%", background: "#f5f1ea",
+    <div style={{ width: "100%", height: "100%", background: "#d8e6f3",
                   display: "flex", flexDirection: "column",
                   padding: "28px 24px 32px", overflow: "auto" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                      letterSpacing: "0.22em", color: "#79736a", textTransform: "uppercase" }}>
+                      letterSpacing: "0.22em", color: "#6b7d92", textTransform: "uppercase" }}>
           New profile · step {step + 1} / 3
         </div>
         <Pulse />
@@ -278,23 +278,23 @@ function CreateProfileScreen({ onDone }) {
             Pick a name<br/>
             <span style={{ fontStyle: "italic", color: "#d35a3a" }}>that isn't yours.</span>
           </div>
-          <p style={{ fontSize: 14, color: "#3d3934", lineHeight: 1.5, marginTop: 12 }}>
+          <p style={{ fontSize: 14, color: "#33465c", lineHeight: 1.5, marginTop: 12 }}>
             Tempo never asks for your real name, email, or anything personal. Pick a movement alias — keep this one or shuffle.
           </p>
 
           <div style={{
             marginTop: 32, padding: "28px 20px",
-            background: "#fff", border: "1px solid rgba(26,24,21,0.08)",
+            background: "#fff", border: "1px solid rgba(22,38,58,0.08)",
             borderRadius: 18, textAlign: "center",
           }}>
-            <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 38, color: "#1a1815" }}>
+            <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 38, color: "#16263a" }}>
               {alias}
             </div>
             <button onClick={() => setAlias(randomAlias())} style={{
               marginTop: 14, background: "transparent",
-              border: "1px solid rgba(26,24,21,0.16)", borderRadius: 8,
+              border: "1px solid rgba(22,38,58,0.16)", borderRadius: 8,
               padding: "8px 14px", fontFamily: "inherit", fontSize: 12,
-              color: "#3d3934", cursor: "pointer",
+              color: "#33465c", cursor: "pointer",
               display: "inline-flex", alignItems: "center", gap: 6,
             }}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -316,7 +316,7 @@ function CreateProfileScreen({ onDone }) {
           <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 44, lineHeight: 1.05, marginTop: 12 }}>
             Pick a <span style={{ fontStyle: "italic", color: "#d35a3a" }}>mark.</span>
           </div>
-          <p style={{ fontSize: 14, color: "#3d3934", lineHeight: 1.5, marginTop: 12 }}>
+          <p style={{ fontSize: 14, color: "#33465c", lineHeight: 1.5, marginTop: 12 }}>
             One of the eight movement patterns. This is your symbol — no photo, no avatar of you.
           </p>
 
@@ -327,9 +327,9 @@ function CreateProfileScreen({ onDone }) {
             {GLYPH_OPTIONS.map(g => (
               <button key={g} onClick={() => setGlyph(g)} style={{
                 aspectRatio: "1 / 1",
-                background: g === glyph ? "#1a1815" : "#fff",
-                color: g === glyph ? "#f5f1ea" : "#1a1815",
-                border: `1px solid ${g === glyph ? "#1a1815" : "rgba(26,24,21,0.08)"}`,
+                background: g === glyph ? "#16263a" : "#fff",
+                color: g === glyph ? "#d8e6f3" : "#16263a",
+                border: `1px solid ${g === glyph ? "#16263a" : "rgba(22,38,58,0.08)"}`,
                 borderRadius: 14, cursor: "pointer", padding: 0,
                 display: "flex", flexDirection: "column",
                 alignItems: "center", justifyContent: "center", gap: 4,
@@ -360,7 +360,7 @@ function CreateProfileScreen({ onDone }) {
             {pin2 === "" && !err ? <>Set a <span style={{ fontStyle: "italic", color: "#d35a3a" }}>movement code.</span></>
               : <>Once <span style={{ fontStyle: "italic", color: "#d35a3a" }}>more.</span></>}
           </div>
-          <p style={{ fontSize: 13, color: "#3d3934", lineHeight: 1.5, marginTop: 10, marginBottom: 6 }}>
+          <p style={{ fontSize: 13, color: "#33465c", lineHeight: 1.5, marginTop: 10, marginBottom: 6 }}>
             Four digits. You'll tap this in to unlock Tempo.
           </p>
           {err && (
@@ -389,7 +389,7 @@ function CreateProfileScreen({ onDone }) {
 
           {pin.length === 4 && (
             <button onClick={() => { setPin(""); setPin2(""); setErr(""); }} style={{
-              background: "transparent", border: "none", color: "#79736a",
+              background: "transparent", border: "none", color: "#6b7d92",
               fontFamily: "inherit", fontSize: 12, padding: "8px 0", cursor: "pointer",
               textDecoration: "underline", textUnderlineOffset: 3,
             }}>Start the code over</button>
@@ -401,8 +401,8 @@ function CreateProfileScreen({ onDone }) {
 }
 
 const ghostBtnStyle = {
-  flex: 1, background: "transparent", border: "1px solid rgba(26,24,21,0.16)",
-  borderRadius: 14, padding: "16px", color: "#3d3934",
+  flex: 1, background: "transparent", border: "1px solid rgba(22,38,58,0.16)",
+  borderRadius: 14, padding: "16px", color: "#33465c",
   fontFamily: "inherit", fontSize: 15, fontWeight: 500, cursor: "pointer",
 };
 
@@ -410,7 +410,7 @@ function PrimaryProfileBtn({ children, onClick, disabled }) {
   return (
     <button onClick={onClick} disabled={disabled} style={{
       width: "100%", border: "none", cursor: disabled ? "default" : "pointer",
-      background: disabled ? "#c8c2b6" : "#1a1815", color: "#f5f1ea",
+      background: disabled ? "#aebfcf" : "#16263a", color: "#d8e6f3",
       padding: "16px 20px", borderRadius: 14,
       fontFamily: "inherit", fontSize: 16, fontWeight: 600,
     }}>{children}</button>
@@ -435,17 +435,17 @@ function LoginScreen({ profile, onUnlock, onForget }) {
   };
 
   return (
-    <div style={{ width: "100%", height: "100%", background: "#f5f1ea",
+    <div style={{ width: "100%", height: "100%", background: "#d8e6f3",
                   display: "flex", flexDirection: "column",
                   padding: "28px 24px 32px" }}>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                    letterSpacing: "0.22em", color: "#79736a", textTransform: "uppercase" }}>
+                    letterSpacing: "0.22em", color: "#6b7d92", textTransform: "uppercase" }}>
         Welcome back
       </div>
 
       <div style={{ marginTop: 36, display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
         <Avatar glyph={profile.glyph} size={72} />
-        <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 34, color: "#1a1815" }}>
+        <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 34, color: "#16263a" }}>
           {profile.alias}
         </div>
       </div>
@@ -457,7 +457,7 @@ function LoginScreen({ profile, onUnlock, onForget }) {
 
       {attempts >= 3 && (
         <button onClick={onForget} style={{
-          background: "transparent", border: "none", color: "#79736a",
+          background: "transparent", border: "none", color: "#6b7d92",
           fontFamily: "inherit", fontSize: 12, cursor: "pointer",
           textDecoration: "underline", textUnderlineOffset: 3, padding: 8,
         }}>Forgot your code? Start a new profile.</button>
@@ -482,22 +482,22 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
   const unlockedCount = Object.keys(unlocked).length;
 
   return (
-    <div style={{ width: "100%", height: "100%", background: "#f5f1ea",
+    <div style={{ width: "100%", height: "100%", background: "#d8e6f3",
                   display: "flex", flexDirection: "column" }}>
       {/* top bar */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
                     padding: "22px 20px 6px", gap: 12 }}>
         <button onClick={onBack} aria-label="Back" style={{
           width: 36, height: 36, borderRadius: 18,
-          background: "rgba(26,24,21,0.06)", border: "none", cursor: "pointer",
-          display: "grid", placeItems: "center", color: "#1a1815",
+          background: "rgba(22,38,58,0.06)", border: "none", cursor: "pointer",
+          display: "grid", placeItems: "center", color: "#16263a",
         }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                      letterSpacing: "0.16em", color: "#79736a", textTransform: "uppercase" }}>
+                      letterSpacing: "0.16em", color: "#6b7d92", textTransform: "uppercase" }}>
           Profile
         </div>
         <div style={{ width: 36 }} />
@@ -509,10 +509,10 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
           <Avatar glyph={profile.glyph} size={72} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 30,
-                          color: "#1a1815", lineHeight: 1.1 }}>
+                          color: "#16263a", lineHeight: 1.1 }}>
               {profile.alias}
             </div>
-            <div style={{ fontSize: 12, color: "#79736a", marginTop: 4,
+            <div style={{ fontSize: 12, color: "#6b7d92", marginTop: 4,
                           fontFamily: "'JetBrains Mono', monospace",
                           letterSpacing: "0.08em" }}>
               {daysSinceJoin === 1 ? "Joined today" : `${daysSinceJoin} days in motion`}
@@ -545,7 +545,7 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
             Milestones
           </div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                        color: "#79736a", letterSpacing: "0.08em" }}>
+                        color: "#6b7d92", letterSpacing: "0.08em" }}>
             {unlockedCount} / {MILESTONES.length}
           </div>
         </div>
@@ -558,13 +558,13 @@ function ProfileScreen({ profile, log, onBack, onLogout, onReset, onUnitChange }
 
         {/* danger row */}
         <div style={{ marginTop: 32, padding: "14px 16px", borderRadius: 12,
-                      background: "rgba(26,24,21,0.04)", border: "1px solid rgba(26,24,21,0.06)" }}>
+                      background: "rgba(22,38,58,0.04)", border: "1px solid rgba(22,38,58,0.06)" }}>
           <button onClick={onReset} style={{
             width: "100%", background: "transparent", border: "1px solid rgba(211,90,58,0.4)",
             borderRadius: 10, padding: "12px", fontFamily: "inherit",
             fontSize: 13, color: "#7a2a14", cursor: "pointer",
           }}>Delete profile</button>
-          <p style={{ marginTop: 10, marginBottom: 0, fontSize: 11, color: "#79736a", lineHeight: 1.5 }}>
+          <p style={{ marginTop: 10, marginBottom: 0, fontSize: 11, color: "#6b7d92", lineHeight: 1.5 }}>
             Everything is stored on this device only. Deleting removes all sessions and milestones.
           </p>
         </div>
@@ -578,19 +578,19 @@ function StatCard({ label, value, suffix, accent }) {
     <div style={{
       padding: "14px 14px", borderRadius: 14,
       background: accent ? "#f7e4d8" : "#fff",
-      border: `1px solid ${accent ? "transparent" : "rgba(26,24,21,0.08)"}`,
+      border: `1px solid ${accent ? "transparent" : "rgba(22,38,58,0.08)"}`,
     }}>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9,
                     letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: accent ? "#7a2a14" : "#79736a" }}>{label}</div>
+                    color: accent ? "#7a2a14" : "#6b7d92" }}>{label}</div>
       <div style={{ marginTop: 6, display: "flex", alignItems: "baseline", gap: 6 }}>
         <span style={{ fontFamily: "'Instrument Serif', serif", fontSize: 30,
-                       color: accent ? "#7a2a14" : "#1a1815", lineHeight: 1 }}>
+                       color: accent ? "#7a2a14" : "#16263a", lineHeight: 1 }}>
           {value}
         </span>
         {suffix && (
           <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-                          color: accent ? "#7a2a14" : "#79736a" }}>{suffix}</span>
+                          color: accent ? "#7a2a14" : "#6b7d92" }}>{suffix}</span>
         )}
       </div>
     </div>
@@ -601,11 +601,11 @@ function SettingRow({ label, children }) {
   return (
     <div style={{
       marginTop: 16, padding: "12px 14px",
-      background: "#fff", border: "1px solid rgba(26,24,21,0.08)",
+      background: "#fff", border: "1px solid rgba(22,38,58,0.08)",
       borderRadius: 12,
       display: "flex", alignItems: "center", justifyContent: "space-between",
     }}>
-      <span style={{ fontSize: 14, color: "#1a1815", fontWeight: 500 }}>{label}</span>
+      <span style={{ fontSize: 14, color: "#16263a", fontWeight: 500 }}>{label}</span>
       {children}
     </div>
   );
@@ -613,13 +613,13 @@ function SettingRow({ label, children }) {
 
 function UnitToggle({ value, onChange }) {
   return (
-    <div style={{ display: "inline-flex", background: "rgba(26,24,21,0.06)",
+    <div style={{ display: "inline-flex", background: "rgba(22,38,58,0.06)",
                   borderRadius: 8, padding: 3 }}>
       {["lb","kg"].map(u => (
         <button key={u} onClick={() => onChange(u)} style={{
           padding: "6px 14px", border: "none", cursor: "pointer",
-          background: u === value ? "#1a1815" : "transparent",
-          color: u === value ? "#f5f1ea" : "#3d3934",
+          background: u === value ? "#16263a" : "transparent",
+          color: u === value ? "#d8e6f3" : "#33465c",
           fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
           letterSpacing: "0.08em", textTransform: "uppercase",
           borderRadius: 6,
@@ -634,9 +634,9 @@ function MilestoneCard({ m, unlockedAt }) {
   return (
     <div style={{
       padding: "12px 12px", borderRadius: 12,
-      background: locked ? "rgba(26,24,21,0.03)" : "#1a1815",
-      border: locked ? "1px solid rgba(26,24,21,0.08)" : "1px solid #1a1815",
-      color: locked ? "#79736a" : "#f5f1ea",
+      background: locked ? "rgba(22,38,58,0.03)" : "#16263a",
+      border: locked ? "1px solid rgba(22,38,58,0.08)" : "1px solid #16263a",
+      color: locked ? "#6b7d92" : "#d8e6f3",
       display: "flex", flexDirection: "column", gap: 6,
       minHeight: 88,
     }}>
@@ -644,14 +644,14 @@ function MilestoneCard({ m, unlockedAt }) {
         <MilestoneGlyph tier={m.tier} locked={locked} />
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9,
                        letterSpacing: "0.14em", textTransform: "uppercase",
-                       color: locked ? "#79736a" : "#d35a3a" }}>{m.tier}</span>
+                       color: locked ? "#6b7d92" : "#d35a3a" }}>{m.tier}</span>
       </div>
       <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 17,
-                    lineHeight: 1.1, color: locked ? "#3d3934" : "#f5f1ea" }}>
+                    lineHeight: 1.1, color: locked ? "#33465c" : "#d8e6f3" }}>
         {m.name}
       </div>
       <div style={{ fontSize: 11, lineHeight: 1.4,
-                    color: locked ? "#79736a" : "rgba(245,241,234,0.7)" }}>
+                    color: locked ? "#6b7d92" : "rgba(216,230,243,0.7)" }}>
         {m.desc}
       </div>
       {!locked && (
@@ -665,7 +665,7 @@ function MilestoneCard({ m, unlockedAt }) {
 }
 
 function MilestoneGlyph({ tier, locked }) {
-  const color = locked ? "#79736a" : "#d35a3a";
+  const color = locked ? "#6b7d92" : "#d35a3a";
   const s = 18;
   switch (tier) {
     case "sets":
@@ -716,7 +716,7 @@ function MilestoneToast({ milestone, onDone }) {
     <div style={{
       position: "absolute", top: 60, left: "50%",
       transform: "translateX(-50%)",
-      background: "#1a1815", color: "#f5f1ea",
+      background: "#16263a", color: "#d8e6f3",
       padding: "12px 16px", borderRadius: 14,
       display: "flex", alignItems: "center", gap: 12,
       boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
@@ -731,7 +731,7 @@ function MilestoneToast({ milestone, onDone }) {
           Milestone reached
         </div>
         <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 22,
-                      color: "#f5f1ea", lineHeight: 1.1 }}>
+                      color: "#d8e6f3", lineHeight: 1.1 }}>
           {milestone.name}
         </div>
       </div>

@@ -139,7 +139,7 @@ const MovementCanvas = ({ pattern, color }) => (
   <div style={{
     width: "100%",
     aspectRatio: "16/10",
-    background: "linear-gradient(180deg, #f7f3ec 0%, #efe9df 100%)",
+    background: "linear-gradient(180deg, #f7f3ec 0%, #c7dcef 100%)",
     border: "1px solid rgba(0,0,0,0.06)",
     borderRadius: 18,
     display: "grid",
@@ -150,10 +150,10 @@ const MovementCanvas = ({ pattern, color }) => (
     {/* faint grid lines for "stage" feel */}
     <svg width="100%" height="100%" viewBox="0 0 320 200" style={{ position: "absolute", inset: 0, opacity: 0.18 }}>
       {Array.from({ length: 7 }).map((_, i) => (
-        <line key={i} x1="0" y1={i * 30 + 10} x2="320" y2={i * 30 + 10} stroke="#1a1815" strokeWidth="0.6" />
+        <line key={i} x1="0" y1={i * 30 + 10} x2="320" y2={i * 30 + 10} stroke="#16263a" strokeWidth="0.6" />
       ))}
     </svg>
-    <Glyph pattern={pattern} size={140} color={color || "#1a1815"} />
+    <Glyph pattern={pattern} size={140} color={color || "#16263a"} />
   </div>
 );
 

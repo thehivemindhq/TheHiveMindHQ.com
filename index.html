@@ -21,18 +21,33 @@ a{color:inherit;text-decoration:none}
 @keyframes hmMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes hmFill{0%,100%{color:transparent}50%{color:oklch(0.5 0.14 22)}}
 @keyframes hmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+@media (max-width:760px){
+[data-mq-nav]{flex-wrap:wrap!important;gap:12px 16px!important;padding:14px 18px!important}
+[data-mq-links]{order:3!important;width:100%!important;flex-wrap:wrap!important;justify-content:center!important;gap:10px 18px!important}
+[data-mq-grid]{grid-template-columns:1fr!important}
+[data-mq-pad]{padding:48px 22px!important}
+[data-mq-h1]{font-size:42px!important}
+[data-mq-h2]{font-size:31px!important}
+[data-mq-big]{font-size:25px!important}
+[data-mq-num]{font-size:120px!important}
+[data-mq-col]{flex-direction:column!important;align-items:flex-start!important;gap:22px!important}
+[data-mq-wrap]{flex-wrap:wrap!important}
+[data-mq-panel]{min-height:340px!important}
+[data-mq-img]{width:100%!important;height:380px!important}
+}
 </style>
 </helmet>
 
 <div data-screen-label="Home" style="min-height:100vh;background:oklch(0.96 0.01 85);color:oklch(0.21 0.015 60);font-family:'Newsreader',serif">
 
   <!-- nav -->
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:oklch(0.21 0.015 60);color:oklch(0.94 0.015 85);position:sticky;top:0;z-index:50">
+  <div data-mq-nav style="display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:oklch(0.21 0.015 60);color:oklch(0.94 0.015 85);position:sticky;top:0;z-index:50">
     <a href="index.html" style="display:flex;align-items:center;gap:11px">
       <div style="width:15px;height:17px;background:oklch(0.5 0.14 22);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);animation:hmBob 4s ease-in-out infinite"></div>
       <span style="font:600 15px 'Cormorant Garamond',serif;letter-spacing:0.1em">THE HIVE MIND HQ</span>
     </a>
-    <div style="display:flex;gap:32px;font:500 11.5px 'IBM Plex Mono',monospace;letter-spacing:0.1em">
+    <div data-mq-links style="display:flex;gap:32px;font:500 11.5px 'IBM Plex Mono',monospace;letter-spacing:0.1em">
       <a href="index.html" style="color:oklch(0.5 0.14 22)">01 HOME</a>
       <a href="governance.html" style="opacity:.65" style-hover="opacity:1;color:oklch(0.5 0.14 22)">02 GOVERNANCE</a>
       <a href="economics.html" style="opacity:.65" style-hover="opacity:1;color:oklch(0.5 0.14 22)">03 ECONOMICS</a>
@@ -43,21 +58,21 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- split hero -->
-  <div style="display:grid;grid-template-columns:1fr 420px;min-height:560px">
-    <div style="padding:96px 48px 72px;display:flex;flex-direction:column;justify-content:center">
+  <div data-mq-grid style="display:grid;grid-template-columns:1fr 420px;min-height:560px">
+    <div data-mq-pad style="padding:96px 48px 72px;display:flex;flex-direction:column;justify-content:center">
       <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:0.16em;color:oklch(0.42 0.13 22);animation:hmRise .7s ease both">AI-FIRST TRANSFORMATION ADVISORY</div>
-      <h1 style="font:500 74px/1.06 'Cormorant Garamond',serif;margin:24px 0 0;max-width:720px">
+      <h1 data-mq-h1 style="font:500 74px/1.06 'Cormorant Garamond',serif;margin:24px 0 0;max-width:720px">
         <span style="display:inline-block;animation:hmRise .8s .1s ease both">AI didn't fail</span>
         <span style="display:inline-block;animation:hmRise .8s .25s ease both">your enterprise.</span><br>
         <span style="display:inline-block;animation:hmRise .8s .45s ease both">The&nbsp;</span><span style="position:relative;white-space:nowrap;display:inline-block;animation:hmRise .8s .55s ease both">structure<span style="position:absolute;left:0;bottom:5px;height:13px;width:100%;background:oklch(0.6 0.13 22 / 0.35);z-index:-1;animation:hmLine 1s 1.1s ease both"></span></span><span style="display:inline-block;animation:hmRise .8s .65s ease both">&nbsp;did.</span>
       </h1>
       <p style="font:300 19px/1.6 'Newsreader',serif;color:oklch(0.38 0.015 60);max-width:580px;margin:26px 0 0;animation:hmRise .7s .8s ease both">Advisory for enterprise leaders and growth-stage companies at the inflection point of AI strategy and organizational design.</p>
-      <div style="display:flex;gap:18px;margin-top:42px;animation:hmRise .7s 1s ease both">
+      <div data-mq-wrap style="display:flex;gap:18px;margin-top:42px;animation:hmRise .7s 1s ease both">
         <a href="https://calendar.app.google/4hBVK1FZHvQnfJMR9" target="_blank" style="background:oklch(0.21 0.015 60);color:oklch(0.96 0.01 85);font:500 12.5px 'IBM Plex Mono',monospace;letter-spacing:0.06em;padding:16px 28px;transition:all .25s" style-hover="background:oklch(0.42 0.13 22);transform:translateY(-2px);box-shadow:0 8px 20px oklch(0.42 0.13 22 / 0.35)">START A CONVERSATION</a>
         <a href="#thesis" style="font:500 12.5px 'IBM Plex Mono',monospace;letter-spacing:0.06em;padding:16px 28px;border:1px solid oklch(0.21 0.015 60);transition:all .25s" style-hover="background:oklch(0.9 0.03 85)">THE THREE ACTS ↓</a>
       </div>
     </div>
-    <div style="background:#F5F1E7;position:relative;overflow:hidden">
+    <div data-mq-panel style="background:#F5F1E7;position:relative;overflow:hidden">
       <x-import component-from-global-scope="WorkReimagined" from="./animations.jsx ./work-scenes.jsx" theme="warm" embed="{{ true }}" style="position:absolute;inset:0" hint-size="100%,100%"></x-import>
     </div>
   </div>
@@ -71,15 +86,15 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- thesis -->
-  <div id="thesis" data-reveal="true" style="padding:88px 48px 64px;text-align:center">
+  <div data-mq-pad id="thesis" data-reveal="true" style="padding:88px 48px 64px;text-align:center">
     <div style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:0.16em;color:oklch(0.42 0.13 22)">THE THESIS</div>
-    <p style="font:400 34px/1.45 'Cormorant Garamond',serif;font-style:italic;max-width:880px;margin:24px auto 0">Most enterprise AI failure is structural, not technical. Governance built for deterministic software. Economics nobody can attribute. Workflows with AI bolted on. <span style="color:oklch(0.42 0.13 22)">Closing that gap is the work.</span></p>
+    <p data-mq-big style="font:400 34px/1.45 'Cormorant Garamond',serif;font-style:italic;max-width:880px;margin:24px auto 0">Most enterprise AI failure is structural, not technical. Governance built for deterministic software. Economics nobody can attribute. Workflows with AI bolted on. <span style="color:oklch(0.42 0.13 22)">Closing that gap is the work.</span></p>
   </div>
 
   <!-- acts: big numerals -->
-  <div style="background:oklch(0.21 0.015 60);color:oklch(0.93 0.015 85);padding:72px 48px">
+  <div data-mq-pad style="background:oklch(0.21 0.015 60);color:oklch(0.93 0.015 85);padding:72px 48px">
     <div data-reveal="true" style="font:500 12px 'IBM Plex Mono',monospace;letter-spacing:0.16em;color:oklch(0.5 0.14 22);margin-bottom:40px">THE WORK, IN THREE ACTS</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+    <div data-mq-grid style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
       <a href="governance.html" data-reveal="true" style="transition:transform .3s;display:block" style-hover="transform:translateY(-6px)">
         <div style="font:400 140px/0.9 'Cormorant Garamond',serif;color:transparent;-webkit-text-stroke:1.5px oklch(0.5 0.14 22);animation:hmFill 7s ease-in-out infinite">I</div>
         <h3 style="font:500 26px 'Cormorant Garamond',serif;margin:22px 0 12px">Governance That Ships</h3>
@@ -102,7 +117,7 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- partner band -->
-  <div data-reveal="true" style="padding:64px 48px;display:flex;align-items:center;justify-content:space-between;gap:40px;border-bottom:1px solid oklch(0.85 0.02 85)">
+  <div data-mq-col data-reveal="true" style="padding:64px 48px;display:flex;align-items:center;justify-content:space-between;gap:40px;border-bottom:1px solid oklch(0.85 0.02 85)">
     <div style="display:flex;align-items:center;gap:22px">
       <div style="width:26px;height:29px;background:oklch(0.5 0.14 22);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%)"></div>
       <p style="font:300 18px/1.55 'Newsreader',serif;margin:0;max-width:680px">A registered partner in the <strong style="font-weight:500;color:oklch(0.42 0.13 22)">Claude Partner Network</strong> — Anthropic's program for firms putting Claude into production. For clients: direct access to partner training, certifications, and technical support on live deployments.</p>
@@ -111,7 +126,7 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <!-- footer -->
-  <div style="padding:44px 48px;display:flex;align-items:center;justify-content:space-between">
+  <div data-mq-col style="padding:44px 48px;display:flex;align-items:center;justify-content:space-between">
     <div style="display:flex;align-items:center;gap:16px">
       <img src="uploads/photo-1783049779121.jpeg" alt="Vikram Raju" style="width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:center 20%">
       <div>

@@ -1,0 +1,8 @@
+<resources>
+    <!--
+      Compose draws all real UI via MaterialTheme (see ui/theme/Theme.kt);
+      this XML theme only controls the window before Compose's first frame
+      (e.g. status bar) and doesn't need Material Components XML styles.
+    -->
+    <style name="Theme.WaMorning" parent="android:Theme.Material.NoActionBar" />
+</resources>

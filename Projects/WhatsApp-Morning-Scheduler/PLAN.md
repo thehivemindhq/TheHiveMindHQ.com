@@ -9,10 +9,13 @@ an `AccessibilityService` — the same mechanism screen readers use: find
 on-screen elements by id/text/content-description, set text, tap "Send".
 It never uses a private API, and it is never going on the Play Store.
 
-Repo note: this lives in `whatsapp-morning-scheduler/` at the repo root
-(the Android Studio project root), kept separate from the site's
-`Projects/` folder, which holds single-file HTML showcase pieces, not a
-Gradle/Kotlin toolchain project. Say if you'd rather it live elsewhere.
+Repo note: this lives in `Projects/WhatsApp-Morning-Scheduler/` (the
+Android Studio project root — open this folder, not the repo root, in
+Android Studio). Named with hyphens rather than spaces in the directory
+name, since spaces in a Gradle/Android project path are a known source of
+build tooling breakage on some setups; the on-device app label is just
+"Morning Scheduler" (see `strings.xml`) to avoid using the WhatsApp name
+as this app's own product name.
 
 ## High-level architecture
 
@@ -53,7 +56,7 @@ BootReceiver (BOOT_COMPLETED) → re-arms the alarm after reboot, since
 ## Files (initial layout)
 
 ```
-whatsapp-morning-scheduler/
+Projects/WhatsApp-Morning-Scheduler/
   settings.gradle.kts
   build.gradle.kts
   gradle/libs.versions.toml
